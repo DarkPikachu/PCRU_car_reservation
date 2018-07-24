@@ -18,5 +18,12 @@
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "bootstrap-vue": "^2.0.0-rc.11",
+        "vue-full-calendar": "^2.6.1",
+        "vue2-admin-lte": "^0.4.3"
     }
 }
