@@ -53512,295 +53512,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -63687,692 +63398,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      {
-        staticClass: "navbar navbar-default navbar-static-top",
-        staticStyle: { "margin-bottom": "0" },
-        attrs: { role: "navigation" }
-      },
-      [
-        _c("div", { staticClass: "navbar-header" }, [
+  return _c(
+    "b-navbar",
+    { attrs: { toggleable: "md", type: "dark", variant: "info" } },
+    [
+      _c("b-navbar-toggle", { attrs: { target: "nav_collapse" } }),
+      _vm._v(" "),
+      _c("b-navbar-brand", { attrs: { href: "#" } }, [_vm._v("NavBar")]),
+      _vm._v(" "),
+      _c(
+        "b-collapse",
+        { attrs: { "is-nav": "", id: "nav_collapse" } },
+        [
           _c(
-            "button",
-            {
-              staticClass: "navbar-toggle",
-              attrs: {
-                type: "button",
-                "data-toggle": "collapse",
-                "data-target": ".navbar-collapse"
-              }
-            },
+            "b-navbar-nav",
             [
-              _c("span", { staticClass: "sr-only" }, [
-                _vm._v("Toggle navigation")
-              ]),
+              _c("b-nav-item", { attrs: { href: "#" } }, [_vm._v("Link")]),
               _vm._v(" "),
-              _c("span", { staticClass: "icon-bar" }),
-              _vm._v(" "),
-              _c("span", { staticClass: "icon-bar" }),
-              _vm._v(" "),
-              _c("span", { staticClass: "icon-bar" })
-            ]
+              _c("b-nav-item", { attrs: { href: "#", disabled: "" } }, [
+                _vm._v("Disabled")
+              ])
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
-            "a",
-            { staticClass: "navbar-brand", attrs: { href: "index.html" } },
-            [_vm._v("SB Admin v2.0")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "nav navbar-top-links navbar-right" }, [
-          _c("li", { staticClass: "dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-toggle",
-                attrs: { "data-toggle": "dropdown", href: "#" }
-              },
-              [
-                _c("i", { staticClass: "fa fa-envelope fa-fw" }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fa fa-caret-down" })
-              ]
-            ),
-            _vm._v(" "),
-            _c("ul", { staticClass: "dropdown-menu dropdown-messages" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("strong", [_vm._v("John Smith")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "pull-right text-muted" }, [
-                      _c("em", [_vm._v("Yesterday")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend..."
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("strong", [_vm._v("John Smith")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "pull-right text-muted" }, [
-                      _c("em", [_vm._v("Yesterday")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend..."
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("strong", [_vm._v("John Smith")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "pull-right text-muted" }, [
-                      _c("em", [_vm._v("Yesterday")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend..."
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-center", attrs: { href: "#" } }, [
-                  _c("strong", [_vm._v("Read All Messages")]),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fa fa-angle-right" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-toggle",
-                attrs: {
-                  "data-toggle": "dropdown",
-                  href: "#",
-                  "aria-expanded": "false"
-                }
-              },
-              [
-                _c("i", { staticClass: "fa fa-tasks fa-fw" }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fa fa-caret-down" })
-              ]
-            ),
-            _vm._v(" "),
-            _c("ul", { staticClass: "dropdown-menu dropdown-tasks" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("p", [
-                      _c("strong", [_vm._v("Task 1")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "pull-right text-muted" }, [
-                        _vm._v("40% Complete")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "progress progress-striped active" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "progress-bar progress-bar-success",
-                            staticStyle: { width: "40%" },
-                            attrs: {
-                              role: "progressbar",
-                              "aria-valuenow": "40",
-                              "aria-valuemin": "0",
-                              "aria-valuemax": "100"
-                            }
-                          },
-                          [
-                            _c("span", { staticClass: "sr-only" }, [
-                              _vm._v("40% Complete (success)")
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("p", [
-                      _c("strong", [_vm._v("Task 2")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "pull-right text-muted" }, [
-                        _vm._v("20% Complete")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "progress progress-striped active" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "progress-bar progress-bar-info",
-                            staticStyle: { width: "20%" },
-                            attrs: {
-                              role: "progressbar",
-                              "aria-valuenow": "20",
-                              "aria-valuemin": "0",
-                              "aria-valuemax": "100"
-                            }
-                          },
-                          [
-                            _c("span", { staticClass: "sr-only" }, [
-                              _vm._v("20% Complete")
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("p", [
-                      _c("strong", [_vm._v("Task 3")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "pull-right text-muted" }, [
-                        _vm._v("60% Complete")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "progress progress-striped active" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "progress-bar progress-bar-warning",
-                            staticStyle: { width: "60%" },
-                            attrs: {
-                              role: "progressbar",
-                              "aria-valuenow": "60",
-                              "aria-valuemin": "0",
-                              "aria-valuemax": "100"
-                            }
-                          },
-                          [
-                            _c("span", { staticClass: "sr-only" }, [
-                              _vm._v("60% Complete (warning)")
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("p", [
-                      _c("strong", [_vm._v("Task 4")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "pull-right text-muted" }, [
-                        _vm._v("80% Complete")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "progress progress-striped active" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "progress-bar progress-bar-danger",
-                            staticStyle: { width: "80%" },
-                            attrs: {
-                              role: "progressbar",
-                              "aria-valuenow": "80",
-                              "aria-valuemin": "0",
-                              "aria-valuemax": "100"
-                            }
-                          },
-                          [
-                            _c("span", { staticClass: "sr-only" }, [
-                              _vm._v("80% Complete (danger)")
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-center", attrs: { href: "#" } }, [
-                  _c("strong", [_vm._v("See All Tasks")]),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fa fa-angle-right" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-toggle",
-                attrs: {
-                  "data-toggle": "dropdown",
-                  href: "#",
-                  "aria-expanded": "false"
-                }
-              },
-              [
-                _c("i", { staticClass: "fa fa-bell fa-fw" }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fa fa-caret-down" })
-              ]
-            ),
-            _vm._v(" "),
-            _c("ul", { staticClass: "dropdown-menu dropdown-alerts" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("i", { staticClass: "fa fa-comment fa-fw" }),
-                    _vm._v(" New Comment\n                                "),
-                    _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("4 minutes ago")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("i", { staticClass: "fa fa-twitter fa-fw" }),
-                    _vm._v(
-                      " 3 New Followers\n                                "
-                    ),
-                    _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("12 minutes ago")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("i", { staticClass: "fa fa-envelope fa-fw" }),
-                    _vm._v(" Message Sent\n                                "),
-                    _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("4 minutes ago")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("i", { staticClass: "fa fa-tasks fa-fw" }),
-                    _vm._v(" New Task\n                                "),
-                    _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("4 minutes ago")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", [
-                    _c("i", { staticClass: "fa fa-upload fa-fw" }),
-                    _vm._v(
-                      " Server Rebooted\n                                "
-                    ),
-                    _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("4 minutes ago")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-center", attrs: { href: "#" } }, [
-                  _c("strong", [_vm._v("See All Alerts")]),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fa fa-angle-right" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-toggle",
-                attrs: { "data-toggle": "dropdown", href: "#" }
-              },
-              [
-                _c("i", { staticClass: "fa fa-user fa-fw" }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fa fa-caret-down" })
-              ]
-            ),
-            _vm._v(" "),
-            _c("ul", { staticClass: "dropdown-menu dropdown-user" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fa fa-user fa-fw" }),
-                  _vm._v(" User Profile")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fa fa-gear fa-fw" }),
-                  _vm._v(" Settings")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "divider" }),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "login.html" } }, [
-                  _c("i", { staticClass: "fa fa-sign-out fa-fw" }),
-                  _vm._v(" Logout")
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "navbar-default sidebar",
-            attrs: { role: "navigation" }
-          },
-          [
-            _c("div", { staticClass: "sidebar-nav navbar-collapse" }, [
-              _c("ul", { staticClass: "nav in", attrs: { id: "side-menu" } }, [
-                _c("li", { staticClass: "sidebar-search" }, [
-                  _c("div", { staticClass: "input-group custom-search-form" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "Search..." }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "input-group-btn" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-default",
-                          attrs: { type: "button" }
-                        },
-                        [_c("i", { staticClass: "fa fa-search" })]
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "active", attrs: { href: "index.html" } },
-                    [
-                      _c("i", { staticClass: "fa fa-dashboard fa-fw" }),
-                      _vm._v(" Dashboard")
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-bar-chart-o fa-fw" }),
-                    _vm._v(" Charts"),
-                    _c("span", { staticClass: "fa arrow" })
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "nav nav-second-level collapse" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "flot.html" } }, [
-                        _vm._v("Flot Charts")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "morris.html" } }, [
-                        _vm._v("Morris.js Charts")
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "tables.html" } }, [
-                    _c("i", { staticClass: "fa fa-table fa-fw" }),
-                    _vm._v(" Tables")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "forms.html" } }, [
-                    _c("i", { staticClass: "fa fa-edit fa-fw" }),
-                    _vm._v(" Forms")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "active" }, [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-wrench fa-fw" }),
-                    _vm._v(" UI Elements"),
-                    _c("span", { staticClass: "fa arrow" })
-                  ]),
+            "b-navbar-nav",
+            { staticClass: "ml-auto" },
+            [
+              _c(
+                "b-nav-form",
+                [
+                  _c("b-form-input", {
+                    staticClass: "mr-sm-2",
+                    attrs: { size: "sm", type: "text", placeholder: "Search" }
+                  }),
                   _vm._v(" "),
                   _c(
-                    "ul",
+                    "b-button",
                     {
-                      staticClass: "nav nav-second-level collapse in",
-                      attrs: { "aria-expanded": "true" }
+                      staticClass: "my-2 my-sm-0",
+                      attrs: { size: "sm", type: "submit" }
                     },
-                    [
-                      _c("li", [
-                        _c("a", { attrs: { href: "panels-wells.html" } }, [
-                          _vm._v("Panels and Wells")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "buttons.html" } }, [
-                          _vm._v("Buttons")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "notifications.html" } }, [
-                          _vm._v("Notifications")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "typography.html" } }, [
-                          _vm._v("Typography")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "icons.html" } }, [
-                          _vm._v(" Icons")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "grid.html" } }, [
-                          _vm._v("Grid")
-                        ])
-                      ])
-                    ]
+                    [_vm._v("Search")]
                   )
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-sitemap fa-fw" }),
-                    _vm._v(" Multi-Level Dropdown"),
-                    _c("span", { staticClass: "fa arrow" })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-nav-item-dropdown",
+                { attrs: { text: "Lang", right: "" } },
+                [
+                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                    _vm._v("EN")
                   ]),
                   _vm._v(" "),
-                  _c("ul", { staticClass: "nav nav-second-level collapse" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Second Level Item")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Second Level Item")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Third Level "),
-                        _c("span", { staticClass: "fa arrow" })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "ul",
-                        { staticClass: "nav nav-third-level collapse" },
-                        [
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Third Level Item")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Third Level Item")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Third Level Item")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Third Level Item")
-                            ])
-                          ])
-                        ]
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-files-o fa-fw" }),
-                    _vm._v(" Sample Pages"),
-                    _c("span", { staticClass: "fa arrow" })
+                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                    _vm._v("ES")
                   ]),
                   _vm._v(" "),
-                  _c("ul", { staticClass: "nav nav-second-level collapse" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "blank.html" } }, [
-                        _vm._v("Blank Page")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "login.html" } }, [
-                        _vm._v("Login Page")
-                      ])
-                    ])
+                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                    _vm._v("RU")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                    _vm._v("FA")
                   ])
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  }
-]
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-nav-item-dropdown",
+                { attrs: { right: "" } },
+                [
+                  _c("template", { slot: "button-content" }, [
+                    _c("em", [_vm._v("User")])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                    _vm._v("Profile")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                    _vm._v("Signout")
+                  ])
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
