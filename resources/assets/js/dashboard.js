@@ -20,7 +20,7 @@ window.Vue = require('vue');
  */
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
+Vue.component('navbar-component', require('./components/NavbarComponent1.vue'));
 //Vue.component('test-component', require('./components/Test.vue'));
 
 // js files

@@ -53439,7 +53439,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\NavbarComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\NavbarComponent1.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -53448,9 +53448,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-36407a26", Component.options)
+    hotAPI.createRecord("data-v-dc4f470a", Component.options)
   } else {
-    hotAPI.reload("data-v-36407a26", Component.options)
+    hotAPI.reload("data-v-dc4f470a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -53467,10 +53467,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__ = __webpack_require__(108);
-//
-//
-//
-//
 //
 //
 //
@@ -63398,112 +63394,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "b-navbar",
-    { attrs: { toggleable: "md", type: "dark", variant: "info" } },
-    [
-      _c("b-navbar-toggle", { attrs: { target: "nav_collapse" } }),
-      _vm._v(" "),
-      _c("b-navbar-brand", { attrs: { href: "#" } }, [_vm._v("NavBar")]),
-      _vm._v(" "),
-      _c(
-        "b-collapse",
-        { attrs: { "is-nav": "", id: "nav_collapse" } },
-        [
-          _c(
-            "b-navbar-nav",
-            [
-              _c("b-nav-item", { attrs: { href: "#" } }, [_vm._v("Link")]),
-              _vm._v(" "),
-              _c("b-nav-item", { attrs: { href: "#", disabled: "" } }, [
-                _vm._v("Disabled")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-navbar-nav",
-            { staticClass: "ml-auto" },
-            [
-              _c(
-                "b-nav-form",
-                [
-                  _c("b-form-input", {
-                    staticClass: "mr-sm-2",
-                    attrs: { size: "sm", type: "text", placeholder: "Search" }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-button",
-                    {
-                      staticClass: "my-2 my-sm-0",
-                      attrs: { size: "sm", type: "submit" }
-                    },
-                    [_vm._v("Search")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-nav-item-dropdown",
-                { attrs: { text: "Lang", right: "" } },
-                [
-                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                    _vm._v("EN")
-                  ]),
-                  _vm._v(" "),
-                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                    _vm._v("ES")
-                  ]),
-                  _vm._v(" "),
-                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                    _vm._v("RU")
-                  ]),
-                  _vm._v(" "),
-                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                    _vm._v("FA")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-nav-item-dropdown",
-                { attrs: { right: "" } },
-                [
-                  _c("template", { slot: "button-content" }, [
-                    _c("em", [_vm._v("User")])
-                  ]),
-                  _vm._v(" "),
-                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                    _vm._v("Profile")
-                  ]),
-                  _vm._v(" "),
-                  _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                    _vm._v("Signout")
-                  ])
-                ],
-                2
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "navbar navbar-default navbar-fixed-top",
+        attrs: { id: "head-nav" }
+      },
+      [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "navbar-header" }, [
+            _c(
+              "button",
+              {
+                staticClass: "navbar-toggle",
+                attrs: {
+                  type: "button",
+                  "data-toggle": "collapse",
+                  "data-target": ".navbar-collapse"
+                }
+              },
+              [_c("span", { staticClass: "fa fa-gear" })]
+            ),
+            _vm._v(" "),
+            _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+              _c("span", [_vm._v("CarSYS Demo Version")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "hidden-xs" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "clearfix" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "navbar-collapse collapse" }, [
+            _c("ul", { staticClass: "nav navbar-nav navbar-right user-nav" }, [
+              _c("li", { staticClass: "dropdown profile_menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-toggle",
+                    attrs: { href: "#", "data-toggle": "dropdown" }
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        alt: "Avatar",
+                        src: "/fileupload/user/1.png?181",
+                        width: "30"
+                      }
+                    }),
+                    _vm._v("admin "),
+                    _c("b", { staticClass: "caret" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "dropdown-menu" }, [
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { tabindex: "-1", href: "/index.php?r=profile" }
+                      },
+                      [_vm._v("ข้อมูลส่วนตัว")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "divider" }),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          tabindex: "-1",
+                          href: "/index.php?r=site/logout"
+                        }
+                      },
+                      [_vm._v("ออกจากระบบ")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "nav navbar-nav navbar-right not-nav" }, [
+              _c("li", { staticClass: "button" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "/index.php?r=carreturn&status=5",
+                      title: "รับคืนรถ รออนุมัติ"
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-flag-o" })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "button" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "speech-button",
+                    attrs: {
+                      href: "/index.php?r=approve",
+                      title: "จองใช้รถ รออนุมัติ"
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-inbox" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "bubble" }, [_vm._v("1")])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-36407a26", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-dc4f470a", module.exports)
   }
 }
 
