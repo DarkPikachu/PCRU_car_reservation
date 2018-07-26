@@ -1,4 +1,5 @@
 <template>
+<b-col>
 <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -37,6 +38,7 @@
 
             </div>
 </div>
+</b-col>
 </template>
 
 <script>
