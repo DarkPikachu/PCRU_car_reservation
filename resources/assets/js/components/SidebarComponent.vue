@@ -1,6 +1,5 @@
 <template>
-    <b-container>
-        <div class="container-fluid">
+    <b-container fluid>
             <div class="row">
                 <aside id="slider" class="main-sidebar">
                     <section class="sidebar" style="height: auto;">
@@ -12,15 +11,7 @@
                                 <p>Alexander Pierce</p> 
                                 <a href="#"><i class="fa fa-circle" style="color: rgb(60, 118, 61);"></i> Online</a>
                             </div>
-                        </div> 
-                        <form action="#" method="get" class="sidebar-form">
-                            <div class="input-group">
-                                <input type="text" name="q" placeholder="Search..." class="form-control"> 
-                                <span class="input-group-btn">
-                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </form> 
+                        </div>
                         
                         <ul class="sidebar-menu">
                             <li class="header">
@@ -60,8 +51,7 @@
                     </section>
                 </aside>
                 
-               </div> 
-        </div>
+            </div> 
     </b-container>
 </template>
 
@@ -79,3 +69,9 @@
         }
     }
 </script>
+
+<style>
+body{
+ background-color: blue;
+}
+</style>
