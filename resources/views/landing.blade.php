@@ -9,8 +9,8 @@
             <b-row>
                 <b-container fluid>
                     <b-row>
-                        <sidebar-component></sidebar-component>
-                        <dashboard-component></dashboard-component>
+                        <b-col><sidebar-component></sidebar-component></b-col>
+                        <b-col cols="10"><dashboard-component></dashboard-component></b-col>
                     </b-row>
                 </b-container>
             </b-row>

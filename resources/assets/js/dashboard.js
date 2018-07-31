@@ -29,6 +29,10 @@ Vue.component('dashboard-component', require('./components/DashboardComponent.vu
 // js files
 //import 'va/lib/script'
 
+import { Navbar, Layout } from 'bootstrap-vue/es/components';
+
+Vue.use(Layout);
+Vue.use(Navbar);
 
 const app = new Vue({
     el: '#appVue'

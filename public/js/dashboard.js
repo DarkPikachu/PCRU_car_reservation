@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(413)("./" + name);
+                __webpack_require__(411)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -5822,88 +5822,6 @@ function clickHandlerFactory(_ref3) {
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5919,7 +5837,7 @@ function warn(message) {
 /* harmony default export */ __webpack_exports__["a"] = (warn);
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5942,7 +5860,7 @@ function warn(message) {
 });
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8471,7 +8389,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(8)))
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -18842,7 +18760,7 @@ return jQuery;
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18944,6 +18862,88 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
 
 /***/ }),
 /* 17 */
@@ -20283,8 +20283,8 @@ module.exports = __webpack_require__(41) ? function (object, key, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(40);
-var IE8_DOM_DEFINE = __webpack_require__(391);
-var toPrimitive = __webpack_require__(392);
+var IE8_DOM_DEFINE = __webpack_require__(389);
+var toPrimitive = __webpack_require__(390);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(41) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -20337,7 +20337,7 @@ module.exports = function (it, key) {
 
 
 window._ = __webpack_require__(44);
-window.Popper = __webpack_require__(14).default;
+window.Popper = __webpack_require__(13).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -20346,7 +20346,7 @@ window.Popper = __webpack_require__(14).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(15);
+  window.$ = window.jQuery = __webpack_require__(14);
 
   __webpack_require__(45);
 } catch (e) {}
@@ -37515,7 +37515,7 @@ if (token) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(15), __webpack_require__(14)) :
+   true ? factory(exports, __webpack_require__(14), __webpack_require__(13)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -41471,7 +41471,7 @@ module.exports = __webpack_require__(47);
 var utils = __webpack_require__(4);
 var bind = __webpack_require__(23);
 var Axios = __webpack_require__(49);
-var defaults = __webpack_require__(16);
+var defaults = __webpack_require__(15);
 
 /**
  * Create an instance of Axios
@@ -41554,7 +41554,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(16);
+var defaults = __webpack_require__(15);
 var utils = __webpack_require__(4);
 var InterceptorManager = __webpack_require__(58);
 var dispatchRequest = __webpack_require__(59);
@@ -42093,7 +42093,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(4);
 var transformData = __webpack_require__(60);
 var isCancel = __webpack_require__(27);
-var defaults = __webpack_require__(16);
+var defaults = __webpack_require__(15);
 var isAbsoluteURL = __webpack_require__(61);
 var combineURLs = __webpack_require__(62);
 
@@ -53574,230 +53574,118 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 68 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__alert__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__badge__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breadcrumb__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__button_toolbar__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__input_group__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__card__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__carousel__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__layout__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__collapse__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dropdown__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__embed__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__form__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__form_group__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__form_checkbox__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__form_radio__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__form_input__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__form_textarea__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_file__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__form_select__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__image__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__jumbotron__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__link__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__list_group__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__media__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modal__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nav__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__navbar__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pagination__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pagination_nav__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__popover__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__progress__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__table__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__tabs__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__tooltip__ = __webpack_require__(368);
+/* unused harmony reexport Alert */
+/* unused harmony reexport Badge */
+/* unused harmony reexport Breadcrumb */
+/* unused harmony reexport Button */
+/* unused harmony reexport ButtonToolbar */
+/* unused harmony reexport ButtonGroup */
+/* unused harmony reexport Card */
+/* unused harmony reexport Carousel */
+/* unused harmony reexport Collapse */
+/* unused harmony reexport Dropdown */
+/* unused harmony reexport Embed */
+/* unused harmony reexport Form */
+/* unused harmony reexport FormGroup */
+/* unused harmony reexport FormInput */
+/* unused harmony reexport FormTextarea */
+/* unused harmony reexport FormFile */
+/* unused harmony reexport FormCheckbox */
+/* unused harmony reexport FormRadio */
+/* unused harmony reexport FormSelect */
+/* unused harmony reexport Image */
+/* unused harmony reexport InputGroup */
+/* unused harmony reexport Jumbotron */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_9__layout__["a"]; });
+/* unused harmony reexport Link */
+/* unused harmony reexport ListGroup */
+/* unused harmony reexport Media */
+/* unused harmony reexport Modal */
+/* unused harmony reexport Nav */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_28__navbar__["a"]; });
+/* unused harmony reexport Pagination */
+/* unused harmony reexport PaginationNav */
+/* unused harmony reexport Popover */
+/* unused harmony reexport Progress */
+/* unused harmony reexport Table */
+/* unused harmony reexport Tabs */
+/* unused harmony reexport Tooltip */
 
-var hasDocument = typeof document !== 'undefined'
 
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
 
-var listToStyles = __webpack_require__(262)
 
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
 
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
 
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
 
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-var options = null
-var ssrIdKey = 'data-vue-ssr-id'
 
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
 
-module.exports = function (parentId, list, _isProduction, _options) {
-  isProduction = _isProduction
 
-  options = _options || {}
 
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
 
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
 
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
 
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
 
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
 
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
 
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
 
-  update(obj)
 
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
 
-var replaceText = (function () {
-  var textStore = []
 
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
 
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
 
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
 
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
 
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-  if (options.ssrId) {
-    styleElement.setAttribute(ssrIdKey, obj.id)
-  }
 
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
 
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
+
+
+
+
+
+
+
+
+
+
 
 
 /***/ }),
@@ -54555,118 +54443,230 @@ module.exports = function (key) {
 
 /***/ }),
 /* 85 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__alert__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__badge__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breadcrumb__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__button_toolbar__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__input_group__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__card__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__carousel__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__layout__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__collapse__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dropdown__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__embed__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__form__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__form_group__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__form_checkbox__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__form_radio__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__form_input__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__form_textarea__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_file__ = __webpack_require__(319);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__form_select__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__image__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__jumbotron__ = __webpack_require__(325);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__link__ = __webpack_require__(327);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__list_group__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__media__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modal__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nav__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__navbar__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pagination__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pagination_nav__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__popover__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__progress__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__table__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__tabs__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__tooltip__ = __webpack_require__(368);
-/* unused harmony reexport Alert */
-/* unused harmony reexport Badge */
-/* unused harmony reexport Breadcrumb */
-/* unused harmony reexport Button */
-/* unused harmony reexport ButtonToolbar */
-/* unused harmony reexport ButtonGroup */
-/* unused harmony reexport Card */
-/* unused harmony reexport Carousel */
-/* unused harmony reexport Collapse */
-/* unused harmony reexport Dropdown */
-/* unused harmony reexport Embed */
-/* unused harmony reexport Form */
-/* unused harmony reexport FormGroup */
-/* unused harmony reexport FormInput */
-/* unused harmony reexport FormTextarea */
-/* unused harmony reexport FormFile */
-/* unused harmony reexport FormCheckbox */
-/* unused harmony reexport FormRadio */
-/* unused harmony reexport FormSelect */
-/* unused harmony reexport Image */
-/* unused harmony reexport InputGroup */
-/* unused harmony reexport Jumbotron */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_9__layout__["a"]; });
-/* unused harmony reexport Link */
-/* unused harmony reexport ListGroup */
-/* unused harmony reexport Media */
-/* unused harmony reexport Modal */
-/* unused harmony reexport Nav */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_28__navbar__["a"]; });
-/* unused harmony reexport Pagination */
-/* unused harmony reexport PaginationNav */
-/* unused harmony reexport Popover */
-/* unused harmony reexport Progress */
-/* unused harmony reexport Table */
-/* unused harmony reexport Tabs */
-/* unused harmony reexport Tooltip */
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
 
+var hasDocument = typeof document !== 'undefined'
 
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
 
+var listToStyles = __webpack_require__(262)
 
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
 
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
 
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
 
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
 
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
 
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
 
+  options = _options || {}
 
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
 
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
 
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
 
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
 
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
 
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
 
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
 
+  update(obj)
 
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
 
+var replaceText = (function () {
+  var textStore = []
 
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
 
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
 
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
 
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
 
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
 
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
 
-
-
-
-
-
-
-
-
-
-
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
 
 
 /***/ }),
@@ -55180,14 +55180,14 @@ var unbindTargets = function unbindTargets(vnode, binding, listenTypes) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clickout__ = __webpack_require__(296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__listen_on_root__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_array__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_object__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_bv_event_class__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__(7);
 
 
@@ -55796,7 +55796,7 @@ var props = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(30);
@@ -56088,7 +56088,7 @@ var props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__ = __webpack_require__(77);
@@ -56729,7 +56729,7 @@ var props = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bv_event_class__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__object__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__array__ = __webpack_require__(5);
@@ -58373,7 +58373,7 @@ module.exports = $export;
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(390);
+var aFunction = __webpack_require__(388);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -58425,7 +58425,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(399);
+var IObject = __webpack_require__(397);
 var defined = __webpack_require__(80);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -70473,8 +70473,11 @@ module.exports = __webpack_require__(258);
 
 /***/ }),
 /* 258 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__ = __webpack_require__(68);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -70501,11 +70504,15 @@ Vue.component('bs-drawer', VueBsDrawer)*/
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('navbar-component', __webpack_require__(259));
 Vue.component('sidebar-component', __webpack_require__(371));
-Vue.component('dashboard-component', __webpack_require__(376));
+Vue.component('dashboard-component', __webpack_require__(374));
 
 // js files
 //import 'va/lib/script'
 
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["a" /* Layout */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["b" /* Navbar */]);
 
 var app = new Vue({
   el: '#appVue'
@@ -70573,7 +70580,7 @@ var content = __webpack_require__(261);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(68)("d7096178", content, false, {});
+var update = __webpack_require__(85)("d7096178", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -70592,7 +70599,7 @@ if(false) {
 /* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
 
 
@@ -70641,7 +70648,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__ = __webpack_require__(68);
 //
 //
 //
@@ -70890,12 +70897,12 @@ if(false) {
 /* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".fade-enter-active, .fade-leave-active {\r\n    transition: opacity .15s linear;\r\n}\r\n.fade-enter, .fade-leave-to {\r\n    opacity: 0;\r\n}\r\n", ""]);
+exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transition: opacity .15s linear;\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -72156,7 +72163,7 @@ var TransitionEndEvents = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_img__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__(6);
 
 
@@ -73048,12 +73055,12 @@ if(false) {
 /* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
 
 
 // module
-exports.push([module.i, "/* workaround for https://github.com/bootstrap-vue/bootstrap-vue/issues/1560 */\r\n/* source: _input-group.scss */\r\n\r\n.input-group > .input-group-prepend > .b-dropdown > .btn,\r\n.input-group > .input-group-append:not(:last-child) > .b-dropdown > .btn,\r\n.input-group > .input-group-append:last-child > .b-dropdown:not(:last-child):not(.dropdown-toggle) > .btn {\r\n    border-top-right-radius: 0;\r\n    border-bottom-right-radius: 0;\r\n}\r\n\r\n.input-group > .input-group-append > .b-dropdown > .btn,\r\n.input-group > .input-group-prepend:not(:first-child) > .b-dropdown > .btn,\r\n.input-group > .input-group-prepend:first-child > .b-dropdown:not(:first-child) > .btn {\r\n    border-top-left-radius: 0;\r\n    border-bottom-left-radius: 0;\r\n}\r\n", ""]);
+exports.push([module.i, "/* workaround for https://github.com/bootstrap-vue/bootstrap-vue/issues/1560 */\n/* source: _input-group.scss */\n\n.input-group > .input-group-prepend > .b-dropdown > .btn,\n.input-group > .input-group-append:not(:last-child) > .b-dropdown > .btn,\n.input-group > .input-group-append:last-child > .b-dropdown:not(:last-child):not(.dropdown-toggle) > .btn {\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n}\n\n.input-group > .input-group-append > .b-dropdown > .btn,\n.input-group > .input-group-prepend:not(:first-child) > .b-dropdown > .btn,\n.input-group > .input-group-prepend:first-child > .b-dropdown:not(:first-child) > .btn {\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n}\n", ""]);
 
 // exports
 
@@ -73338,7 +73345,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(10);
@@ -73674,7 +73681,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
@@ -73824,7 +73831,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(30);
@@ -73968,7 +73975,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__(5);
@@ -74159,12 +74166,12 @@ if(false) {
 /* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
 
 
 // module
-exports.push([module.i, "/* Special styling for type=range and type=color input */\r\ninput.form-control[type=\"range\"],\r\ninput.form-control[type=\"color\"] {\r\n    height: 2.25rem;\r\n}\r\ninput.form-control.form-control-sm[type=\"range\"],\r\ninput.form-control.form-control-sm[type=\"color\"] {\r\n    height: 1.9375rem;\r\n}\r\ninput.form-control.form-control-lg[type=\"range\"],\r\ninput.form-control.form-control-lg[type=\"color\"] {\r\n    height: 3rem;\r\n}\r\n\r\n/* Less padding on type=color */\r\ninput.form-control[type=\"color\"] {\r\n    padding: 0.25rem 0.25rem;\r\n}\r\ninput.form-control.form-control-sm[type=\"color\"] {\r\n    padding: 0.125rem 0.125rem;\r\n}\r\n", ""]);
+exports.push([module.i, "/* Special styling for type=range and type=color input */\ninput.form-control[type=\"range\"],\ninput.form-control[type=\"color\"] {\n    height: 2.25rem;\n}\ninput.form-control.form-control-sm[type=\"range\"],\ninput.form-control.form-control-sm[type=\"color\"] {\n    height: 1.9375rem;\n}\ninput.form-control.form-control-lg[type=\"range\"],\ninput.form-control.form-control-lg[type=\"color\"] {\n    height: 3rem;\n}\n\n/* Less padding on type=color */\ninput.form-control[type=\"color\"] {\n    padding: 0.25rem 0.25rem;\n}\ninput.form-control.form-control-sm[type=\"color\"] {\n    padding: 0.125rem 0.125rem;\n}\n", ""]);
 
 // exports
 
@@ -74200,7 +74207,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(10);
 
@@ -74381,7 +74388,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__(5);
@@ -74665,7 +74672,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(30);
@@ -75406,7 +75413,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__(7);
@@ -76223,7 +76230,7 @@ var listenTypes = { click: true };
 "use strict";
 /* unused harmony export props */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(11);
 
 
 
@@ -76934,7 +76941,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_popover_class__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_toolpop__ = __webpack_require__(112);
 
 
@@ -77294,7 +77301,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_stable_sort__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_object__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_array__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__mixins_id__ = __webpack_require__(6);
@@ -79828,12 +79835,12 @@ if(false) {
 /* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
 
 
 // module
-exports.push([module.i, "/* Add support for fixed layout table */\r\ntable.b-table.b-table-fixed {\r\n    table-layout: fixed;\r\n}\r\n\r\n/* Busy table styling */\r\ntable.b-table[aria-busy='false'] {\r\n    opacity: 1;\r\n}\r\ntable.b-table[aria-busy='true'] {\r\n    opacity: 0.6;\r\n}\r\n\r\n/* Sort styling */\r\ntable.b-table > thead > tr > th,\r\ntable.b-table > tfoot > tr > th {\r\n    position: relative;\r\n}\r\ntable.b-table > thead > tr > th.sorting,\r\ntable.b-table > tfoot > tr > th.sorting {\r\n    padding-right: 1.5em;\r\n    cursor: pointer;\r\n}\r\ntable.b-table > thead > tr > th.sorting::before,\r\ntable.b-table > thead > tr > th.sorting::after,\r\ntable.b-table > tfoot > tr > th.sorting::before,\r\ntable.b-table > tfoot > tr > th.sorting::after {\r\n    position: absolute;\r\n    bottom: 0;\r\n    display: block;\r\n    opacity: 0.4;\r\n    padding-bottom: inherit;\r\n    font-size: inherit;\r\n    line-height: 180%;\r\n}\r\ntable.b-table > thead > tr > th.sorting::before,\r\ntable.b-table > tfoot > tr > th.sorting::before {\r\n    right: 0.75em;\r\n    content: '\\2191';\r\n}\r\ntable.b-table > thead > tr > th.sorting::after,\r\ntable.b-table > tfoot > tr > th.sorting::after {\r\n    right: 0.25em;\r\n    content: '\\2193';\r\n}\r\ntable.b-table > thead > tr > th.sorting_asc::after,\r\ntable.b-table > thead > tr > th.sorting_desc::before,\r\ntable.b-table > tfoot > tr > th.sorting_asc::after,\r\ntable.b-table > tfoot > tr > th.sorting_desc::before {\r\n    opacity: 1;\r\n}\r\n\r\n/* Stacked table layout */\r\n/* Derived from http://blog.adrianroselli.com/2017/11/a-responsive-accessible-table.html */\r\n/* Always stacked */\r\ntable.b-table.b-table-stacked {\r\n    width: 100%;\r\n}\r\ntable.b-table.b-table-stacked,\r\ntable.b-table.b-table-stacked > tbody,\r\ntable.b-table.b-table-stacked > tbody > tr,\r\ntable.b-table.b-table-stacked > tbody > tr > td,\r\ntable.b-table.b-table-stacked > tbody > tr > th,\r\ntable.b-table.b-table-stacked > caption {\r\n    display: block;\r\n}\r\n\r\n/* Hide stuff we can't deal with, or shouldn't show */\r\ntable.b-table.b-table-stacked > thead,\r\ntable.b-table.b-table-stacked > tfoot,\r\ntable.b-table.b-table-stacked > tbody > tr.b-table-top-row,\r\ntable.b-table.b-table-stacked > tbody > tr.b-table-bottom-row {\r\n    display: none;\r\n}\r\n\r\n/* inter-row top border */\r\ntable.b-table.b-table-stacked > tbody > tr > :first-child {\r\n    border-top-width: 0.4rem;\r\n}\r\n\r\n/* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\r\ntable.b-table.b-table-stacked > tbody > tr > [data-label] {\r\n    display: grid;\r\n    grid-template-columns: 40% auto;\r\n    grid-gap: 0.25rem 1rem;\r\n}\r\n\r\n/* generate row cell \"heading\" */\r\ntable.b-table.b-table-stacked > tbody > tr > [data-label]::before {\r\n    content: attr(data-label);\r\n    display: inline;\r\n    text-align: right;\r\n    overflow-wrap: break-word;\r\n    font-weight: bold;\r\n    font-style: normal;\r\n}\r\n\r\n@media all and (max-width: 575.99px) {\r\n    /* Under SM */\r\n    table.b-table.b-table-stacked-sm {\r\n        width: 100%;\r\n    }\r\n    table.b-table.b-table-stacked-sm,\r\n    table.b-table.b-table-stacked-sm > tbody,\r\n    table.b-table.b-table-stacked-sm > tbody > tr,\r\n    table.b-table.b-table-stacked-sm > tbody > tr > td,\r\n    table.b-table.b-table-stacked-sm > tbody > tr > th,\r\n    table.b-table.b-table-stacked-sm > caption {\r\n        display: block;\r\n    }\r\n    /* hide stuff we can't deal with, or shouldn't show */\r\n    table.b-table.b-table-stacked-sm > thead,\r\n    table.b-table.b-table-stacked-sm > tfoot,\r\n    table.b-table.b-table-stacked-sm > tbody > tr.b-table-top-row,\r\n    table.b-table.b-table-stacked-sm > tbody > tr.b-table-bottom-row {\r\n        display: none;\r\n    }\r\n    /* inter-row top border */\r\n    table.b-table.b-table-stacked-sm > tbody > tr > :first-child {\r\n        border-top-width: 0.4rem;\r\n    }\r\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\r\n    table.b-table.b-table-stacked-sm > tbody > tr > [data-label] {\r\n        display: grid;\r\n        grid-template-columns: 40% auto;\r\n        grid-gap: 0.25rem 1rem;\r\n    }\r\n    /* generate row cell \"heading\" */\r\n    table.b-table.b-table-stacked-sm > tbody > tr > [data-label]::before {\r\n        content: attr(data-label);\r\n        display: inline;\r\n        text-align: right;\r\n        overflow-wrap: break-word;\r\n        font-weight: bold;\r\n        font-style: normal;\r\n    }\r\n}\r\n\r\n@media all and (max-width: 767.99px) {\r\n    /* under MD  */\r\n    table.b-table.b-table-stacked-md {\r\n        width: 100%;\r\n    }\r\n    table.b-table.b-table-stacked-md,\r\n    table.b-table.b-table-stacked-md > tbody,\r\n    table.b-table.b-table-stacked-md > tbody > tr,\r\n    table.b-table.b-table-stacked-md > tbody > tr > td,\r\n    table.b-table.b-table-stacked-md > tbody > tr > th,\r\n    table.b-table.b-table-stacked-md > caption {\r\n        display: block;\r\n    }\r\n    /* hide stuff we can't deal with, or shouldn't show */\r\n    table.b-table.b-table-stacked-md > thead,\r\n    table.b-table.b-table-stacked-md > tfoot,\r\n    table.b-table.b-table-stacked-md > tbody > tr.b-table-top-row,\r\n    table.b-table.b-table-stacked-md > tbody > tr.b-table-bottom-row {\r\n        display: none;\r\n    }\r\n    /* inter-row top border */\r\n    table.b-table.b-table-stacked-md > tbody > tr > :first-child {\r\n        border-top-width: 0.4rem;\r\n    }\r\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\r\n    table.b-table.b-table-stacked-md > tbody > tr > [data-label] {\r\n        display: grid;\r\n        grid-template-columns: 40% auto;\r\n        grid-gap: 0.25rem 1rem;\r\n    }\r\n    /* generate row cell \"heading\" */\r\n    table.b-table.b-table-stacked-md > tbody > tr > [data-label]::before {\r\n        content: attr(data-label);\r\n        display: inline;\r\n        text-align: right;\r\n        overflow-wrap: break-word;\r\n        font-weight: bold;\r\n        font-style: normal;\r\n    }\r\n}\r\n\r\n@media all and (max-width: 991.99px) {\r\n    /* under LG  */\r\n    table.b-table.b-table-stacked-lg {\r\n        width: 100%;\r\n    }\r\n    table.b-table.b-table-stacked-lg,\r\n    table.b-table.b-table-stacked-lg > tbody,\r\n    table.b-table.b-table-stacked-lg > tbody > tr,\r\n    table.b-table.b-table-stacked-lg > tbody > tr > td,\r\n    table.b-table.b-table-stacked-lg > tbody > tr > th,\r\n    table.b-table.b-table-stacked-lg > caption {\r\n        display: block;\r\n    }\r\n    /* hide stuff we can't deal with, or shouldn't show */\r\n    table.b-table.b-table-stacked-lg > thead,\r\n    table.b-table.b-table-stacked-lg > tfoot,\r\n    table.b-table.b-table-stacked-lg > tbody > tr.b-table-top-row,\r\n    table.b-table.b-table-stacked-lg > tbody > tr.b-table-bottom-row {\r\n        display: none;\r\n    }\r\n    /* inter-row top border */\r\n    table.b-table.b-table-stacked-lg > tbody > tr > :first-child {\r\n        border-top-width: 0.4rem;\r\n    }\r\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\r\n    table.b-table.b-table-stacked-lg > tbody > tr > [data-label] {\r\n        display: grid;\r\n        grid-template-columns: 40% auto;\r\n        grid-gap: 0.25rem 1rem;\r\n    }\r\n    /* generate row cell \"heading\" */\r\n    table.b-table.b-table-stacked-lg > tbody > tr > [data-label]::before {\r\n        content: attr(data-label);\r\n        display: inline;\r\n        text-align: right;\r\n        overflow-wrap: break-word;\r\n        font-weight: bold;\r\n        font-style: normal;\r\n    }\r\n}\r\n\r\n@media all and (max-width: 1199.99px) {\r\n    /* under XL  */\r\n    table.b-table.b-table-stacked-xl {\r\n        width: 100%;\r\n    }\r\n    table.b-table.b-table-stacked-xl,\r\n    table.b-table.b-table-stacked-xl > tbody,\r\n    table.b-table.b-table-stacked-xl > tbody > tr,\r\n    table.b-table.b-table-stacked-xl > tbody > tr > td,\r\n    table.b-table.b-table-stacked-xl > tbody > tr > th,\r\n    table.b-table.b-table-stacked-xl > caption {\r\n        display: block;\r\n    }\r\n    /* hide stuff we can't deal with, or shouldn't show */\r\n    table.b-table.b-table-stacked-xl > thead,\r\n    table.b-table.b-table-stacked-xl > tfoot,\r\n    table.b-table.b-table-stacked-xl > tbody > tr.b-table-top-row,\r\n    table.b-table.b-table-stacked-xl > tbody > tr.b-table-bottom-row {\r\n        display: none;\r\n    }\r\n    /* inter-row top border */\r\n    table.b-table.b-table-stacked-xl > tbody > tr > :first-child {\r\n        border-top-width: 0.4rem;\r\n    }\r\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\r\n    table.b-table.b-table-stacked-xl > tbody > tr > [data-label] {\r\n        display: grid;\r\n        grid-template-columns: 40% auto;\r\n        grid-gap: 0.25rem 1rem;\r\n    }\r\n    /* generate row cell \"heading\" */\r\n    table.b-table.b-table-stacked-xl > tbody > tr > [data-label]::before {\r\n        content: attr(data-label);\r\n        display: inline;\r\n        text-align: right;\r\n        overflow-wrap: break-word;\r\n        font-weight: bold;\r\n        font-style: normal;\r\n    }\r\n}\r\n\r\n/* Details row styling */\r\ntable.b-table > tbody > tr.b-table-details > td {\r\n    border-top: none;\r\n}\r\n", ""]);
+exports.push([module.i, "/* Add support for fixed layout table */\ntable.b-table.b-table-fixed {\n    table-layout: fixed;\n}\n\n/* Busy table styling */\ntable.b-table[aria-busy='false'] {\n    opacity: 1;\n}\ntable.b-table[aria-busy='true'] {\n    opacity: 0.6;\n}\n\n/* Sort styling */\ntable.b-table > thead > tr > th,\ntable.b-table > tfoot > tr > th {\n    position: relative;\n}\ntable.b-table > thead > tr > th.sorting,\ntable.b-table > tfoot > tr > th.sorting {\n    padding-right: 1.5em;\n    cursor: pointer;\n}\ntable.b-table > thead > tr > th.sorting::before,\ntable.b-table > thead > tr > th.sorting::after,\ntable.b-table > tfoot > tr > th.sorting::before,\ntable.b-table > tfoot > tr > th.sorting::after {\n    position: absolute;\n    bottom: 0;\n    display: block;\n    opacity: 0.4;\n    padding-bottom: inherit;\n    font-size: inherit;\n    line-height: 180%;\n}\ntable.b-table > thead > tr > th.sorting::before,\ntable.b-table > tfoot > tr > th.sorting::before {\n    right: 0.75em;\n    content: '\\2191';\n}\ntable.b-table > thead > tr > th.sorting::after,\ntable.b-table > tfoot > tr > th.sorting::after {\n    right: 0.25em;\n    content: '\\2193';\n}\ntable.b-table > thead > tr > th.sorting_asc::after,\ntable.b-table > thead > tr > th.sorting_desc::before,\ntable.b-table > tfoot > tr > th.sorting_asc::after,\ntable.b-table > tfoot > tr > th.sorting_desc::before {\n    opacity: 1;\n}\n\n/* Stacked table layout */\n/* Derived from http://blog.adrianroselli.com/2017/11/a-responsive-accessible-table.html */\n/* Always stacked */\ntable.b-table.b-table-stacked {\n    width: 100%;\n}\ntable.b-table.b-table-stacked,\ntable.b-table.b-table-stacked > tbody,\ntable.b-table.b-table-stacked > tbody > tr,\ntable.b-table.b-table-stacked > tbody > tr > td,\ntable.b-table.b-table-stacked > tbody > tr > th,\ntable.b-table.b-table-stacked > caption {\n    display: block;\n}\n\n/* Hide stuff we can't deal with, or shouldn't show */\ntable.b-table.b-table-stacked > thead,\ntable.b-table.b-table-stacked > tfoot,\ntable.b-table.b-table-stacked > tbody > tr.b-table-top-row,\ntable.b-table.b-table-stacked > tbody > tr.b-table-bottom-row {\n    display: none;\n}\n\n/* inter-row top border */\ntable.b-table.b-table-stacked > tbody > tr > :first-child {\n    border-top-width: 0.4rem;\n}\n\n/* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\ntable.b-table.b-table-stacked > tbody > tr > [data-label] {\n    display: grid;\n    grid-template-columns: 40% auto;\n    grid-gap: 0.25rem 1rem;\n}\n\n/* generate row cell \"heading\" */\ntable.b-table.b-table-stacked > tbody > tr > [data-label]::before {\n    content: attr(data-label);\n    display: inline;\n    text-align: right;\n    overflow-wrap: break-word;\n    font-weight: bold;\n    font-style: normal;\n}\n\n@media all and (max-width: 575.99px) {\n    /* Under SM */\n    table.b-table.b-table-stacked-sm {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-sm,\n    table.b-table.b-table-stacked-sm > tbody,\n    table.b-table.b-table-stacked-sm > tbody > tr,\n    table.b-table.b-table-stacked-sm > tbody > tr > td,\n    table.b-table.b-table-stacked-sm > tbody > tr > th,\n    table.b-table.b-table-stacked-sm > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-sm > thead,\n    table.b-table.b-table-stacked-sm > tfoot,\n    table.b-table.b-table-stacked-sm > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-sm > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-sm > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-sm > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-sm > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n@media all and (max-width: 767.99px) {\n    /* under MD  */\n    table.b-table.b-table-stacked-md {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-md,\n    table.b-table.b-table-stacked-md > tbody,\n    table.b-table.b-table-stacked-md > tbody > tr,\n    table.b-table.b-table-stacked-md > tbody > tr > td,\n    table.b-table.b-table-stacked-md > tbody > tr > th,\n    table.b-table.b-table-stacked-md > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-md > thead,\n    table.b-table.b-table-stacked-md > tfoot,\n    table.b-table.b-table-stacked-md > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-md > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-md > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-md > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-md > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n@media all and (max-width: 991.99px) {\n    /* under LG  */\n    table.b-table.b-table-stacked-lg {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-lg,\n    table.b-table.b-table-stacked-lg > tbody,\n    table.b-table.b-table-stacked-lg > tbody > tr,\n    table.b-table.b-table-stacked-lg > tbody > tr > td,\n    table.b-table.b-table-stacked-lg > tbody > tr > th,\n    table.b-table.b-table-stacked-lg > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-lg > thead,\n    table.b-table.b-table-stacked-lg > tfoot,\n    table.b-table.b-table-stacked-lg > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-lg > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-lg > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-lg > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-lg > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n@media all and (max-width: 1199.99px) {\n    /* under XL  */\n    table.b-table.b-table-stacked-xl {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-xl,\n    table.b-table.b-table-stacked-xl > tbody,\n    table.b-table.b-table-stacked-xl > tbody > tr,\n    table.b-table.b-table-stacked-xl > tbody > tr > td,\n    table.b-table.b-table-stacked-xl > tbody > tr > th,\n    table.b-table.b-table-stacked-xl > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-xl > thead,\n    table.b-table.b-table-stacked-xl > tfoot,\n    table.b-table.b-table-stacked-xl > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-xl > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-xl > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-xl > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-xl > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n/* Details row styling */\ntable.b-table > tbody > tr.b-table-details > td {\n    border-top: none;\n}\n", ""]);
 
 // exports
 
@@ -80406,7 +80413,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_tooltip_class__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_toolpop__ = __webpack_require__(112);
 
 
@@ -80562,19 +80569,15 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(372)
-}
 var normalizeComponent = __webpack_require__(19)
 /* script */
-var __vue_script__ = __webpack_require__(374)
+var __vue_script__ = __webpack_require__(372)
 /* template */
-var __vue_template__ = __webpack_require__(375)
+var __vue_template__ = __webpack_require__(373)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -80610,64 +80613,11 @@ module.exports = Component.exports
 
 /***/ }),
 /* 372 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(373);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(68)("3013e3a0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b468b010\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SidebarComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b468b010\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SidebarComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 373 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(11)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody{\r\n background-color: blue;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 374 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__ = __webpack_require__(85);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__ = __webpack_require__(68);
 //
 //
 //
@@ -80724,7 +80674,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["b" /* Navbar 
 });
 
 /***/ }),
-/* 375 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -80732,188 +80682,168 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("b-container", { attrs: { fluid: "" } }, [
-    _c("div", { staticClass: "row" }, [
-      _c("aside", { staticClass: "main-sidebar", attrs: { id: "slider" } }, [
-        _c(
-          "section",
-          { staticClass: "sidebar", staticStyle: { height: "auto" } },
-          [
-            _c("div", { staticClass: "user-panel" }, [
-              _c("div", { staticClass: "pull-left image" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "pull-left info" }, [
-                _c("p", [_vm._v("Alexander Pierce")]),
+    _c("aside", { staticClass: "main-sidebar", attrs: { id: "slider" } }, [
+      _c(
+        "section",
+        { staticClass: "sidebar", staticStyle: { height: "auto" } },
+        [
+          _c("ul", { staticClass: "sidebar-menu" }, [
+            _c("li", { staticClass: "header" }, [
+              _vm._v("\n                MAIN NAVIGATION\n    ")
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "treeview" }, [
+              _c("a", { attrs: { href: "#" } }, [
+                _c("i", { staticClass: "fa fa-dashboard" }),
                 _vm._v(" "),
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", {
-                    staticClass: "fa fa-circle",
-                    staticStyle: { color: "rgb(60, 118, 61)" }
-                  }),
-                  _vm._v(" Online")
+                _c("span", [_vm._v("Dashboard")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "pull-right-container" }, [
+                  _c("i", { staticClass: "fa fa-angle-left pull-right" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "treeview-menu" }, [
+                _c("li", { staticClass: "active" }, [
+                  _c("a", { attrs: { href: "/" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" 헬로화면")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/sample" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" 샘플화면")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/dashboard/v1" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Dashboard v1")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/dashboard/v2" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Dashboard v2")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/examples/infobox" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" InfoBox")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/examples/chart" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Chart.js")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/examples/alert" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Alert")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/examples/modal" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Modal")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", {}, [
+                  _c("a", { attrs: { href: "/examples/api-example" } }, [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" APIExample")
+                    ])
+                  ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _c("ul", { staticClass: "sidebar-menu" }, [
-              _c("li", { staticClass: "header" }, [
-                _vm._v(
-                  "\n                        MAIN NAVIGATION\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "treeview" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fa fa-dashboard" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Dashboard")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "pull-right-container" }, [
-                    _c("i", { staticClass: "fa fa-angle-left pull-right" })
-                  ])
-                ]),
+            _c("li", { staticClass: "treeview" }, [
+              _c("a", { attrs: { href: "#" } }, [
+                _c("i", { staticClass: "fa fa-files-o" }),
                 _vm._v(" "),
-                _c("ul", { staticClass: "treeview-menu" }, [
-                  _c("li", { staticClass: "active" }, [
-                    _c("a", { attrs: { href: "/" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" 헬로화면")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/sample" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" 샘플화면")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/dashboard/v1" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Dashboard v1")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/dashboard/v2" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Dashboard v2")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/examples/infobox" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" InfoBox")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/examples/chart" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Chart.js")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/examples/alert" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Alert")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/examples/modal" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Modal")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c("a", { attrs: { href: "/examples/api-example" } }, [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" APIExample")
-                      ])
-                    ])
-                  ])
+                _c("span", [_vm._v("Layout Options")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "pull-right-container" }, [
+                  _c(
+                    "small",
+                    { staticClass: "label pull-right label-primary" },
+                    [_vm._v("4")]
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _c("li", { staticClass: "treeview" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fa fa-files-o" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Layout Options")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "pull-right-container" }, [
-                    _c(
-                      "small",
-                      { staticClass: "label pull-right label-primary" },
-                      [_vm._v("4")]
-                    )
+              _c("ul", { staticClass: "treeview-menu" }, [
+                _c("li", [
+                  _c("a", [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Top Navigation")
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("ul", { staticClass: "treeview-menu" }, [
-                  _c("li", [
-                    _c("a", [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Top Navigation")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Boxed")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Fixed")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", [
-                      _c("i", { staticClass: "fa fa-circle-o" }, [
-                        _vm._v(" Collapsed Sidebar")
-                      ])
+                _c("li", [
+                  _c("a", [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Boxed")
                     ])
                   ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", {}, [
-                _c("a", { attrs: { href: "/examples/widgets" } }, [
-                  _c("i", { staticClass: "fa fa-th" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Widgets")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "pull-right-container" }, [
-                    _c("small", { staticClass: "label pull-right bg-green" }, [
-                      _vm._v("new")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Fixed")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", [
+                    _c("i", { staticClass: "fa fa-circle-o" }, [
+                      _vm._v(" Collapsed Sidebar")
                     ])
                   ])
                 ])
               ])
+            ]),
+            _vm._v(" "),
+            _c("li", {}, [
+              _c("a", { attrs: { href: "/examples/widgets" } }, [
+                _c("i", { staticClass: "fa fa-th" }),
+                _vm._v(" "),
+                _c("span", [_vm._v("Widgets")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "pull-right-container" }, [
+                  _c("small", { staticClass: "label pull-right bg-green" }, [
+                    _vm._v("new")
+                  ])
+                ])
+              ])
             ])
-          ]
-        )
-      ])
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -80928,19 +80858,19 @@ if (false) {
 }
 
 /***/ }),
-/* 376 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(377)
+  __webpack_require__(375)
 }
 var normalizeComponent = __webpack_require__(19)
 /* script */
-var __vue_script__ = __webpack_require__(380)
+var __vue_script__ = __webpack_require__(378)
 /* template */
-var __vue_template__ = __webpack_require__(415)
+var __vue_template__ = __webpack_require__(413)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -80979,17 +80909,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 377 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(378);
+var content = __webpack_require__(376);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(68)("3e8e604d", content, false, {});
+var update = __webpack_require__(85)("3e8e604d", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -81005,12 +80935,12 @@ if(false) {
 }
 
 /***/ }),
-/* 378 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
-exports.i(__webpack_require__(379), "");
+exports.i(__webpack_require__(377), "");
 
 // module
 exports.push([module.i, "\n", ""]);
@@ -81019,26 +80949,26 @@ exports.push([module.i, "\n", ""]);
 
 
 /***/ }),
-/* 379 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)(false);
+exports = module.exports = __webpack_require__(16)(false);
 // imports
 
 
 // module
-exports.push([module.i, "/*!\r\n * FullCalendar v3.9.0\r\n * Docs & License: https://fullcalendar.io/\r\n * (c) 2018 Adam Shaw\r\n */\r\n.fc {\r\n  direction: ltr;\r\n  text-align: left; }\r\n\r\n.fc-rtl {\r\n  text-align: right; }\r\n\r\nbody .fc {\r\n  /* extra precedence to overcome jqui */\r\n  font-size: 1em; }\r\n\r\n/* Colors\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-highlight {\r\n  /* when user is selecting cells */\r\n  background: #bce8f1;\r\n  opacity: .3; }\r\n\r\n.fc-bgevent {\r\n  /* default look for background events */\r\n  background: #8fdf82;\r\n  opacity: .3; }\r\n\r\n.fc-nonbusiness {\r\n  /* default look for non-business-hours areas */\r\n  /* will inherit .fc-bgevent's styles */\r\n  background: #d7d7d7; }\r\n\r\n/* Buttons (styled <button> tags, normalized to work cross-browser)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc button {\r\n  /* force height to include the border and padding */\r\n  -moz-box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  /* dimensions */\r\n  margin: 0;\r\n  height: 2.1em;\r\n  padding: 0 .6em;\r\n  /* text & cursor */\r\n  font-size: 1em;\r\n  /* normalize */\r\n  white-space: nowrap;\r\n  cursor: pointer; }\r\n\r\n/* Firefox has an annoying inner border */\r\n.fc button::-moz-focus-inner {\r\n  margin: 0;\r\n  padding: 0; }\r\n\r\n.fc-state-default {\r\n  /* non-theme */\r\n  border: 1px solid; }\r\n\r\n.fc-state-default.fc-corner-left {\r\n  /* non-theme */\r\n  border-top-left-radius: 4px;\r\n  border-bottom-left-radius: 4px; }\r\n\r\n.fc-state-default.fc-corner-right {\r\n  /* non-theme */\r\n  border-top-right-radius: 4px;\r\n  border-bottom-right-radius: 4px; }\r\n\r\n/* icons in buttons */\r\n.fc button .fc-icon {\r\n  /* non-theme */\r\n  position: relative;\r\n  top: -0.05em;\r\n  /* seems to be a good adjustment across browsers */\r\n  margin: 0 .2em;\r\n  vertical-align: middle; }\r\n\r\n/*\r\n  button states\r\n  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)\r\n*/\r\n.fc-state-default {\r\n  background-color: #f5f5f5;\r\n  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);\r\n  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));\r\n  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);\r\n  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);\r\n  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);\r\n  background-repeat: repeat-x;\r\n  border-color: #e6e6e6 #e6e6e6 #bfbfbf;\r\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\r\n  color: #333;\r\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\r\n\r\n.fc-state-hover,\r\n.fc-state-down,\r\n.fc-state-active,\r\n.fc-state-disabled {\r\n  color: #333333;\r\n  background-color: #e6e6e6; }\r\n\r\n.fc-state-hover {\r\n  color: #333333;\r\n  text-decoration: none;\r\n  background-position: 0 -15px;\r\n  -webkit-transition: background-position 0.1s linear;\r\n  -moz-transition: background-position 0.1s linear;\r\n  -o-transition: background-position 0.1s linear;\r\n  transition: background-position 0.1s linear; }\r\n\r\n.fc-state-down,\r\n.fc-state-active {\r\n  background-color: #cccccc;\r\n  background-image: none;\r\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); }\r\n\r\n.fc-state-disabled {\r\n  cursor: default;\r\n  background-image: none;\r\n  opacity: 0.65;\r\n  box-shadow: none; }\r\n\r\n/* Buttons Groups\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-button-group {\r\n  display: inline-block; }\r\n\r\n/*\r\nevery button that is not first in a button group should scootch over one pixel and cover the\r\nprevious button's border...\r\n*/\r\n.fc .fc-button-group > * {\r\n  /* extra precedence b/c buttons have margin set to zero */\r\n  float: left;\r\n  margin: 0 0 0 -1px; }\r\n\r\n.fc .fc-button-group > :first-child {\r\n  /* same */\r\n  margin-left: 0; }\r\n\r\n/* Popover\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-popover {\r\n  position: absolute;\r\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }\r\n\r\n.fc-popover .fc-header {\r\n  /* TODO: be more consistent with fc-head/fc-body */\r\n  padding: 2px 4px; }\r\n\r\n.fc-popover .fc-header .fc-title {\r\n  margin: 0 2px; }\r\n\r\n.fc-popover .fc-header .fc-close {\r\n  cursor: pointer; }\r\n\r\n.fc-ltr .fc-popover .fc-header .fc-title,\r\n.fc-rtl .fc-popover .fc-header .fc-close {\r\n  float: left; }\r\n\r\n.fc-rtl .fc-popover .fc-header .fc-title,\r\n.fc-ltr .fc-popover .fc-header .fc-close {\r\n  float: right; }\r\n\r\n/* Misc Reusable Components\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-divider {\r\n  border-style: solid;\r\n  border-width: 1px; }\r\n\r\nhr.fc-divider {\r\n  height: 0;\r\n  margin: 0;\r\n  padding: 0 0 2px;\r\n  /* height is unreliable across browsers, so use padding */\r\n  border-width: 1px 0; }\r\n\r\n.fc-clear {\r\n  clear: both; }\r\n\r\n.fc-bg,\r\n.fc-bgevent-skeleton,\r\n.fc-highlight-skeleton,\r\n.fc-helper-skeleton {\r\n  /* these element should always cling to top-left/right corners */\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0; }\r\n\r\n.fc-bg {\r\n  bottom: 0;\r\n  /* strech bg to bottom edge */ }\r\n\r\n.fc-bg table {\r\n  height: 100%;\r\n  /* strech bg to bottom edge */ }\r\n\r\n/* Tables\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc table {\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  /* fix scrollbar issue in firefox */\r\n  table-layout: fixed;\r\n  border-collapse: collapse;\r\n  border-spacing: 0;\r\n  font-size: 1em;\r\n  /* normalize cross-browser */ }\r\n\r\n.fc th {\r\n  text-align: center; }\r\n\r\n.fc th,\r\n.fc td {\r\n  border-style: solid;\r\n  border-width: 1px;\r\n  padding: 0;\r\n  vertical-align: top; }\r\n\r\n.fc td.fc-today {\r\n  border-style: double;\r\n  /* overcome neighboring borders */ }\r\n\r\n/* Internal Nav Links\r\n--------------------------------------------------------------------------------------------------*/\r\na[data-goto] {\r\n  cursor: pointer; }\r\n\r\na[data-goto]:hover {\r\n  text-decoration: underline; }\r\n\r\n/* Fake Table Rows\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc .fc-row {\r\n  /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */\r\n  /* no visible border by default. but make available if need be (scrollbar width compensation) */\r\n  border-style: solid;\r\n  border-width: 0; }\r\n\r\n.fc-row table {\r\n  /* don't put left/right border on anything within a fake row.\r\n     the outer tbody will worry about this */\r\n  border-left: 0 hidden transparent;\r\n  border-right: 0 hidden transparent;\r\n  /* no bottom borders on rows */\r\n  border-bottom: 0 hidden transparent; }\r\n\r\n.fc-row:first-child table {\r\n  border-top: 0 hidden transparent;\r\n  /* no top border on first row */ }\r\n\r\n/* Day Row (used within the header and the DayGrid)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-row {\r\n  position: relative; }\r\n\r\n.fc-row .fc-bg {\r\n  z-index: 1; }\r\n\r\n/* highlighting cells & background event skeleton */\r\n.fc-row .fc-bgevent-skeleton,\r\n.fc-row .fc-highlight-skeleton {\r\n  bottom: 0;\r\n  /* stretch skeleton to bottom of row */ }\r\n\r\n.fc-row .fc-bgevent-skeleton table,\r\n.fc-row .fc-highlight-skeleton table {\r\n  height: 100%;\r\n  /* stretch skeleton to bottom of row */ }\r\n\r\n.fc-row .fc-highlight-skeleton td,\r\n.fc-row .fc-bgevent-skeleton td {\r\n  border-color: transparent; }\r\n\r\n.fc-row .fc-bgevent-skeleton {\r\n  z-index: 2; }\r\n\r\n.fc-row .fc-highlight-skeleton {\r\n  z-index: 3; }\r\n\r\n/*\r\nrow content (which contains day/week numbers and events) as well as \"helper\" (which contains\r\ntemporary rendered events).\r\n*/\r\n.fc-row .fc-content-skeleton {\r\n  position: relative;\r\n  z-index: 4;\r\n  padding-bottom: 2px;\r\n  /* matches the space above the events */ }\r\n\r\n.fc-row .fc-helper-skeleton {\r\n  z-index: 5; }\r\n\r\n.fc .fc-row .fc-content-skeleton table,\r\n.fc .fc-row .fc-content-skeleton td,\r\n.fc .fc-row .fc-helper-skeleton td {\r\n  /* see-through to the background below */\r\n  /* extra precedence to prevent theme-provided backgrounds */\r\n  background: none;\r\n  /* in case <td>s are globally styled */\r\n  border-color: transparent; }\r\n\r\n.fc-row .fc-content-skeleton td,\r\n.fc-row .fc-helper-skeleton td {\r\n  /* don't put a border between events and/or the day number */\r\n  border-bottom: 0; }\r\n\r\n.fc-row .fc-content-skeleton tbody td,\r\n.fc-row .fc-helper-skeleton tbody td {\r\n  /* don't put a border between event cells */\r\n  border-top: 0; }\r\n\r\n/* Scrolling Container\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-scroller {\r\n  -webkit-overflow-scrolling: touch; }\r\n\r\n/* TODO: move to agenda/basic */\r\n.fc-scroller > .fc-day-grid,\r\n.fc-scroller > .fc-time-grid {\r\n  position: relative;\r\n  /* re-scope all positions */\r\n  width: 100%;\r\n  /* hack to force re-sizing this inner element when scrollbars appear/disappear */ }\r\n\r\n/* Global Event Styles\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-event {\r\n  position: relative;\r\n  /* for resize handle and other inner positioning */\r\n  display: block;\r\n  /* make the <a> tag block */\r\n  font-size: .85em;\r\n  line-height: 1.3;\r\n  border-radius: 3px;\r\n  border: 1px solid #3a87ad;\r\n  /* default BORDER color */ }\r\n\r\n.fc-event,\r\n.fc-event-dot {\r\n  background-color: #3a87ad;\r\n  /* default BACKGROUND color */ }\r\n\r\n.fc-event,\r\n.fc-event:hover {\r\n  color: #fff;\r\n  /* default TEXT color */\r\n  text-decoration: none;\r\n  /* if <a> has an href */ }\r\n\r\n.fc-event[href],\r\n.fc-event.fc-draggable {\r\n  cursor: pointer;\r\n  /* give events with links and draggable events a hand mouse pointer */ }\r\n\r\n.fc-not-allowed,\r\n.fc-not-allowed .fc-event {\r\n  /* to override an event's custom cursor */\r\n  cursor: not-allowed; }\r\n\r\n.fc-event .fc-bg {\r\n  /* the generic .fc-bg already does position */\r\n  z-index: 1;\r\n  background: #fff;\r\n  opacity: .25; }\r\n\r\n.fc-event .fc-content {\r\n  position: relative;\r\n  z-index: 2; }\r\n\r\n/* resizer (cursor AND touch devices) */\r\n.fc-event .fc-resizer {\r\n  position: absolute;\r\n  z-index: 4; }\r\n\r\n/* resizer (touch devices) */\r\n.fc-event .fc-resizer {\r\n  display: none; }\r\n\r\n.fc-event.fc-allow-mouse-resize .fc-resizer,\r\n.fc-event.fc-selected .fc-resizer {\r\n  /* only show when hovering or selected (with touch) */\r\n  display: block; }\r\n\r\n/* hit area */\r\n.fc-event.fc-selected .fc-resizer:before {\r\n  /* 40x40 touch area */\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: 9999;\r\n  /* user of this util can scope within a lower z-index */\r\n  top: 50%;\r\n  left: 50%;\r\n  width: 40px;\r\n  height: 40px;\r\n  margin-left: -20px;\r\n  margin-top: -20px; }\r\n\r\n/* Event Selection (only for touch devices)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-event.fc-selected {\r\n  z-index: 9999 !important;\r\n  /* overcomes inline z-index */\r\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }\r\n\r\n.fc-event.fc-selected.fc-dragging {\r\n  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); }\r\n\r\n/* Horizontal Events\r\n--------------------------------------------------------------------------------------------------*/\r\n/* bigger touch area when selected */\r\n.fc-h-event.fc-selected:before {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: 3;\r\n  /* below resizers */\r\n  top: -10px;\r\n  bottom: -10px;\r\n  left: 0;\r\n  right: 0; }\r\n\r\n/* events that are continuing to/from another week. kill rounded corners and butt up against edge */\r\n.fc-ltr .fc-h-event.fc-not-start,\r\n.fc-rtl .fc-h-event.fc-not-end {\r\n  margin-left: 0;\r\n  border-left-width: 0;\r\n  padding-left: 1px;\r\n  /* replace the border with padding */\r\n  border-top-left-radius: 0;\r\n  border-bottom-left-radius: 0; }\r\n\r\n.fc-ltr .fc-h-event.fc-not-end,\r\n.fc-rtl .fc-h-event.fc-not-start {\r\n  margin-right: 0;\r\n  border-right-width: 0;\r\n  padding-right: 1px;\r\n  /* replace the border with padding */\r\n  border-top-right-radius: 0;\r\n  border-bottom-right-radius: 0; }\r\n\r\n/* resizer (cursor AND touch devices) */\r\n/* left resizer  */\r\n.fc-ltr .fc-h-event .fc-start-resizer,\r\n.fc-rtl .fc-h-event .fc-end-resizer {\r\n  cursor: w-resize;\r\n  left: -1px;\r\n  /* overcome border */ }\r\n\r\n/* right resizer */\r\n.fc-ltr .fc-h-event .fc-end-resizer,\r\n.fc-rtl .fc-h-event .fc-start-resizer {\r\n  cursor: e-resize;\r\n  right: -1px;\r\n  /* overcome border */ }\r\n\r\n/* resizer (mouse devices) */\r\n.fc-h-event.fc-allow-mouse-resize .fc-resizer {\r\n  width: 7px;\r\n  top: -1px;\r\n  /* overcome top border */\r\n  bottom: -1px;\r\n  /* overcome bottom border */ }\r\n\r\n/* resizer (touch devices) */\r\n.fc-h-event.fc-selected .fc-resizer {\r\n  /* 8x8 little dot */\r\n  border-radius: 4px;\r\n  border-width: 1px;\r\n  width: 6px;\r\n  height: 6px;\r\n  border-style: solid;\r\n  border-color: inherit;\r\n  background: #fff;\r\n  /* vertically center */\r\n  top: 50%;\r\n  margin-top: -4px; }\r\n\r\n/* left resizer  */\r\n.fc-ltr .fc-h-event.fc-selected .fc-start-resizer,\r\n.fc-rtl .fc-h-event.fc-selected .fc-end-resizer {\r\n  margin-left: -4px;\r\n  /* centers the 8x8 dot on the left edge */ }\r\n\r\n/* right resizer */\r\n.fc-ltr .fc-h-event.fc-selected .fc-end-resizer,\r\n.fc-rtl .fc-h-event.fc-selected .fc-start-resizer {\r\n  margin-right: -4px;\r\n  /* centers the 8x8 dot on the right edge */ }\r\n\r\n/* DayGrid events\r\n----------------------------------------------------------------------------------------------------\r\nWe use the full \"fc-day-grid-event\" class instead of using descendants because the event won't\r\nbe a descendant of the grid when it is being dragged.\r\n*/\r\n.fc-day-grid-event {\r\n  margin: 1px 2px 0;\r\n  /* spacing between events and edges */\r\n  padding: 0 1px; }\r\n\r\ntr:first-child > td > .fc-day-grid-event {\r\n  margin-top: 2px;\r\n  /* a little bit more space before the first event */ }\r\n\r\n.fc-day-grid-event.fc-selected:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: 1;\r\n  /* same z-index as fc-bg, behind text */\r\n  /* overcome the borders */\r\n  top: -1px;\r\n  right: -1px;\r\n  bottom: -1px;\r\n  left: -1px;\r\n  /* darkening effect */\r\n  background: #000;\r\n  opacity: .25; }\r\n\r\n.fc-day-grid-event .fc-content {\r\n  /* force events to be one-line tall */\r\n  white-space: nowrap;\r\n  overflow: hidden; }\r\n\r\n.fc-day-grid-event .fc-time {\r\n  font-weight: bold; }\r\n\r\n/* resizer (cursor devices) */\r\n/* left resizer  */\r\n.fc-ltr .fc-day-grid-event.fc-allow-mouse-resize .fc-start-resizer,\r\n.fc-rtl .fc-day-grid-event.fc-allow-mouse-resize .fc-end-resizer {\r\n  margin-left: -2px;\r\n  /* to the day cell's edge */ }\r\n\r\n/* right resizer */\r\n.fc-ltr .fc-day-grid-event.fc-allow-mouse-resize .fc-end-resizer,\r\n.fc-rtl .fc-day-grid-event.fc-allow-mouse-resize .fc-start-resizer {\r\n  margin-right: -2px;\r\n  /* to the day cell's edge */ }\r\n\r\n/* Event Limiting\r\n--------------------------------------------------------------------------------------------------*/\r\n/* \"more\" link that represents hidden events */\r\na.fc-more {\r\n  margin: 1px 3px;\r\n  font-size: .85em;\r\n  cursor: pointer;\r\n  text-decoration: none; }\r\n\r\na.fc-more:hover {\r\n  text-decoration: underline; }\r\n\r\n.fc-limited {\r\n  /* rows and cells that are hidden because of a \"more\" link */\r\n  display: none; }\r\n\r\n/* popover that appears when \"more\" link is clicked */\r\n.fc-day-grid .fc-row {\r\n  z-index: 1;\r\n  /* make the \"more\" popover one higher than this */ }\r\n\r\n.fc-more-popover {\r\n  z-index: 2;\r\n  width: 220px; }\r\n\r\n.fc-more-popover .fc-event-container {\r\n  padding: 10px; }\r\n\r\n/* Now Indicator\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-now-indicator {\r\n  position: absolute;\r\n  border: 0 solid red; }\r\n\r\n/* Utilities\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-unselectable {\r\n  -webkit-user-select: none;\r\n  -khtml-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  -webkit-touch-callout: none;\r\n  -webkit-tap-highlight-color: transparent; }\r\n\r\n/*\r\nTODO: more distinction between this file and common.css\r\n*/\r\n/* Colors\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-unthemed th,\r\n.fc-unthemed td,\r\n.fc-unthemed thead,\r\n.fc-unthemed tbody,\r\n.fc-unthemed .fc-divider,\r\n.fc-unthemed .fc-row,\r\n.fc-unthemed .fc-content,\r\n.fc-unthemed .fc-popover,\r\n.fc-unthemed .fc-list-view,\r\n.fc-unthemed .fc-list-heading td {\r\n  border-color: #ddd; }\r\n\r\n.fc-unthemed .fc-popover {\r\n  background-color: #fff; }\r\n\r\n.fc-unthemed .fc-divider,\r\n.fc-unthemed .fc-popover .fc-header,\r\n.fc-unthemed .fc-list-heading td {\r\n  background: #eee; }\r\n\r\n.fc-unthemed .fc-popover .fc-header .fc-close {\r\n  color: #666; }\r\n\r\n.fc-unthemed td.fc-today {\r\n  background: #fcf8e3; }\r\n\r\n.fc-unthemed .fc-disabled-day {\r\n  background: #d7d7d7;\r\n  opacity: .3; }\r\n\r\n/* Icons (inline elements with styled text that mock arrow icons)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-icon {\r\n  display: inline-block;\r\n  height: 1em;\r\n  line-height: 1em;\r\n  font-size: 1em;\r\n  text-align: center;\r\n  overflow: hidden;\r\n  font-family: \"Courier New\", Courier, monospace;\r\n  /* don't allow browser text-selection */\r\n  -webkit-touch-callout: none;\r\n  -webkit-user-select: none;\r\n  -khtml-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none; }\r\n\r\n/*\r\nAcceptable font-family overrides for individual icons:\r\n  \"Arial\", sans-serif\r\n  \"Times New Roman\", serif\r\n\r\nNOTE: use percentage font sizes or else old IE chokes\r\n*/\r\n.fc-icon:after {\r\n  position: relative; }\r\n\r\n.fc-icon-left-single-arrow:after {\r\n  content: \"\\2039\";\r\n  font-weight: bold;\r\n  font-size: 200%;\r\n  top: -7%; }\r\n\r\n.fc-icon-right-single-arrow:after {\r\n  content: \"\\203A\";\r\n  font-weight: bold;\r\n  font-size: 200%;\r\n  top: -7%; }\r\n\r\n.fc-icon-left-double-arrow:after {\r\n  content: \"\\AB\";\r\n  font-size: 160%;\r\n  top: -7%; }\r\n\r\n.fc-icon-right-double-arrow:after {\r\n  content: \"\\BB\";\r\n  font-size: 160%;\r\n  top: -7%; }\r\n\r\n.fc-icon-left-triangle:after {\r\n  content: \"\\25C4\";\r\n  font-size: 125%;\r\n  top: 3%; }\r\n\r\n.fc-icon-right-triangle:after {\r\n  content: \"\\25BA\";\r\n  font-size: 125%;\r\n  top: 3%; }\r\n\r\n.fc-icon-down-triangle:after {\r\n  content: \"\\25BC\";\r\n  font-size: 125%;\r\n  top: 2%; }\r\n\r\n.fc-icon-x:after {\r\n  content: \"\\D7\";\r\n  font-size: 200%;\r\n  top: 6%; }\r\n\r\n/* Popover\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-unthemed .fc-popover {\r\n  border-width: 1px;\r\n  border-style: solid; }\r\n\r\n.fc-unthemed .fc-popover .fc-header .fc-close {\r\n  font-size: .9em;\r\n  margin-top: 2px; }\r\n\r\n/* List View\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-unthemed .fc-list-item:hover td {\r\n  background-color: #f5f5f5; }\r\n\r\n/* Colors\r\n--------------------------------------------------------------------------------------------------*/\r\n.ui-widget .fc-disabled-day {\r\n  background-image: none; }\r\n\r\n/* Popover\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-popover > .ui-widget-header + .ui-widget-content {\r\n  border-top: 0;\r\n  /* where they meet, let the header have the border */ }\r\n\r\n/* Global Event Styles\r\n--------------------------------------------------------------------------------------------------*/\r\n.ui-widget .fc-event {\r\n  /* overpower jqui's styles on <a> tags. TODO: more DRY */\r\n  color: #fff;\r\n  /* default TEXT color */\r\n  text-decoration: none;\r\n  /* if <a> has an href */\r\n  /* undo ui-widget-header bold */\r\n  font-weight: normal; }\r\n\r\n/* TimeGrid axis running down the side (for both the all-day area and the slot area)\r\n--------------------------------------------------------------------------------------------------*/\r\n.ui-widget td.fc-axis {\r\n  font-weight: normal;\r\n  /* overcome bold */ }\r\n\r\n/* TimeGrid Slats (lines that run horizontally)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-time-grid .fc-slats .ui-widget-content {\r\n  background: none;\r\n  /* see through to fc-bg */ }\r\n\r\n.fc.fc-bootstrap3 a {\r\n  text-decoration: none; }\r\n\r\n.fc.fc-bootstrap3 a[data-goto]:hover {\r\n  text-decoration: underline; }\r\n\r\n.fc-bootstrap3 hr.fc-divider {\r\n  border-color: inherit; }\r\n\r\n.fc-bootstrap3 .fc-today.alert {\r\n  border-radius: 0; }\r\n\r\n/* Popover\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-bootstrap3 .fc-popover .panel-body {\r\n  padding: 0; }\r\n\r\n/* TimeGrid Slats (lines that run horizontally)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-bootstrap3 .fc-time-grid .fc-slats table {\r\n  /* some themes have background color. see through to slats */\r\n  background: none; }\r\n\r\n.fc.fc-bootstrap4 a {\r\n  text-decoration: none; }\r\n\r\n.fc.fc-bootstrap4 a[data-goto]:hover {\r\n  text-decoration: underline; }\r\n\r\n.fc-bootstrap4 hr.fc-divider {\r\n  border-color: inherit; }\r\n\r\n.fc-bootstrap4 .fc-today.alert {\r\n  border-radius: 0; }\r\n\r\n.fc-bootstrap4 a.fc-event:not([href]):not([tabindex]) {\r\n  color: #fff; }\r\n\r\n.fc-bootstrap4 .fc-popover.card {\r\n  position: absolute; }\r\n\r\n/* Popover\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-bootstrap4 .fc-popover .card-body {\r\n  padding: 0; }\r\n\r\n/* TimeGrid Slats (lines that run horizontally)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-bootstrap4 .fc-time-grid .fc-slats table {\r\n  /* some themes have background color. see through to slats */\r\n  background: none; }\r\n\r\n/* Toolbar\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-toolbar {\r\n  text-align: center; }\r\n\r\n.fc-toolbar.fc-header-toolbar {\r\n  margin-bottom: 1em; }\r\n\r\n.fc-toolbar.fc-footer-toolbar {\r\n  margin-top: 1em; }\r\n\r\n.fc-toolbar .fc-left {\r\n  float: left; }\r\n\r\n.fc-toolbar .fc-right {\r\n  float: right; }\r\n\r\n.fc-toolbar .fc-center {\r\n  display: inline-block; }\r\n\r\n/* the things within each left/right/center section */\r\n.fc .fc-toolbar > * > * {\r\n  /* extra precedence to override button border margins */\r\n  float: left;\r\n  margin-left: .75em; }\r\n\r\n/* the first thing within each left/center/right section */\r\n.fc .fc-toolbar > * > :first-child {\r\n  /* extra precedence to override button border margins */\r\n  margin-left: 0; }\r\n\r\n/* title text */\r\n.fc-toolbar h2 {\r\n  margin: 0; }\r\n\r\n/* button layering (for border precedence) */\r\n.fc-toolbar button {\r\n  position: relative; }\r\n\r\n.fc-toolbar .fc-state-hover,\r\n.fc-toolbar .ui-state-hover {\r\n  z-index: 2; }\r\n\r\n.fc-toolbar .fc-state-down {\r\n  z-index: 3; }\r\n\r\n.fc-toolbar .fc-state-active,\r\n.fc-toolbar .ui-state-active {\r\n  z-index: 4; }\r\n\r\n.fc-toolbar button:focus {\r\n  z-index: 5; }\r\n\r\n/* View Structure\r\n--------------------------------------------------------------------------------------------------*/\r\n/* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */\r\n/* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */\r\n.fc-view-container *,\r\n.fc-view-container *:before,\r\n.fc-view-container *:after {\r\n  -webkit-box-sizing: content-box;\r\n  -moz-box-sizing: content-box;\r\n  box-sizing: content-box; }\r\n\r\n.fc-view,\r\n.fc-view > table {\r\n  /* so dragged elements can be above the view's main element */\r\n  position: relative;\r\n  z-index: 1; }\r\n\r\n/* BasicView\r\n--------------------------------------------------------------------------------------------------*/\r\n/* day row structure */\r\n.fc-basicWeek-view .fc-content-skeleton,\r\n.fc-basicDay-view .fc-content-skeleton {\r\n  /* there may be week numbers in these views, so no padding-top */\r\n  padding-bottom: 1em;\r\n  /* ensure a space at bottom of cell for user selecting/clicking */ }\r\n\r\n.fc-basic-view .fc-body .fc-row {\r\n  min-height: 4em;\r\n  /* ensure that all rows are at least this tall */ }\r\n\r\n/* a \"rigid\" row will take up a constant amount of height because content-skeleton is absolute */\r\n.fc-row.fc-rigid {\r\n  overflow: hidden; }\r\n\r\n.fc-row.fc-rigid .fc-content-skeleton {\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0; }\r\n\r\n/* week and day number styling */\r\n.fc-day-top.fc-other-month {\r\n  opacity: 0.3; }\r\n\r\n.fc-basic-view .fc-week-number,\r\n.fc-basic-view .fc-day-number {\r\n  padding: 2px; }\r\n\r\n.fc-basic-view th.fc-week-number,\r\n.fc-basic-view th.fc-day-number {\r\n  padding: 0 2px;\r\n  /* column headers can't have as much v space */ }\r\n\r\n.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {\r\n  float: right; }\r\n\r\n.fc-rtl .fc-basic-view .fc-day-top .fc-day-number {\r\n  float: left; }\r\n\r\n.fc-ltr .fc-basic-view .fc-day-top .fc-week-number {\r\n  float: left;\r\n  border-radius: 0 0 3px 0; }\r\n\r\n.fc-rtl .fc-basic-view .fc-day-top .fc-week-number {\r\n  float: right;\r\n  border-radius: 0 0 0 3px; }\r\n\r\n.fc-basic-view .fc-day-top .fc-week-number {\r\n  min-width: 1.5em;\r\n  text-align: center;\r\n  background-color: #f2f2f2;\r\n  color: #808080; }\r\n\r\n/* when week/day number have own column */\r\n.fc-basic-view td.fc-week-number {\r\n  text-align: center; }\r\n\r\n.fc-basic-view td.fc-week-number > * {\r\n  /* work around the way we do column resizing and ensure a minimum width */\r\n  display: inline-block;\r\n  min-width: 1.25em; }\r\n\r\n/* AgendaView all-day area\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-agenda-view .fc-day-grid {\r\n  position: relative;\r\n  z-index: 2;\r\n  /* so the \"more..\" popover will be over the time grid */ }\r\n\r\n.fc-agenda-view .fc-day-grid .fc-row {\r\n  min-height: 3em;\r\n  /* all-day section will never get shorter than this */ }\r\n\r\n.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {\r\n  padding-bottom: 1em;\r\n  /* give space underneath events for clicking/selecting days */ }\r\n\r\n/* TimeGrid axis running down the side (for both the all-day area and the slot area)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc .fc-axis {\r\n  /* .fc to overcome default cell styles */\r\n  vertical-align: middle;\r\n  padding: 0 4px;\r\n  white-space: nowrap; }\r\n\r\n.fc-ltr .fc-axis {\r\n  text-align: right; }\r\n\r\n.fc-rtl .fc-axis {\r\n  text-align: left; }\r\n\r\n/* TimeGrid Structure\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-time-grid-container,\r\n.fc-time-grid {\r\n  /* so slats/bg/content/etc positions get scoped within here */\r\n  position: relative;\r\n  z-index: 1; }\r\n\r\n.fc-time-grid {\r\n  min-height: 100%;\r\n  /* so if height setting is 'auto', .fc-bg stretches to fill height */ }\r\n\r\n.fc-time-grid table {\r\n  /* don't put outer borders on slats/bg/content/etc */\r\n  border: 0 hidden transparent; }\r\n\r\n.fc-time-grid > .fc-bg {\r\n  z-index: 1; }\r\n\r\n.fc-time-grid .fc-slats,\r\n.fc-time-grid > hr {\r\n  /* the <hr> AgendaView injects when grid is shorter than scroller */\r\n  position: relative;\r\n  z-index: 2; }\r\n\r\n.fc-time-grid .fc-content-col {\r\n  position: relative;\r\n  /* because now-indicator lives directly inside */ }\r\n\r\n.fc-time-grid .fc-content-skeleton {\r\n  position: absolute;\r\n  z-index: 3;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0; }\r\n\r\n/* divs within a cell within the fc-content-skeleton */\r\n.fc-time-grid .fc-business-container {\r\n  position: relative;\r\n  z-index: 1; }\r\n\r\n.fc-time-grid .fc-bgevent-container {\r\n  position: relative;\r\n  z-index: 2; }\r\n\r\n.fc-time-grid .fc-highlight-container {\r\n  position: relative;\r\n  z-index: 3; }\r\n\r\n.fc-time-grid .fc-event-container {\r\n  position: relative;\r\n  z-index: 4; }\r\n\r\n.fc-time-grid .fc-now-indicator-line {\r\n  z-index: 5; }\r\n\r\n.fc-time-grid .fc-helper-container {\r\n  /* also is fc-event-container */\r\n  position: relative;\r\n  z-index: 6; }\r\n\r\n/* TimeGrid Slats (lines that run horizontally)\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-time-grid .fc-slats td {\r\n  height: 1.5em;\r\n  border-bottom: 0;\r\n  /* each cell is responsible for its top border */ }\r\n\r\n.fc-time-grid .fc-slats .fc-minor td {\r\n  border-top-style: dotted; }\r\n\r\n/* TimeGrid Highlighting Slots\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-time-grid .fc-highlight-container {\r\n  /* a div within a cell within the fc-highlight-skeleton */\r\n  position: relative;\r\n  /* scopes the left/right of the fc-highlight to be in the column */ }\r\n\r\n.fc-time-grid .fc-highlight {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  /* top and bottom will be in by JS */ }\r\n\r\n/* TimeGrid Event Containment\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-ltr .fc-time-grid .fc-event-container {\r\n  /* space on the sides of events for LTR (default) */\r\n  margin: 0 2.5% 0 2px; }\r\n\r\n.fc-rtl .fc-time-grid .fc-event-container {\r\n  /* space on the sides of events for RTL */\r\n  margin: 0 2px 0 2.5%; }\r\n\r\n.fc-time-grid .fc-event,\r\n.fc-time-grid .fc-bgevent {\r\n  position: absolute;\r\n  z-index: 1;\r\n  /* scope inner z-index's */ }\r\n\r\n.fc-time-grid .fc-bgevent {\r\n  /* background events always span full width */\r\n  left: 0;\r\n  right: 0; }\r\n\r\n/* Generic Vertical Event\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-v-event.fc-not-start {\r\n  /* events that are continuing from another day */\r\n  /* replace space made by the top border with padding */\r\n  border-top-width: 0;\r\n  padding-top: 1px;\r\n  /* remove top rounded corners */\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0; }\r\n\r\n.fc-v-event.fc-not-end {\r\n  /* replace space made by the top border with padding */\r\n  border-bottom-width: 0;\r\n  padding-bottom: 1px;\r\n  /* remove bottom rounded corners */\r\n  border-bottom-left-radius: 0;\r\n  border-bottom-right-radius: 0; }\r\n\r\n/* TimeGrid Event Styling\r\n----------------------------------------------------------------------------------------------------\r\nWe use the full \"fc-time-grid-event\" class instead of using descendants because the event won't\r\nbe a descendant of the grid when it is being dragged.\r\n*/\r\n.fc-time-grid-event {\r\n  overflow: hidden;\r\n  /* don't let the bg flow over rounded corners */ }\r\n\r\n.fc-time-grid-event.fc-selected {\r\n  /* need to allow touch resizers to extend outside event's bounding box */\r\n  /* common fc-selected styles hide the fc-bg, so don't need this anyway */\r\n  overflow: visible; }\r\n\r\n.fc-time-grid-event.fc-selected .fc-bg {\r\n  display: none;\r\n  /* hide semi-white background, to appear darker */ }\r\n\r\n.fc-time-grid-event .fc-content {\r\n  overflow: hidden;\r\n  /* for when .fc-selected */ }\r\n\r\n.fc-time-grid-event .fc-time,\r\n.fc-time-grid-event .fc-title {\r\n  padding: 0 1px; }\r\n\r\n.fc-time-grid-event .fc-time {\r\n  font-size: .85em;\r\n  white-space: nowrap; }\r\n\r\n/* short mode, where time and title are on the same line */\r\n.fc-time-grid-event.fc-short .fc-content {\r\n  /* don't wrap to second line (now that contents will be inline) */\r\n  white-space: nowrap; }\r\n\r\n.fc-time-grid-event.fc-short .fc-time,\r\n.fc-time-grid-event.fc-short .fc-title {\r\n  /* put the time and title on the same line */\r\n  display: inline-block;\r\n  vertical-align: top; }\r\n\r\n.fc-time-grid-event.fc-short .fc-time span {\r\n  display: none;\r\n  /* don't display the full time text... */ }\r\n\r\n.fc-time-grid-event.fc-short .fc-time:before {\r\n  content: attr(data-start);\r\n  /* ...instead, display only the start time */ }\r\n\r\n.fc-time-grid-event.fc-short .fc-time:after {\r\n  content: \"\\A0-\\A0\";\r\n  /* seperate with a dash, wrapped in nbsp's */ }\r\n\r\n.fc-time-grid-event.fc-short .fc-title {\r\n  font-size: .85em;\r\n  /* make the title text the same size as the time */\r\n  padding: 0;\r\n  /* undo padding from above */ }\r\n\r\n/* resizer (cursor device) */\r\n.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer {\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  height: 8px;\r\n  overflow: hidden;\r\n  line-height: 8px;\r\n  font-size: 11px;\r\n  font-family: monospace;\r\n  text-align: center;\r\n  cursor: s-resize; }\r\n\r\n.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer:after {\r\n  content: \"=\"; }\r\n\r\n/* resizer (touch device) */\r\n.fc-time-grid-event.fc-selected .fc-resizer {\r\n  /* 10x10 dot */\r\n  border-radius: 5px;\r\n  border-width: 1px;\r\n  width: 8px;\r\n  height: 8px;\r\n  border-style: solid;\r\n  border-color: inherit;\r\n  background: #fff;\r\n  /* horizontally center */\r\n  left: 50%;\r\n  margin-left: -5px;\r\n  /* center on the bottom edge */\r\n  bottom: -5px; }\r\n\r\n/* Now Indicator\r\n--------------------------------------------------------------------------------------------------*/\r\n.fc-time-grid .fc-now-indicator-line {\r\n  border-top-width: 1px;\r\n  left: 0;\r\n  right: 0; }\r\n\r\n/* arrow on axis */\r\n.fc-time-grid .fc-now-indicator-arrow {\r\n  margin-top: -5px;\r\n  /* vertically center on top coordinate */ }\r\n\r\n.fc-ltr .fc-time-grid .fc-now-indicator-arrow {\r\n  left: 0;\r\n  /* triangle pointing right... */\r\n  border-width: 5px 0 5px 6px;\r\n  border-top-color: transparent;\r\n  border-bottom-color: transparent; }\r\n\r\n.fc-rtl .fc-time-grid .fc-now-indicator-arrow {\r\n  right: 0;\r\n  /* triangle pointing left... */\r\n  border-width: 5px 6px 5px 0;\r\n  border-top-color: transparent;\r\n  border-bottom-color: transparent; }\r\n\r\n/* List View\r\n--------------------------------------------------------------------------------------------------*/\r\n/* possibly reusable */\r\n.fc-event-dot {\r\n  display: inline-block;\r\n  width: 10px;\r\n  height: 10px;\r\n  border-radius: 5px; }\r\n\r\n/* view wrapper */\r\n.fc-rtl .fc-list-view {\r\n  direction: rtl;\r\n  /* unlike core views, leverage browser RTL */ }\r\n\r\n.fc-list-view {\r\n  border-width: 1px;\r\n  border-style: solid; }\r\n\r\n/* table resets */\r\n.fc .fc-list-table {\r\n  table-layout: auto;\r\n  /* for shrinkwrapping cell content */ }\r\n\r\n.fc-list-table td {\r\n  border-width: 1px 0 0;\r\n  padding: 8px 14px; }\r\n\r\n.fc-list-table tr:first-child td {\r\n  border-top-width: 0; }\r\n\r\n/* day headings with the list */\r\n.fc-list-heading {\r\n  border-bottom-width: 1px; }\r\n\r\n.fc-list-heading td {\r\n  font-weight: bold; }\r\n\r\n.fc-ltr .fc-list-heading-main {\r\n  float: left; }\r\n\r\n.fc-ltr .fc-list-heading-alt {\r\n  float: right; }\r\n\r\n.fc-rtl .fc-list-heading-main {\r\n  float: right; }\r\n\r\n.fc-rtl .fc-list-heading-alt {\r\n  float: left; }\r\n\r\n/* event list items */\r\n.fc-list-item.fc-has-url {\r\n  cursor: pointer;\r\n  /* whole row will be clickable */ }\r\n\r\n.fc-list-item-marker,\r\n.fc-list-item-time {\r\n  white-space: nowrap;\r\n  width: 1px; }\r\n\r\n/* make the dot closer to the event title */\r\n.fc-ltr .fc-list-item-marker {\r\n  padding-right: 0; }\r\n\r\n.fc-rtl .fc-list-item-marker {\r\n  padding-left: 0; }\r\n\r\n.fc-list-item-title a {\r\n  /* every event title cell has an <a> tag */\r\n  text-decoration: none;\r\n  color: inherit; }\r\n\r\n.fc-list-item-title a[href]:hover {\r\n  /* hover effect only on titles with hrefs */\r\n  text-decoration: underline; }\r\n\r\n/* message when no events */\r\n.fc-list-empty-wrap2 {\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0; }\r\n\r\n.fc-list-empty-wrap1 {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: table; }\r\n\r\n.fc-list-empty {\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n  text-align: center; }\r\n\r\n.fc-unthemed .fc-list-empty {\r\n  /* theme will provide own background */\r\n  background-color: #eee; }\r\n", ""]);
+exports.push([module.i, "/*!\n * FullCalendar v3.9.0\n * Docs & License: https://fullcalendar.io/\n * (c) 2018 Adam Shaw\n */\n.fc {\n  direction: ltr;\n  text-align: left; }\n\n.fc-rtl {\n  text-align: right; }\n\nbody .fc {\n  /* extra precedence to overcome jqui */\n  font-size: 1em; }\n\n/* Colors\n--------------------------------------------------------------------------------------------------*/\n.fc-highlight {\n  /* when user is selecting cells */\n  background: #bce8f1;\n  opacity: .3; }\n\n.fc-bgevent {\n  /* default look for background events */\n  background: #8fdf82;\n  opacity: .3; }\n\n.fc-nonbusiness {\n  /* default look for non-business-hours areas */\n  /* will inherit .fc-bgevent's styles */\n  background: #d7d7d7; }\n\n/* Buttons (styled <button> tags, normalized to work cross-browser)\n--------------------------------------------------------------------------------------------------*/\n.fc button {\n  /* force height to include the border and padding */\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  /* dimensions */\n  margin: 0;\n  height: 2.1em;\n  padding: 0 .6em;\n  /* text & cursor */\n  font-size: 1em;\n  /* normalize */\n  white-space: nowrap;\n  cursor: pointer; }\n\n/* Firefox has an annoying inner border */\n.fc button::-moz-focus-inner {\n  margin: 0;\n  padding: 0; }\n\n.fc-state-default {\n  /* non-theme */\n  border: 1px solid; }\n\n.fc-state-default.fc-corner-left {\n  /* non-theme */\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px; }\n\n.fc-state-default.fc-corner-right {\n  /* non-theme */\n  border-top-right-radius: 4px;\n  border-bottom-right-radius: 4px; }\n\n/* icons in buttons */\n.fc button .fc-icon {\n  /* non-theme */\n  position: relative;\n  top: -0.05em;\n  /* seems to be a good adjustment across browsers */\n  margin: 0 .2em;\n  vertical-align: middle; }\n\n/*\n  button states\n  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)\n*/\n.fc-state-default {\n  background-color: #f5f5f5;\n  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);\n  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));\n  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);\n  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);\n  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);\n  background-repeat: repeat-x;\n  border-color: #e6e6e6 #e6e6e6 #bfbfbf;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  color: #333;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.fc-state-hover,\n.fc-state-down,\n.fc-state-active,\n.fc-state-disabled {\n  color: #333333;\n  background-color: #e6e6e6; }\n\n.fc-state-hover {\n  color: #333333;\n  text-decoration: none;\n  background-position: 0 -15px;\n  -webkit-transition: background-position 0.1s linear;\n  -moz-transition: background-position 0.1s linear;\n  -o-transition: background-position 0.1s linear;\n  transition: background-position 0.1s linear; }\n\n.fc-state-down,\n.fc-state-active {\n  background-color: #cccccc;\n  background-image: none;\n  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.fc-state-disabled {\n  cursor: default;\n  background-image: none;\n  opacity: 0.65;\n  box-shadow: none; }\n\n/* Buttons Groups\n--------------------------------------------------------------------------------------------------*/\n.fc-button-group {\n  display: inline-block; }\n\n/*\nevery button that is not first in a button group should scootch over one pixel and cover the\nprevious button's border...\n*/\n.fc .fc-button-group > * {\n  /* extra precedence b/c buttons have margin set to zero */\n  float: left;\n  margin: 0 0 0 -1px; }\n\n.fc .fc-button-group > :first-child {\n  /* same */\n  margin-left: 0; }\n\n/* Popover\n--------------------------------------------------------------------------------------------------*/\n.fc-popover {\n  position: absolute;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }\n\n.fc-popover .fc-header {\n  /* TODO: be more consistent with fc-head/fc-body */\n  padding: 2px 4px; }\n\n.fc-popover .fc-header .fc-title {\n  margin: 0 2px; }\n\n.fc-popover .fc-header .fc-close {\n  cursor: pointer; }\n\n.fc-ltr .fc-popover .fc-header .fc-title,\n.fc-rtl .fc-popover .fc-header .fc-close {\n  float: left; }\n\n.fc-rtl .fc-popover .fc-header .fc-title,\n.fc-ltr .fc-popover .fc-header .fc-close {\n  float: right; }\n\n/* Misc Reusable Components\n--------------------------------------------------------------------------------------------------*/\n.fc-divider {\n  border-style: solid;\n  border-width: 1px; }\n\nhr.fc-divider {\n  height: 0;\n  margin: 0;\n  padding: 0 0 2px;\n  /* height is unreliable across browsers, so use padding */\n  border-width: 1px 0; }\n\n.fc-clear {\n  clear: both; }\n\n.fc-bg,\n.fc-bgevent-skeleton,\n.fc-highlight-skeleton,\n.fc-helper-skeleton {\n  /* these element should always cling to top-left/right corners */\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0; }\n\n.fc-bg {\n  bottom: 0;\n  /* strech bg to bottom edge */ }\n\n.fc-bg table {\n  height: 100%;\n  /* strech bg to bottom edge */ }\n\n/* Tables\n--------------------------------------------------------------------------------------------------*/\n.fc table {\n  width: 100%;\n  box-sizing: border-box;\n  /* fix scrollbar issue in firefox */\n  table-layout: fixed;\n  border-collapse: collapse;\n  border-spacing: 0;\n  font-size: 1em;\n  /* normalize cross-browser */ }\n\n.fc th {\n  text-align: center; }\n\n.fc th,\n.fc td {\n  border-style: solid;\n  border-width: 1px;\n  padding: 0;\n  vertical-align: top; }\n\n.fc td.fc-today {\n  border-style: double;\n  /* overcome neighboring borders */ }\n\n/* Internal Nav Links\n--------------------------------------------------------------------------------------------------*/\na[data-goto] {\n  cursor: pointer; }\n\na[data-goto]:hover {\n  text-decoration: underline; }\n\n/* Fake Table Rows\n--------------------------------------------------------------------------------------------------*/\n.fc .fc-row {\n  /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */\n  /* no visible border by default. but make available if need be (scrollbar width compensation) */\n  border-style: solid;\n  border-width: 0; }\n\n.fc-row table {\n  /* don't put left/right border on anything within a fake row.\n     the outer tbody will worry about this */\n  border-left: 0 hidden transparent;\n  border-right: 0 hidden transparent;\n  /* no bottom borders on rows */\n  border-bottom: 0 hidden transparent; }\n\n.fc-row:first-child table {\n  border-top: 0 hidden transparent;\n  /* no top border on first row */ }\n\n/* Day Row (used within the header and the DayGrid)\n--------------------------------------------------------------------------------------------------*/\n.fc-row {\n  position: relative; }\n\n.fc-row .fc-bg {\n  z-index: 1; }\n\n/* highlighting cells & background event skeleton */\n.fc-row .fc-bgevent-skeleton,\n.fc-row .fc-highlight-skeleton {\n  bottom: 0;\n  /* stretch skeleton to bottom of row */ }\n\n.fc-row .fc-bgevent-skeleton table,\n.fc-row .fc-highlight-skeleton table {\n  height: 100%;\n  /* stretch skeleton to bottom of row */ }\n\n.fc-row .fc-highlight-skeleton td,\n.fc-row .fc-bgevent-skeleton td {\n  border-color: transparent; }\n\n.fc-row .fc-bgevent-skeleton {\n  z-index: 2; }\n\n.fc-row .fc-highlight-skeleton {\n  z-index: 3; }\n\n/*\nrow content (which contains day/week numbers and events) as well as \"helper\" (which contains\ntemporary rendered events).\n*/\n.fc-row .fc-content-skeleton {\n  position: relative;\n  z-index: 4;\n  padding-bottom: 2px;\n  /* matches the space above the events */ }\n\n.fc-row .fc-helper-skeleton {\n  z-index: 5; }\n\n.fc .fc-row .fc-content-skeleton table,\n.fc .fc-row .fc-content-skeleton td,\n.fc .fc-row .fc-helper-skeleton td {\n  /* see-through to the background below */\n  /* extra precedence to prevent theme-provided backgrounds */\n  background: none;\n  /* in case <td>s are globally styled */\n  border-color: transparent; }\n\n.fc-row .fc-content-skeleton td,\n.fc-row .fc-helper-skeleton td {\n  /* don't put a border between events and/or the day number */\n  border-bottom: 0; }\n\n.fc-row .fc-content-skeleton tbody td,\n.fc-row .fc-helper-skeleton tbody td {\n  /* don't put a border between event cells */\n  border-top: 0; }\n\n/* Scrolling Container\n--------------------------------------------------------------------------------------------------*/\n.fc-scroller {\n  -webkit-overflow-scrolling: touch; }\n\n/* TODO: move to agenda/basic */\n.fc-scroller > .fc-day-grid,\n.fc-scroller > .fc-time-grid {\n  position: relative;\n  /* re-scope all positions */\n  width: 100%;\n  /* hack to force re-sizing this inner element when scrollbars appear/disappear */ }\n\n/* Global Event Styles\n--------------------------------------------------------------------------------------------------*/\n.fc-event {\n  position: relative;\n  /* for resize handle and other inner positioning */\n  display: block;\n  /* make the <a> tag block */\n  font-size: .85em;\n  line-height: 1.3;\n  border-radius: 3px;\n  border: 1px solid #3a87ad;\n  /* default BORDER color */ }\n\n.fc-event,\n.fc-event-dot {\n  background-color: #3a87ad;\n  /* default BACKGROUND color */ }\n\n.fc-event,\n.fc-event:hover {\n  color: #fff;\n  /* default TEXT color */\n  text-decoration: none;\n  /* if <a> has an href */ }\n\n.fc-event[href],\n.fc-event.fc-draggable {\n  cursor: pointer;\n  /* give events with links and draggable events a hand mouse pointer */ }\n\n.fc-not-allowed,\n.fc-not-allowed .fc-event {\n  /* to override an event's custom cursor */\n  cursor: not-allowed; }\n\n.fc-event .fc-bg {\n  /* the generic .fc-bg already does position */\n  z-index: 1;\n  background: #fff;\n  opacity: .25; }\n\n.fc-event .fc-content {\n  position: relative;\n  z-index: 2; }\n\n/* resizer (cursor AND touch devices) */\n.fc-event .fc-resizer {\n  position: absolute;\n  z-index: 4; }\n\n/* resizer (touch devices) */\n.fc-event .fc-resizer {\n  display: none; }\n\n.fc-event.fc-allow-mouse-resize .fc-resizer,\n.fc-event.fc-selected .fc-resizer {\n  /* only show when hovering or selected (with touch) */\n  display: block; }\n\n/* hit area */\n.fc-event.fc-selected .fc-resizer:before {\n  /* 40x40 touch area */\n  content: \"\";\n  position: absolute;\n  z-index: 9999;\n  /* user of this util can scope within a lower z-index */\n  top: 50%;\n  left: 50%;\n  width: 40px;\n  height: 40px;\n  margin-left: -20px;\n  margin-top: -20px; }\n\n/* Event Selection (only for touch devices)\n--------------------------------------------------------------------------------------------------*/\n.fc-event.fc-selected {\n  z-index: 9999 !important;\n  /* overcomes inline z-index */\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }\n\n.fc-event.fc-selected.fc-dragging {\n  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); }\n\n/* Horizontal Events\n--------------------------------------------------------------------------------------------------*/\n/* bigger touch area when selected */\n.fc-h-event.fc-selected:before {\n  content: \"\";\n  position: absolute;\n  z-index: 3;\n  /* below resizers */\n  top: -10px;\n  bottom: -10px;\n  left: 0;\n  right: 0; }\n\n/* events that are continuing to/from another week. kill rounded corners and butt up against edge */\n.fc-ltr .fc-h-event.fc-not-start,\n.fc-rtl .fc-h-event.fc-not-end {\n  margin-left: 0;\n  border-left-width: 0;\n  padding-left: 1px;\n  /* replace the border with padding */\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0; }\n\n.fc-ltr .fc-h-event.fc-not-end,\n.fc-rtl .fc-h-event.fc-not-start {\n  margin-right: 0;\n  border-right-width: 0;\n  padding-right: 1px;\n  /* replace the border with padding */\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0; }\n\n/* resizer (cursor AND touch devices) */\n/* left resizer  */\n.fc-ltr .fc-h-event .fc-start-resizer,\n.fc-rtl .fc-h-event .fc-end-resizer {\n  cursor: w-resize;\n  left: -1px;\n  /* overcome border */ }\n\n/* right resizer */\n.fc-ltr .fc-h-event .fc-end-resizer,\n.fc-rtl .fc-h-event .fc-start-resizer {\n  cursor: e-resize;\n  right: -1px;\n  /* overcome border */ }\n\n/* resizer (mouse devices) */\n.fc-h-event.fc-allow-mouse-resize .fc-resizer {\n  width: 7px;\n  top: -1px;\n  /* overcome top border */\n  bottom: -1px;\n  /* overcome bottom border */ }\n\n/* resizer (touch devices) */\n.fc-h-event.fc-selected .fc-resizer {\n  /* 8x8 little dot */\n  border-radius: 4px;\n  border-width: 1px;\n  width: 6px;\n  height: 6px;\n  border-style: solid;\n  border-color: inherit;\n  background: #fff;\n  /* vertically center */\n  top: 50%;\n  margin-top: -4px; }\n\n/* left resizer  */\n.fc-ltr .fc-h-event.fc-selected .fc-start-resizer,\n.fc-rtl .fc-h-event.fc-selected .fc-end-resizer {\n  margin-left: -4px;\n  /* centers the 8x8 dot on the left edge */ }\n\n/* right resizer */\n.fc-ltr .fc-h-event.fc-selected .fc-end-resizer,\n.fc-rtl .fc-h-event.fc-selected .fc-start-resizer {\n  margin-right: -4px;\n  /* centers the 8x8 dot on the right edge */ }\n\n/* DayGrid events\n----------------------------------------------------------------------------------------------------\nWe use the full \"fc-day-grid-event\" class instead of using descendants because the event won't\nbe a descendant of the grid when it is being dragged.\n*/\n.fc-day-grid-event {\n  margin: 1px 2px 0;\n  /* spacing between events and edges */\n  padding: 0 1px; }\n\ntr:first-child > td > .fc-day-grid-event {\n  margin-top: 2px;\n  /* a little bit more space before the first event */ }\n\n.fc-day-grid-event.fc-selected:after {\n  content: \"\";\n  position: absolute;\n  z-index: 1;\n  /* same z-index as fc-bg, behind text */\n  /* overcome the borders */\n  top: -1px;\n  right: -1px;\n  bottom: -1px;\n  left: -1px;\n  /* darkening effect */\n  background: #000;\n  opacity: .25; }\n\n.fc-day-grid-event .fc-content {\n  /* force events to be one-line tall */\n  white-space: nowrap;\n  overflow: hidden; }\n\n.fc-day-grid-event .fc-time {\n  font-weight: bold; }\n\n/* resizer (cursor devices) */\n/* left resizer  */\n.fc-ltr .fc-day-grid-event.fc-allow-mouse-resize .fc-start-resizer,\n.fc-rtl .fc-day-grid-event.fc-allow-mouse-resize .fc-end-resizer {\n  margin-left: -2px;\n  /* to the day cell's edge */ }\n\n/* right resizer */\n.fc-ltr .fc-day-grid-event.fc-allow-mouse-resize .fc-end-resizer,\n.fc-rtl .fc-day-grid-event.fc-allow-mouse-resize .fc-start-resizer {\n  margin-right: -2px;\n  /* to the day cell's edge */ }\n\n/* Event Limiting\n--------------------------------------------------------------------------------------------------*/\n/* \"more\" link that represents hidden events */\na.fc-more {\n  margin: 1px 3px;\n  font-size: .85em;\n  cursor: pointer;\n  text-decoration: none; }\n\na.fc-more:hover {\n  text-decoration: underline; }\n\n.fc-limited {\n  /* rows and cells that are hidden because of a \"more\" link */\n  display: none; }\n\n/* popover that appears when \"more\" link is clicked */\n.fc-day-grid .fc-row {\n  z-index: 1;\n  /* make the \"more\" popover one higher than this */ }\n\n.fc-more-popover {\n  z-index: 2;\n  width: 220px; }\n\n.fc-more-popover .fc-event-container {\n  padding: 10px; }\n\n/* Now Indicator\n--------------------------------------------------------------------------------------------------*/\n.fc-now-indicator {\n  position: absolute;\n  border: 0 solid red; }\n\n/* Utilities\n--------------------------------------------------------------------------------------------------*/\n.fc-unselectable {\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  -webkit-touch-callout: none;\n  -webkit-tap-highlight-color: transparent; }\n\n/*\nTODO: more distinction between this file and common.css\n*/\n/* Colors\n--------------------------------------------------------------------------------------------------*/\n.fc-unthemed th,\n.fc-unthemed td,\n.fc-unthemed thead,\n.fc-unthemed tbody,\n.fc-unthemed .fc-divider,\n.fc-unthemed .fc-row,\n.fc-unthemed .fc-content,\n.fc-unthemed .fc-popover,\n.fc-unthemed .fc-list-view,\n.fc-unthemed .fc-list-heading td {\n  border-color: #ddd; }\n\n.fc-unthemed .fc-popover {\n  background-color: #fff; }\n\n.fc-unthemed .fc-divider,\n.fc-unthemed .fc-popover .fc-header,\n.fc-unthemed .fc-list-heading td {\n  background: #eee; }\n\n.fc-unthemed .fc-popover .fc-header .fc-close {\n  color: #666; }\n\n.fc-unthemed td.fc-today {\n  background: #fcf8e3; }\n\n.fc-unthemed .fc-disabled-day {\n  background: #d7d7d7;\n  opacity: .3; }\n\n/* Icons (inline elements with styled text that mock arrow icons)\n--------------------------------------------------------------------------------------------------*/\n.fc-icon {\n  display: inline-block;\n  height: 1em;\n  line-height: 1em;\n  font-size: 1em;\n  text-align: center;\n  overflow: hidden;\n  font-family: \"Courier New\", Courier, monospace;\n  /* don't allow browser text-selection */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\n/*\nAcceptable font-family overrides for individual icons:\n  \"Arial\", sans-serif\n  \"Times New Roman\", serif\n\nNOTE: use percentage font sizes or else old IE chokes\n*/\n.fc-icon:after {\n  position: relative; }\n\n.fc-icon-left-single-arrow:after {\n  content: \"\\2039\";\n  font-weight: bold;\n  font-size: 200%;\n  top: -7%; }\n\n.fc-icon-right-single-arrow:after {\n  content: \"\\203A\";\n  font-weight: bold;\n  font-size: 200%;\n  top: -7%; }\n\n.fc-icon-left-double-arrow:after {\n  content: \"\\AB\";\n  font-size: 160%;\n  top: -7%; }\n\n.fc-icon-right-double-arrow:after {\n  content: \"\\BB\";\n  font-size: 160%;\n  top: -7%; }\n\n.fc-icon-left-triangle:after {\n  content: \"\\25C4\";\n  font-size: 125%;\n  top: 3%; }\n\n.fc-icon-right-triangle:after {\n  content: \"\\25BA\";\n  font-size: 125%;\n  top: 3%; }\n\n.fc-icon-down-triangle:after {\n  content: \"\\25BC\";\n  font-size: 125%;\n  top: 2%; }\n\n.fc-icon-x:after {\n  content: \"\\D7\";\n  font-size: 200%;\n  top: 6%; }\n\n/* Popover\n--------------------------------------------------------------------------------------------------*/\n.fc-unthemed .fc-popover {\n  border-width: 1px;\n  border-style: solid; }\n\n.fc-unthemed .fc-popover .fc-header .fc-close {\n  font-size: .9em;\n  margin-top: 2px; }\n\n/* List View\n--------------------------------------------------------------------------------------------------*/\n.fc-unthemed .fc-list-item:hover td {\n  background-color: #f5f5f5; }\n\n/* Colors\n--------------------------------------------------------------------------------------------------*/\n.ui-widget .fc-disabled-day {\n  background-image: none; }\n\n/* Popover\n--------------------------------------------------------------------------------------------------*/\n.fc-popover > .ui-widget-header + .ui-widget-content {\n  border-top: 0;\n  /* where they meet, let the header have the border */ }\n\n/* Global Event Styles\n--------------------------------------------------------------------------------------------------*/\n.ui-widget .fc-event {\n  /* overpower jqui's styles on <a> tags. TODO: more DRY */\n  color: #fff;\n  /* default TEXT color */\n  text-decoration: none;\n  /* if <a> has an href */\n  /* undo ui-widget-header bold */\n  font-weight: normal; }\n\n/* TimeGrid axis running down the side (for both the all-day area and the slot area)\n--------------------------------------------------------------------------------------------------*/\n.ui-widget td.fc-axis {\n  font-weight: normal;\n  /* overcome bold */ }\n\n/* TimeGrid Slats (lines that run horizontally)\n--------------------------------------------------------------------------------------------------*/\n.fc-time-grid .fc-slats .ui-widget-content {\n  background: none;\n  /* see through to fc-bg */ }\n\n.fc.fc-bootstrap3 a {\n  text-decoration: none; }\n\n.fc.fc-bootstrap3 a[data-goto]:hover {\n  text-decoration: underline; }\n\n.fc-bootstrap3 hr.fc-divider {\n  border-color: inherit; }\n\n.fc-bootstrap3 .fc-today.alert {\n  border-radius: 0; }\n\n/* Popover\n--------------------------------------------------------------------------------------------------*/\n.fc-bootstrap3 .fc-popover .panel-body {\n  padding: 0; }\n\n/* TimeGrid Slats (lines that run horizontally)\n--------------------------------------------------------------------------------------------------*/\n.fc-bootstrap3 .fc-time-grid .fc-slats table {\n  /* some themes have background color. see through to slats */\n  background: none; }\n\n.fc.fc-bootstrap4 a {\n  text-decoration: none; }\n\n.fc.fc-bootstrap4 a[data-goto]:hover {\n  text-decoration: underline; }\n\n.fc-bootstrap4 hr.fc-divider {\n  border-color: inherit; }\n\n.fc-bootstrap4 .fc-today.alert {\n  border-radius: 0; }\n\n.fc-bootstrap4 a.fc-event:not([href]):not([tabindex]) {\n  color: #fff; }\n\n.fc-bootstrap4 .fc-popover.card {\n  position: absolute; }\n\n/* Popover\n--------------------------------------------------------------------------------------------------*/\n.fc-bootstrap4 .fc-popover .card-body {\n  padding: 0; }\n\n/* TimeGrid Slats (lines that run horizontally)\n--------------------------------------------------------------------------------------------------*/\n.fc-bootstrap4 .fc-time-grid .fc-slats table {\n  /* some themes have background color. see through to slats */\n  background: none; }\n\n/* Toolbar\n--------------------------------------------------------------------------------------------------*/\n.fc-toolbar {\n  text-align: center; }\n\n.fc-toolbar.fc-header-toolbar {\n  margin-bottom: 1em; }\n\n.fc-toolbar.fc-footer-toolbar {\n  margin-top: 1em; }\n\n.fc-toolbar .fc-left {\n  float: left; }\n\n.fc-toolbar .fc-right {\n  float: right; }\n\n.fc-toolbar .fc-center {\n  display: inline-block; }\n\n/* the things within each left/right/center section */\n.fc .fc-toolbar > * > * {\n  /* extra precedence to override button border margins */\n  float: left;\n  margin-left: .75em; }\n\n/* the first thing within each left/center/right section */\n.fc .fc-toolbar > * > :first-child {\n  /* extra precedence to override button border margins */\n  margin-left: 0; }\n\n/* title text */\n.fc-toolbar h2 {\n  margin: 0; }\n\n/* button layering (for border precedence) */\n.fc-toolbar button {\n  position: relative; }\n\n.fc-toolbar .fc-state-hover,\n.fc-toolbar .ui-state-hover {\n  z-index: 2; }\n\n.fc-toolbar .fc-state-down {\n  z-index: 3; }\n\n.fc-toolbar .fc-state-active,\n.fc-toolbar .ui-state-active {\n  z-index: 4; }\n\n.fc-toolbar button:focus {\n  z-index: 5; }\n\n/* View Structure\n--------------------------------------------------------------------------------------------------*/\n/* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */\n/* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */\n.fc-view-container *,\n.fc-view-container *:before,\n.fc-view-container *:after {\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box; }\n\n.fc-view,\n.fc-view > table {\n  /* so dragged elements can be above the view's main element */\n  position: relative;\n  z-index: 1; }\n\n/* BasicView\n--------------------------------------------------------------------------------------------------*/\n/* day row structure */\n.fc-basicWeek-view .fc-content-skeleton,\n.fc-basicDay-view .fc-content-skeleton {\n  /* there may be week numbers in these views, so no padding-top */\n  padding-bottom: 1em;\n  /* ensure a space at bottom of cell for user selecting/clicking */ }\n\n.fc-basic-view .fc-body .fc-row {\n  min-height: 4em;\n  /* ensure that all rows are at least this tall */ }\n\n/* a \"rigid\" row will take up a constant amount of height because content-skeleton is absolute */\n.fc-row.fc-rigid {\n  overflow: hidden; }\n\n.fc-row.fc-rigid .fc-content-skeleton {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0; }\n\n/* week and day number styling */\n.fc-day-top.fc-other-month {\n  opacity: 0.3; }\n\n.fc-basic-view .fc-week-number,\n.fc-basic-view .fc-day-number {\n  padding: 2px; }\n\n.fc-basic-view th.fc-week-number,\n.fc-basic-view th.fc-day-number {\n  padding: 0 2px;\n  /* column headers can't have as much v space */ }\n\n.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {\n  float: right; }\n\n.fc-rtl .fc-basic-view .fc-day-top .fc-day-number {\n  float: left; }\n\n.fc-ltr .fc-basic-view .fc-day-top .fc-week-number {\n  float: left;\n  border-radius: 0 0 3px 0; }\n\n.fc-rtl .fc-basic-view .fc-day-top .fc-week-number {\n  float: right;\n  border-radius: 0 0 0 3px; }\n\n.fc-basic-view .fc-day-top .fc-week-number {\n  min-width: 1.5em;\n  text-align: center;\n  background-color: #f2f2f2;\n  color: #808080; }\n\n/* when week/day number have own column */\n.fc-basic-view td.fc-week-number {\n  text-align: center; }\n\n.fc-basic-view td.fc-week-number > * {\n  /* work around the way we do column resizing and ensure a minimum width */\n  display: inline-block;\n  min-width: 1.25em; }\n\n/* AgendaView all-day area\n--------------------------------------------------------------------------------------------------*/\n.fc-agenda-view .fc-day-grid {\n  position: relative;\n  z-index: 2;\n  /* so the \"more..\" popover will be over the time grid */ }\n\n.fc-agenda-view .fc-day-grid .fc-row {\n  min-height: 3em;\n  /* all-day section will never get shorter than this */ }\n\n.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {\n  padding-bottom: 1em;\n  /* give space underneath events for clicking/selecting days */ }\n\n/* TimeGrid axis running down the side (for both the all-day area and the slot area)\n--------------------------------------------------------------------------------------------------*/\n.fc .fc-axis {\n  /* .fc to overcome default cell styles */\n  vertical-align: middle;\n  padding: 0 4px;\n  white-space: nowrap; }\n\n.fc-ltr .fc-axis {\n  text-align: right; }\n\n.fc-rtl .fc-axis {\n  text-align: left; }\n\n/* TimeGrid Structure\n--------------------------------------------------------------------------------------------------*/\n.fc-time-grid-container,\n.fc-time-grid {\n  /* so slats/bg/content/etc positions get scoped within here */\n  position: relative;\n  z-index: 1; }\n\n.fc-time-grid {\n  min-height: 100%;\n  /* so if height setting is 'auto', .fc-bg stretches to fill height */ }\n\n.fc-time-grid table {\n  /* don't put outer borders on slats/bg/content/etc */\n  border: 0 hidden transparent; }\n\n.fc-time-grid > .fc-bg {\n  z-index: 1; }\n\n.fc-time-grid .fc-slats,\n.fc-time-grid > hr {\n  /* the <hr> AgendaView injects when grid is shorter than scroller */\n  position: relative;\n  z-index: 2; }\n\n.fc-time-grid .fc-content-col {\n  position: relative;\n  /* because now-indicator lives directly inside */ }\n\n.fc-time-grid .fc-content-skeleton {\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  left: 0;\n  right: 0; }\n\n/* divs within a cell within the fc-content-skeleton */\n.fc-time-grid .fc-business-container {\n  position: relative;\n  z-index: 1; }\n\n.fc-time-grid .fc-bgevent-container {\n  position: relative;\n  z-index: 2; }\n\n.fc-time-grid .fc-highlight-container {\n  position: relative;\n  z-index: 3; }\n\n.fc-time-grid .fc-event-container {\n  position: relative;\n  z-index: 4; }\n\n.fc-time-grid .fc-now-indicator-line {\n  z-index: 5; }\n\n.fc-time-grid .fc-helper-container {\n  /* also is fc-event-container */\n  position: relative;\n  z-index: 6; }\n\n/* TimeGrid Slats (lines that run horizontally)\n--------------------------------------------------------------------------------------------------*/\n.fc-time-grid .fc-slats td {\n  height: 1.5em;\n  border-bottom: 0;\n  /* each cell is responsible for its top border */ }\n\n.fc-time-grid .fc-slats .fc-minor td {\n  border-top-style: dotted; }\n\n/* TimeGrid Highlighting Slots\n--------------------------------------------------------------------------------------------------*/\n.fc-time-grid .fc-highlight-container {\n  /* a div within a cell within the fc-highlight-skeleton */\n  position: relative;\n  /* scopes the left/right of the fc-highlight to be in the column */ }\n\n.fc-time-grid .fc-highlight {\n  position: absolute;\n  left: 0;\n  right: 0;\n  /* top and bottom will be in by JS */ }\n\n/* TimeGrid Event Containment\n--------------------------------------------------------------------------------------------------*/\n.fc-ltr .fc-time-grid .fc-event-container {\n  /* space on the sides of events for LTR (default) */\n  margin: 0 2.5% 0 2px; }\n\n.fc-rtl .fc-time-grid .fc-event-container {\n  /* space on the sides of events for RTL */\n  margin: 0 2px 0 2.5%; }\n\n.fc-time-grid .fc-event,\n.fc-time-grid .fc-bgevent {\n  position: absolute;\n  z-index: 1;\n  /* scope inner z-index's */ }\n\n.fc-time-grid .fc-bgevent {\n  /* background events always span full width */\n  left: 0;\n  right: 0; }\n\n/* Generic Vertical Event\n--------------------------------------------------------------------------------------------------*/\n.fc-v-event.fc-not-start {\n  /* events that are continuing from another day */\n  /* replace space made by the top border with padding */\n  border-top-width: 0;\n  padding-top: 1px;\n  /* remove top rounded corners */\n  border-top-left-radius: 0;\n  border-top-right-radius: 0; }\n\n.fc-v-event.fc-not-end {\n  /* replace space made by the top border with padding */\n  border-bottom-width: 0;\n  padding-bottom: 1px;\n  /* remove bottom rounded corners */\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0; }\n\n/* TimeGrid Event Styling\n----------------------------------------------------------------------------------------------------\nWe use the full \"fc-time-grid-event\" class instead of using descendants because the event won't\nbe a descendant of the grid when it is being dragged.\n*/\n.fc-time-grid-event {\n  overflow: hidden;\n  /* don't let the bg flow over rounded corners */ }\n\n.fc-time-grid-event.fc-selected {\n  /* need to allow touch resizers to extend outside event's bounding box */\n  /* common fc-selected styles hide the fc-bg, so don't need this anyway */\n  overflow: visible; }\n\n.fc-time-grid-event.fc-selected .fc-bg {\n  display: none;\n  /* hide semi-white background, to appear darker */ }\n\n.fc-time-grid-event .fc-content {\n  overflow: hidden;\n  /* for when .fc-selected */ }\n\n.fc-time-grid-event .fc-time,\n.fc-time-grid-event .fc-title {\n  padding: 0 1px; }\n\n.fc-time-grid-event .fc-time {\n  font-size: .85em;\n  white-space: nowrap; }\n\n/* short mode, where time and title are on the same line */\n.fc-time-grid-event.fc-short .fc-content {\n  /* don't wrap to second line (now that contents will be inline) */\n  white-space: nowrap; }\n\n.fc-time-grid-event.fc-short .fc-time,\n.fc-time-grid-event.fc-short .fc-title {\n  /* put the time and title on the same line */\n  display: inline-block;\n  vertical-align: top; }\n\n.fc-time-grid-event.fc-short .fc-time span {\n  display: none;\n  /* don't display the full time text... */ }\n\n.fc-time-grid-event.fc-short .fc-time:before {\n  content: attr(data-start);\n  /* ...instead, display only the start time */ }\n\n.fc-time-grid-event.fc-short .fc-time:after {\n  content: \"\\A0-\\A0\";\n  /* seperate with a dash, wrapped in nbsp's */ }\n\n.fc-time-grid-event.fc-short .fc-title {\n  font-size: .85em;\n  /* make the title text the same size as the time */\n  padding: 0;\n  /* undo padding from above */ }\n\n/* resizer (cursor device) */\n.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer {\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 8px;\n  overflow: hidden;\n  line-height: 8px;\n  font-size: 11px;\n  font-family: monospace;\n  text-align: center;\n  cursor: s-resize; }\n\n.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer:after {\n  content: \"=\"; }\n\n/* resizer (touch device) */\n.fc-time-grid-event.fc-selected .fc-resizer {\n  /* 10x10 dot */\n  border-radius: 5px;\n  border-width: 1px;\n  width: 8px;\n  height: 8px;\n  border-style: solid;\n  border-color: inherit;\n  background: #fff;\n  /* horizontally center */\n  left: 50%;\n  margin-left: -5px;\n  /* center on the bottom edge */\n  bottom: -5px; }\n\n/* Now Indicator\n--------------------------------------------------------------------------------------------------*/\n.fc-time-grid .fc-now-indicator-line {\n  border-top-width: 1px;\n  left: 0;\n  right: 0; }\n\n/* arrow on axis */\n.fc-time-grid .fc-now-indicator-arrow {\n  margin-top: -5px;\n  /* vertically center on top coordinate */ }\n\n.fc-ltr .fc-time-grid .fc-now-indicator-arrow {\n  left: 0;\n  /* triangle pointing right... */\n  border-width: 5px 0 5px 6px;\n  border-top-color: transparent;\n  border-bottom-color: transparent; }\n\n.fc-rtl .fc-time-grid .fc-now-indicator-arrow {\n  right: 0;\n  /* triangle pointing left... */\n  border-width: 5px 6px 5px 0;\n  border-top-color: transparent;\n  border-bottom-color: transparent; }\n\n/* List View\n--------------------------------------------------------------------------------------------------*/\n/* possibly reusable */\n.fc-event-dot {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  border-radius: 5px; }\n\n/* view wrapper */\n.fc-rtl .fc-list-view {\n  direction: rtl;\n  /* unlike core views, leverage browser RTL */ }\n\n.fc-list-view {\n  border-width: 1px;\n  border-style: solid; }\n\n/* table resets */\n.fc .fc-list-table {\n  table-layout: auto;\n  /* for shrinkwrapping cell content */ }\n\n.fc-list-table td {\n  border-width: 1px 0 0;\n  padding: 8px 14px; }\n\n.fc-list-table tr:first-child td {\n  border-top-width: 0; }\n\n/* day headings with the list */\n.fc-list-heading {\n  border-bottom-width: 1px; }\n\n.fc-list-heading td {\n  font-weight: bold; }\n\n.fc-ltr .fc-list-heading-main {\n  float: left; }\n\n.fc-ltr .fc-list-heading-alt {\n  float: right; }\n\n.fc-rtl .fc-list-heading-main {\n  float: right; }\n\n.fc-rtl .fc-list-heading-alt {\n  float: left; }\n\n/* event list items */\n.fc-list-item.fc-has-url {\n  cursor: pointer;\n  /* whole row will be clickable */ }\n\n.fc-list-item-marker,\n.fc-list-item-time {\n  white-space: nowrap;\n  width: 1px; }\n\n/* make the dot closer to the event title */\n.fc-ltr .fc-list-item-marker {\n  padding-right: 0; }\n\n.fc-rtl .fc-list-item-marker {\n  padding-left: 0; }\n\n.fc-list-item-title a {\n  /* every event title cell has an <a> tag */\n  text-decoration: none;\n  color: inherit; }\n\n.fc-list-item-title a[href]:hover {\n  /* hover effect only on titles with hrefs */\n  text-decoration: underline; }\n\n/* message when no events */\n.fc-list-empty-wrap2 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n\n.fc-list-empty-wrap1 {\n  width: 100%;\n  height: 100%;\n  display: table; }\n\n.fc-list-empty {\n  display: table-cell;\n  vertical-align: middle;\n  text-align: center; }\n\n.fc-unthemed .fc-list-empty {\n  /* theme will provide own background */\n  background-color: #eee; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 380 */
+/* 378 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_full_calendar__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_full_calendar__ = __webpack_require__(379);
 //
 //
 //
@@ -81053,28 +80983,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             events: [{
                 title: 'event1',
-                start: '2010-01-01'
+                start: '2018-07-01T08:30:00'
             }, {
                 title: 'event2',
-                start: '2010-01-05',
-                end: '2010-01-07'
+                start: '2018-07-05',
+                end: '2018-07-07'
             }, {
                 title: 'event3',
-                start: '2010-01-09T12:30:00',
+                start: '2018-07-09T12:30:00',
                 allDay: false
-            }]
+            }],
+            eventSources: [{
+                events: function events(start, end, timezone, callback) {
+                    var _this = this;
+
+                    console.log("event1");
+                    /*self.$http.get('api/task/monthly/2018-07-16', {timezone: timezone}).then(response => {
+                        callback(response.data.data)
+                    })*/
+                    axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRmMTY4YTllZTcwNGZhZGFiMzIyYjhjYWY2M2E0OTAxYzBiZjA4ZWUzMGYzMGU1YTc3MTVhZmUxODc3MTljODYxNWU2Zjk3MWMwYTY1MDg1In0.eyJhdWQiOiIxIiwianRpIjoiNGYxNjhhOWVlNzA0ZmFkYWIzMjJiOGNhZjYzYTQ5MDFjMGJmMDhlZTMwZjMwZTVhNzcxNWFmZTE4NzcxOWM4NjE1ZTZmOTcxYzBhNjUwODUiLCJpYXQiOjE1MTAwMzc1NDUsIm5iZiI6MTUxMDAzNzU0NSwiZXhwIjoxNTQxNTczNTQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cBsRQxW8BkcZgppEauTRuZyREwIAMVMrTm7PKTeWECLQoBsNCFoeEG7Rc_yiPbuzdwNkOcw--tRWF7548esbMDHaw2DnQnRb_2HUDUrRIaikqYfVbCxtuCmmVXSDHD257l_khFcmm7apnaN76ahzK4bV-GkmzhetyOreX8Wyqjm4rYB3y_oKlQixoqoc7PDERxf2sSxotxhO3oaM6mh4ANzmdX-JPKBn7_hRHxayJVpPiVedS4GWdc-2EbCDr-7rjGxgwDvbHGbqL4vOmSN_bboX1xpXnnLJv6ZkQKSBtGwVtlSLF70lb69e1j3T7QxqHl1IbHeLGym0UhJnPb6DidJpUOYt2z79EgUAJ6My18OF67jwzByE-QdyjUyXZqRI3Sk2LV0mXlgGc2AV2qcGk7kFZ4sIvXp9UJIUj0O8u7JVcs9AzTYLG4iyhxBXIJEZyttfl_7aPfL0DcgEGCZ6W1WMw5UU5-ljEXnFRwAfGRq4d___D3S04U6MWcSs9IkCAsLIuW8h-hw6NbP1SSmAmskBr2PDDwqWxaDabM5UDXpEn8tUc8B8VY2xzAJCHHKfmR_iBlS-rsY0KPURl9aCZvsTmT5YG9ZNf0tvTa_nDzJQfqblXqwW7onggD9KGl1JgoKWu78-582iTQDdRf6_ymbdpFFy6iQkQP3Dt0YGni4';
+                    axios.defaults.headers.common['Accept'] = 'application/json';
+                    axios.get('api/task/monthly/2018-07-16').then(function (response) {
+                        _this.results = response.data.results;
+                    });
+                    /*axios.get(
+                        'api/task/monthly/2018-07-16'
+                        ,{ headers: {
+                            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRmMTY4YTllZTcwNGZhZGFiMzIyYjhjYWY2M2E0OTAxYzBiZjA4ZWUzMGYzMGU1YTc3MTVhZmUxODc3MTljODYxNWU2Zjk3MWMwYTY1MDg1In0.eyJhdWQiOiIxIiwianRpIjoiNGYxNjhhOWVlNzA0ZmFkYWIzMjJiOGNhZjYzYTQ5MDFjMGJmMDhlZTMwZjMwZTVhNzcxNWFmZTE4NzcxOWM4NjE1ZTZmOTcxYzBhNjUwODUiLCJpYXQiOjE1MTAwMzc1NDUsIm5iZiI6MTUxMDAzNzU0NSwiZXhwIjoxNTQxNTczNTQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cBsRQxW8BkcZgppEauTRuZyREwIAMVMrTm7PKTeWECLQoBsNCFoeEG7Rc_yiPbuzdwNkOcw--tRWF7548esbMDHaw2DnQnRb_2HUDUrRIaikqYfVbCxtuCmmVXSDHD257l_khFcmm7apnaN76ahzK4bV-GkmzhetyOreX8Wyqjm4rYB3y_oKlQixoqoc7PDERxf2sSxotxhO3oaM6mh4ANzmdX-JPKBn7_hRHxayJVpPiVedS4GWdc-2EbCDr-7rjGxgwDvbHGbqL4vOmSN_bboX1xpXnnLJv6ZkQKSBtGwVtlSLF70lb69e1j3T7QxqHl1IbHeLGym0UhJnPb6DidJpUOYt2z79EgUAJ6My18OF67jwzByE-QdyjUyXZqRI3Sk2LV0mXlgGc2AV2qcGk7kFZ4sIvXp9UJIUj0O8u7JVcs9AzTYLG4iyhxBXIJEZyttfl_7aPfL0DcgEGCZ6W1WMw5UU5-ljEXnFRwAfGRq4d___D3S04U6MWcSs9IkCAsLIuW8h-hw6NbP1SSmAmskBr2PDDwqWxaDabM5UDXpEn8tUc8B8VY2xzAJCHHKfmR_iBlS-rsY0KPURl9aCZvsTmT5YG9ZNf0tvTa_nDzJQfqblXqwW7onggD9KGl1JgoKWu78-582iTQDdRf6_ymbdpFFy6iQkQP3Dt0YGni4',
+                            'Accept' : 'application/json'
+                            }
+                        }).then(response => {this.results = response.data.results})*/
+                },
+
+                color: 'yellow',
+                textColor: 'black'
+            }, {
+                events: function events(start, end, timezone, callback) {
+                    var _this2 = this;
+
+                    console.log("event2");
+                    /*self.$http.get('api/task/monthly/2018-07-16', {timezone: self.timezone}).then(response => {
+                        callback(response.data.data)
+                    })*/
+                    axios.get('api/task/monthly/2018-07-16', { headers: {
+                            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRmMTY4YTllZTcwNGZhZGFiMzIyYjhjYWY2M2E0OTAxYzBiZjA4ZWUzMGYzMGU1YTc3MTVhZmUxODc3MTljODYxNWU2Zjk3MWMwYTY1MDg1In0.eyJhdWQiOiIxIiwianRpIjoiNGYxNjhhOWVlNzA0ZmFkYWIzMjJiOGNhZjYzYTQ5MDFjMGJmMDhlZTMwZjMwZTVhNzcxNWFmZTE4NzcxOWM4NjE1ZTZmOTcxYzBhNjUwODUiLCJpYXQiOjE1MTAwMzc1NDUsIm5iZiI6MTUxMDAzNzU0NSwiZXhwIjoxNTQxNTczNTQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cBsRQxW8BkcZgppEauTRuZyREwIAMVMrTm7PKTeWECLQoBsNCFoeEG7Rc_yiPbuzdwNkOcw--tRWF7548esbMDHaw2DnQnRb_2HUDUrRIaikqYfVbCxtuCmmVXSDHD257l_khFcmm7apnaN76ahzK4bV-GkmzhetyOreX8Wyqjm4rYB3y_oKlQixoqoc7PDERxf2sSxotxhO3oaM6mh4ANzmdX-JPKBn7_hRHxayJVpPiVedS4GWdc-2EbCDr-7rjGxgwDvbHGbqL4vOmSN_bboX1xpXnnLJv6ZkQKSBtGwVtlSLF70lb69e1j3T7QxqHl1IbHeLGym0UhJnPb6DidJpUOYt2z79EgUAJ6My18OF67jwzByE-QdyjUyXZqRI3Sk2LV0mXlgGc2AV2qcGk7kFZ4sIvXp9UJIUj0O8u7JVcs9AzTYLG4iyhxBXIJEZyttfl_7aPfL0DcgEGCZ6W1WMw5UU5-ljEXnFRwAfGRq4d___D3S04U6MWcSs9IkCAsLIuW8h-hw6NbP1SSmAmskBr2PDDwqWxaDabM5UDXpEn8tUc8B8VY2xzAJCHHKfmR_iBlS-rsY0KPURl9aCZvsTmT5YG9ZNf0tvTa_nDzJQfqblXqwW7onggD9KGl1JgoKWu78-582iTQDdRf6_ymbdpFFy6iQkQP3Dt0YGni4',
+                            'Accept': 'application/json'
+                        }
+                    }).then(function (response) {
+                        _this2.results = response.data.results;
+                    });
+                },
+
+                color: 'red'
+            }],
+            defaultView: 'month'
         };
+    },
+
+    components: {
+        FullCalendar: __WEBPACK_IMPORTED_MODULE_0_vue_full_calendar__["a" /* FullCalendar */]
+    },
+    methods: {
+        eventSelected: function eventSelected() {
+            console.log("click");
+        },
+        refreshEvents: function refreshEvents() {
+            this.$refs.calendar.$emit('refetch-events');
+        }
     }
 });
 
 /***/ }),
-/* 381 */
+/* 379 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_FullCalendar_vue__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_FullCalendar_vue__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_FullCalendar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_FullCalendar_vue__);
-/* unused harmony reexport FullCalendar */
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__components_FullCalendar_vue___default.a; });
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = ({
@@ -81086,15 +81072,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 382 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(19)
 /* script */
-var __vue_script__ = __webpack_require__(383)
+var __vue_script__ = __webpack_require__(381)
 /* template */
-var __vue_template__ = __webpack_require__(414)
+var __vue_template__ = __webpack_require__(412)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -81133,18 +81119,18 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 383 */
+/* 381 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(382);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_defaultsdeep__ = __webpack_require__(411);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_defaultsdeep__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_defaultsdeep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_defaultsdeep__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fullcalendar__ = __webpack_require__(412);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fullcalendar__ = __webpack_require__(410);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fullcalendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_fullcalendar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 
 
@@ -81370,7 +81356,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 384 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81378,7 +81364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 exports.__esModule = true;
 
-var _from = __webpack_require__(385);
+var _from = __webpack_require__(383);
 
 var _from2 = _interopRequireDefault(_from);
 
@@ -81397,30 +81383,30 @@ exports.default = function (arr) {
 };
 
 /***/ }),
-/* 385 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(386), __esModule: true };
+module.exports = { "default": __webpack_require__(384), __esModule: true };
 
 /***/ }),
-/* 386 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(387);
-__webpack_require__(404);
+__webpack_require__(385);
+__webpack_require__(402);
 module.exports = __webpack_require__(37).Array.from;
 
 
 /***/ }),
-/* 387 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var $at = __webpack_require__(388)(true);
+var $at = __webpack_require__(386)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(389)(String, 'String', function (iterated) {
+__webpack_require__(387)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -81436,7 +81422,7 @@ __webpack_require__(389)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 388 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(79);
@@ -81459,19 +81445,19 @@ module.exports = function (TO_STRING) {
 
 
 /***/ }),
-/* 389 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var LIBRARY = __webpack_require__(114);
 var $export = __webpack_require__(115);
-var redefine = __webpack_require__(393);
+var redefine = __webpack_require__(391);
 var hide = __webpack_require__(38);
 var Iterators = __webpack_require__(83);
-var $iterCreate = __webpack_require__(394);
+var $iterCreate = __webpack_require__(392);
 var setToStringTag = __webpack_require__(125);
-var getPrototypeOf = __webpack_require__(403);
+var getPrototypeOf = __webpack_require__(401);
 var ITERATOR = __webpack_require__(18)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
@@ -81535,7 +81521,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 
 /***/ }),
-/* 390 */
+/* 388 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -81545,7 +81531,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 391 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(41) && !__webpack_require__(117)(function () {
@@ -81554,7 +81540,7 @@ module.exports = !__webpack_require__(41) && !__webpack_require__(117)(function 
 
 
 /***/ }),
-/* 392 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -81572,19 +81558,19 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 393 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(38);
 
 
 /***/ }),
-/* 394 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var create = __webpack_require__(395);
+var create = __webpack_require__(393);
 var descriptor = __webpack_require__(82);
 var setToStringTag = __webpack_require__(125);
 var IteratorPrototype = {};
@@ -81599,12 +81585,12 @@ module.exports = function (Constructor, NAME, next) {
 
 
 /***/ }),
-/* 395 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(40);
-var dPs = __webpack_require__(396);
+var dPs = __webpack_require__(394);
 var enumBugKeys = __webpack_require__(124);
 var IE_PROTO = __webpack_require__(84)('IE_PROTO');
 var Empty = function () { /* empty */ };
@@ -81619,7 +81605,7 @@ var createDict = function () {
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(402).appendChild(iframe);
+  __webpack_require__(400).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -81646,12 +81632,12 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 396 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(39);
 var anObject = __webpack_require__(40);
-var getKeys = __webpack_require__(397);
+var getKeys = __webpack_require__(395);
 
 module.exports = __webpack_require__(41) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
@@ -81665,11 +81651,11 @@ module.exports = __webpack_require__(41) ? Object.defineProperties : function de
 
 
 /***/ }),
-/* 397 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(398);
+var $keys = __webpack_require__(396);
 var enumBugKeys = __webpack_require__(124);
 
 module.exports = Object.keys || function keys(O) {
@@ -81678,12 +81664,12 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 398 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(42);
 var toIObject = __webpack_require__(119);
-var arrayIndexOf = __webpack_require__(400)(false);
+var arrayIndexOf = __webpack_require__(398)(false);
 var IE_PROTO = __webpack_require__(84)('IE_PROTO');
 
 module.exports = function (object, names) {
@@ -81701,7 +81687,7 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 399 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -81713,14 +81699,14 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 400 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(119);
 var toLength = __webpack_require__(121);
-var toAbsoluteIndex = __webpack_require__(401);
+var toAbsoluteIndex = __webpack_require__(399);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -81742,7 +81728,7 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 401 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(79);
@@ -81755,7 +81741,7 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 402 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var document = __webpack_require__(31).document;
@@ -81763,7 +81749,7 @@ module.exports = document && document.documentElement;
 
 
 /***/ }),
-/* 403 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -81782,7 +81768,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ }),
-/* 404 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81790,13 +81776,13 @@ module.exports = Object.getPrototypeOf || function (O) {
 var ctx = __webpack_require__(116);
 var $export = __webpack_require__(115);
 var toObject = __webpack_require__(126);
-var call = __webpack_require__(405);
-var isArrayIter = __webpack_require__(406);
+var call = __webpack_require__(403);
+var isArrayIter = __webpack_require__(404);
 var toLength = __webpack_require__(121);
-var createProperty = __webpack_require__(407);
-var getIterFn = __webpack_require__(408);
+var createProperty = __webpack_require__(405);
+var getIterFn = __webpack_require__(406);
 
-$export($export.S + $export.F * !__webpack_require__(410)(function (iter) { Array.from(iter); }), 'Array', {
+$export($export.S + $export.F * !__webpack_require__(408)(function (iter) { Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
   from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
     var O = toObject(arrayLike);
@@ -81826,7 +81812,7 @@ $export($export.S + $export.F * !__webpack_require__(410)(function (iter) { Arra
 
 
 /***/ }),
-/* 405 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
@@ -81844,7 +81830,7 @@ module.exports = function (iterator, fn, value, entries) {
 
 
 /***/ }),
-/* 406 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
@@ -81858,7 +81844,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 407 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81873,10 +81859,10 @@ module.exports = function (object, index, value) {
 
 
 /***/ }),
-/* 408 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(409);
+var classof = __webpack_require__(407);
 var ITERATOR = __webpack_require__(18)('iterator');
 var Iterators = __webpack_require__(83);
 module.exports = __webpack_require__(37).getIteratorMethod = function (it) {
@@ -81887,7 +81873,7 @@ module.exports = __webpack_require__(37).getIteratorMethod = function (it) {
 
 
 /***/ }),
-/* 409 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
@@ -81916,7 +81902,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 410 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ITERATOR = __webpack_require__(18)('iterator');
@@ -81944,7 +81930,7 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ }),
-/* 411 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -84205,7 +84191,7 @@ module.exports = defaultsDeep;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(22)(module)))
 
 /***/ }),
-/* 412 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -84215,7 +84201,7 @@ module.exports = defaultsDeep;
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(0), __webpack_require__(15));
+		module.exports = factory(__webpack_require__(0), __webpack_require__(14));
 	else if(typeof define === 'function' && define.amd)
 		define(["moment", "jquery"], factory);
 	else if(typeof exports === 'object')
@@ -99220,7 +99206,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 413 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -99485,10 +99471,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 413;
+webpackContext.id = 411;
 
 /***/ }),
-/* 414 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -99508,7 +99494,7 @@ if (false) {
 }
 
 /***/ }),
-/* 415 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -99517,7 +99503,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    [_c("full-calendar", { attrs: { events: _vm.events } })],
+    [
+      _c("full-calendar", {
+        attrs: {
+          "event-sources": _vm.eventSources,
+          events: _vm.events,
+          defaultView: _vm.defaultView
+        },
+        on: { "event-selected": _vm.eventSelected }
+      })
+    ],
     1
   )
 }
