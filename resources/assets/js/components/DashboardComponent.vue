@@ -13,16 +13,16 @@
             events: [
                 {
                     title  : 'event1',
-                    start  : '2018-07-01T08:30:00',
+                    start  : '2018-08-01T08:30:00',
                 },
                 {
                     title  : 'event2',
-                    start  : '2018-07-05',
-                    end    : '2018-07-07',
+                    start  : '2018-08-05',
+                    end    : '2018-08-07',
                 },
                 {
                     title  : 'event3',
-                    start  : '2018-07-09T12:30:00',
+                    start  : '2018-08-09T12:30:00',
                     allDay : false,
                 },
             ],
@@ -33,13 +33,13 @@
                         /*self.$http.get('api/task/monthly/2018-07-16', {timezone: timezone}).then(response => {
                             callback(response.data.data)
                         })*/
-                        axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRmMTY4YTllZTcwNGZhZGFiMzIyYjhjYWY2M2E0OTAxYzBiZjA4ZWUzMGYzMGU1YTc3MTVhZmUxODc3MTljODYxNWU2Zjk3MWMwYTY1MDg1In0.eyJhdWQiOiIxIiwianRpIjoiNGYxNjhhOWVlNzA0ZmFkYWIzMjJiOGNhZjYzYTQ5MDFjMGJmMDhlZTMwZjMwZTVhNzcxNWFmZTE4NzcxOWM4NjE1ZTZmOTcxYzBhNjUwODUiLCJpYXQiOjE1MTAwMzc1NDUsIm5iZiI6MTUxMDAzNzU0NSwiZXhwIjoxNTQxNTczNTQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cBsRQxW8BkcZgppEauTRuZyREwIAMVMrTm7PKTeWECLQoBsNCFoeEG7Rc_yiPbuzdwNkOcw--tRWF7548esbMDHaw2DnQnRb_2HUDUrRIaikqYfVbCxtuCmmVXSDHD257l_khFcmm7apnaN76ahzK4bV-GkmzhetyOreX8Wyqjm4rYB3y_oKlQixoqoc7PDERxf2sSxotxhO3oaM6mh4ANzmdX-JPKBn7_hRHxayJVpPiVedS4GWdc-2EbCDr-7rjGxgwDvbHGbqL4vOmSN_bboX1xpXnnLJv6ZkQKSBtGwVtlSLF70lb69e1j3T7QxqHl1IbHeLGym0UhJnPb6DidJpUOYt2z79EgUAJ6My18OF67jwzByE-QdyjUyXZqRI3Sk2LV0mXlgGc2AV2qcGk7kFZ4sIvXp9UJIUj0O8u7JVcs9AzTYLG4iyhxBXIJEZyttfl_7aPfL0DcgEGCZ6W1WMw5UU5-ljEXnFRwAfGRq4d___D3S04U6MWcSs9IkCAsLIuW8h-hw6NbP1SSmAmskBr2PDDwqWxaDabM5UDXpEn8tUc8B8VY2xzAJCHHKfmR_iBlS-rsY0KPURl9aCZvsTmT5YG9ZNf0tvTa_nDzJQfqblXqwW7onggD9KGl1JgoKWu78-582iTQDdRf6_ymbdpFFy6iQkQP3Dt0YGni4'
+                        axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZiZWIxZWNiYWJiYjA4YzI2ODA2MWNkMjY2MjA3MjIwMzYyYTZjYTUwMTY2OTdjMzU1NTk2OTg2NDE4OGM2MTRhYjI5MjUzNDMyN2UxMjExIn0.eyJhdWQiOiIxIiwianRpIjoiNmJlYjFlY2JhYmJiMDhjMjY4MDYxY2QyNjYyMDcyMjAzNjJhNmNhNTAxNjY5N2MzNTU1OTY5ODY0MTg4YzYxNGFiMjkyNTM0MzI3ZTEyMTEiLCJpYXQiOjE1MzMxMTIwODYsIm5iZiI6MTUzMzExMjA4NiwiZXhwIjoxNTY0NjQ4MDg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Ozhi8umbCkJJaySURq2lHmCyMNfx3vmRmAi-3QUY3ZwBwfFjJo3UTjHcJpi6P6EqxnMs7KDTqNh9hfckt_N9-F8dFjPW3tYiMglzTKQqkPMJXkYROdQnfgxduoIjMfxfFp7wYQ3RC8t15ygSBtB3DhXFoHLOkR5v1EFptomlAJYKgdq1a7q0mnmph-z7uZgEsfqChns6kcFsfsM6VhEuXyjw9FcDsdJKzqp_wwSm9OFV1nleeLwAqiaLaG0WklLECuNsDizLRNuGa9Mn7SCMOgDzyuRui15gorY8KBhXrFEQ_f3-x4afEFgS8yO5IXYseOhUNyNgRIZxDDc6KmSWFG5njipRh9nwcIjBM0d_-LleoICiaCGBgFH-WXEA3dfZF0UNW8hdhPIOSZmi0Jtk8dywx3bEvxxCP1z-u3axe7EqkLFHhtBjdCD83mZayLm60xdEJifHw1KudGE-yDPR9x4QdxsRVRoRhe5QH1aX9jHugw0fnx70KTmeZA0wmjLugqupK31yR2Sws3zgYP-dXW_8cedWQ0azeBQeroXlC6ZMFV028rSqKr_adqLQtK-NblB6kgw2obm5DBl2daXPT3St3cZ8TYYwBFigJg--0ED4i7PxTObFiC5nbuNUQqbVjXGJ9_zhPbX49VQeIIEwO8SfVImkzYBnoaaQpHsQwaY'
                         axios.defaults.headers.common['Accept'] = 'application/json';
                         axios.get('api/task/monthly/2018-07-16').then(response => {this.results = response.data.results})
                         /*axios.get(
                             'api/task/monthly/2018-07-16'
                             ,{ headers: {
-                                'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRmMTY4YTllZTcwNGZhZGFiMzIyYjhjYWY2M2E0OTAxYzBiZjA4ZWUzMGYzMGU1YTc3MTVhZmUxODc3MTljODYxNWU2Zjk3MWMwYTY1MDg1In0.eyJhdWQiOiIxIiwianRpIjoiNGYxNjhhOWVlNzA0ZmFkYWIzMjJiOGNhZjYzYTQ5MDFjMGJmMDhlZTMwZjMwZTVhNzcxNWFmZTE4NzcxOWM4NjE1ZTZmOTcxYzBhNjUwODUiLCJpYXQiOjE1MTAwMzc1NDUsIm5iZiI6MTUxMDAzNzU0NSwiZXhwIjoxNTQxNTczNTQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cBsRQxW8BkcZgppEauTRuZyREwIAMVMrTm7PKTeWECLQoBsNCFoeEG7Rc_yiPbuzdwNkOcw--tRWF7548esbMDHaw2DnQnRb_2HUDUrRIaikqYfVbCxtuCmmVXSDHD257l_khFcmm7apnaN76ahzK4bV-GkmzhetyOreX8Wyqjm4rYB3y_oKlQixoqoc7PDERxf2sSxotxhO3oaM6mh4ANzmdX-JPKBn7_hRHxayJVpPiVedS4GWdc-2EbCDr-7rjGxgwDvbHGbqL4vOmSN_bboX1xpXnnLJv6ZkQKSBtGwVtlSLF70lb69e1j3T7QxqHl1IbHeLGym0UhJnPb6DidJpUOYt2z79EgUAJ6My18OF67jwzByE-QdyjUyXZqRI3Sk2LV0mXlgGc2AV2qcGk7kFZ4sIvXp9UJIUj0O8u7JVcs9AzTYLG4iyhxBXIJEZyttfl_7aPfL0DcgEGCZ6W1WMw5UU5-ljEXnFRwAfGRq4d___D3S04U6MWcSs9IkCAsLIuW8h-hw6NbP1SSmAmskBr2PDDwqWxaDabM5UDXpEn8tUc8B8VY2xzAJCHHKfmR_iBlS-rsY0KPURl9aCZvsTmT5YG9ZNf0tvTa_nDzJQfqblXqwW7onggD9KGl1JgoKWu78-582iTQDdRf6_ymbdpFFy6iQkQP3Dt0YGni4',
+                                'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZiZWIxZWNiYWJiYjA4YzI2ODA2MWNkMjY2MjA3MjIwMzYyYTZjYTUwMTY2OTdjMzU1NTk2OTg2NDE4OGM2MTRhYjI5MjUzNDMyN2UxMjExIn0.eyJhdWQiOiIxIiwianRpIjoiNmJlYjFlY2JhYmJiMDhjMjY4MDYxY2QyNjYyMDcyMjAzNjJhNmNhNTAxNjY5N2MzNTU1OTY5ODY0MTg4YzYxNGFiMjkyNTM0MzI3ZTEyMTEiLCJpYXQiOjE1MzMxMTIwODYsIm5iZiI6MTUzMzExMjA4NiwiZXhwIjoxNTY0NjQ4MDg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Ozhi8umbCkJJaySURq2lHmCyMNfx3vmRmAi-3QUY3ZwBwfFjJo3UTjHcJpi6P6EqxnMs7KDTqNh9hfckt_N9-F8dFjPW3tYiMglzTKQqkPMJXkYROdQnfgxduoIjMfxfFp7wYQ3RC8t15ygSBtB3DhXFoHLOkR5v1EFptomlAJYKgdq1a7q0mnmph-z7uZgEsfqChns6kcFsfsM6VhEuXyjw9FcDsdJKzqp_wwSm9OFV1nleeLwAqiaLaG0WklLECuNsDizLRNuGa9Mn7SCMOgDzyuRui15gorY8KBhXrFEQ_f3-x4afEFgS8yO5IXYseOhUNyNgRIZxDDc6KmSWFG5njipRh9nwcIjBM0d_-LleoICiaCGBgFH-WXEA3dfZF0UNW8hdhPIOSZmi0Jtk8dywx3bEvxxCP1z-u3axe7EqkLFHhtBjdCD83mZayLm60xdEJifHw1KudGE-yDPR9x4QdxsRVRoRhe5QH1aX9jHugw0fnx70KTmeZA0wmjLugqupK31yR2Sws3zgYP-dXW_8cedWQ0azeBQeroXlC6ZMFV028rSqKr_adqLQtK-NblB6kgw2obm5DBl2daXPT3St3cZ8TYYwBFigJg--0ED4i7PxTObFiC5nbuNUQqbVjXGJ9_zhPbX49VQeIIEwO8SfVImkzYBnoaaQpHsQwaY',
                                 'Accept' : 'application/json'
                                 }
                             }).then(response => {this.results = response.data.results})*/
@@ -56,7 +56,7 @@
                         axios.get(
                             'api/task/monthly/2018-07-16'
                             ,{ headers: {
-                                'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRmMTY4YTllZTcwNGZhZGFiMzIyYjhjYWY2M2E0OTAxYzBiZjA4ZWUzMGYzMGU1YTc3MTVhZmUxODc3MTljODYxNWU2Zjk3MWMwYTY1MDg1In0.eyJhdWQiOiIxIiwianRpIjoiNGYxNjhhOWVlNzA0ZmFkYWIzMjJiOGNhZjYzYTQ5MDFjMGJmMDhlZTMwZjMwZTVhNzcxNWFmZTE4NzcxOWM4NjE1ZTZmOTcxYzBhNjUwODUiLCJpYXQiOjE1MTAwMzc1NDUsIm5iZiI6MTUxMDAzNzU0NSwiZXhwIjoxNTQxNTczNTQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cBsRQxW8BkcZgppEauTRuZyREwIAMVMrTm7PKTeWECLQoBsNCFoeEG7Rc_yiPbuzdwNkOcw--tRWF7548esbMDHaw2DnQnRb_2HUDUrRIaikqYfVbCxtuCmmVXSDHD257l_khFcmm7apnaN76ahzK4bV-GkmzhetyOreX8Wyqjm4rYB3y_oKlQixoqoc7PDERxf2sSxotxhO3oaM6mh4ANzmdX-JPKBn7_hRHxayJVpPiVedS4GWdc-2EbCDr-7rjGxgwDvbHGbqL4vOmSN_bboX1xpXnnLJv6ZkQKSBtGwVtlSLF70lb69e1j3T7QxqHl1IbHeLGym0UhJnPb6DidJpUOYt2z79EgUAJ6My18OF67jwzByE-QdyjUyXZqRI3Sk2LV0mXlgGc2AV2qcGk7kFZ4sIvXp9UJIUj0O8u7JVcs9AzTYLG4iyhxBXIJEZyttfl_7aPfL0DcgEGCZ6W1WMw5UU5-ljEXnFRwAfGRq4d___D3S04U6MWcSs9IkCAsLIuW8h-hw6NbP1SSmAmskBr2PDDwqWxaDabM5UDXpEn8tUc8B8VY2xzAJCHHKfmR_iBlS-rsY0KPURl9aCZvsTmT5YG9ZNf0tvTa_nDzJQfqblXqwW7onggD9KGl1JgoKWu78-582iTQDdRf6_ymbdpFFy6iQkQP3Dt0YGni4',
+                                'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZiZWIxZWNiYWJiYjA4YzI2ODA2MWNkMjY2MjA3MjIwMzYyYTZjYTUwMTY2OTdjMzU1NTk2OTg2NDE4OGM2MTRhYjI5MjUzNDMyN2UxMjExIn0.eyJhdWQiOiIxIiwianRpIjoiNmJlYjFlY2JhYmJiMDhjMjY4MDYxY2QyNjYyMDcyMjAzNjJhNmNhNTAxNjY5N2MzNTU1OTY5ODY0MTg4YzYxNGFiMjkyNTM0MzI3ZTEyMTEiLCJpYXQiOjE1MzMxMTIwODYsIm5iZiI6MTUzMzExMjA4NiwiZXhwIjoxNTY0NjQ4MDg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Ozhi8umbCkJJaySURq2lHmCyMNfx3vmRmAi-3QUY3ZwBwfFjJo3UTjHcJpi6P6EqxnMs7KDTqNh9hfckt_N9-F8dFjPW3tYiMglzTKQqkPMJXkYROdQnfgxduoIjMfxfFp7wYQ3RC8t15ygSBtB3DhXFoHLOkR5v1EFptomlAJYKgdq1a7q0mnmph-z7uZgEsfqChns6kcFsfsM6VhEuXyjw9FcDsdJKzqp_wwSm9OFV1nleeLwAqiaLaG0WklLECuNsDizLRNuGa9Mn7SCMOgDzyuRui15gorY8KBhXrFEQ_f3-x4afEFgS8yO5IXYseOhUNyNgRIZxDDc6KmSWFG5njipRh9nwcIjBM0d_-LleoICiaCGBgFH-WXEA3dfZF0UNW8hdhPIOSZmi0Jtk8dywx3bEvxxCP1z-u3axe7EqkLFHhtBjdCD83mZayLm60xdEJifHw1KudGE-yDPR9x4QdxsRVRoRhe5QH1aX9jHugw0fnx70KTmeZA0wmjLugqupK31yR2Sws3zgYP-dXW_8cedWQ0azeBQeroXlC6ZMFV028rSqKr_adqLQtK-NblB6kgw2obm5DBl2daXPT3St3cZ8TYYwBFigJg--0ED4i7PxTObFiC5nbuNUQqbVjXGJ9_zhPbX49VQeIIEwO8SfVImkzYBnoaaQpHsQwaY',
                                 'Accept' : 'application/json'
                                 }
                             }).then(response => {this.results = response.data.results})
