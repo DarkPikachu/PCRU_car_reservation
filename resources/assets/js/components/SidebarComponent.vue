@@ -3,9 +3,7 @@
         <aside id="slider" class="main-sidebar">
             <section class="sidebar" style="height: auto;">
                 <ul class="sidebar-menu">
-                    <li class="header">
-                    MAIN NAVIGATION
-        <!----> <!----></li>
+                    <li class="header"> MAIN NAVIGATION</li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span> 
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
