@@ -144,6 +144,7 @@
         },
         mounted(){
             console.log('mounted', this.$refs.calendar);
+            console.log(this.$refs.calendar.$emit('getDate'))
            //this.$dispatch('changeMonth', start, end, current);
         }
     }
