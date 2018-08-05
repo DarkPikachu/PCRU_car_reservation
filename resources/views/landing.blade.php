@@ -12,6 +12,9 @@
                         <b-col><sidebar-component></sidebar-component></b-col>
                         <b-col cols="10"><dashboard-component></dashboard-component></b-col>
                     </b-row>
+                    <b-row>
+                        <b-col><calendar-component></calendar-component></b-col>
+                    </b-row>
                 </b-container>
             </b-row>
         </b-container>
