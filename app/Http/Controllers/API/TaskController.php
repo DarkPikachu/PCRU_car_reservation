@@ -25,8 +25,8 @@ class TaskController extends Controller {
         $resultArray = Task::find($taskId);
 
         return Response::json(array(
-            'error' => false,
-            'datas' => $resultArray),
+            'status' => true,
+            'message' => $resultArray),
             200
         );
     }
@@ -51,15 +51,15 @@ class TaskController extends Controller {
             echo $exc->getTraceAsString();
 
             return Response::json(array(
-                'error' => true,
-                'datas' => 'error'.$exc->getMessage()),
+                'status' => false,
+                'message' => 'error'.$exc->getMessage()),
                 200
             );
         }
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complate'),
             200
         );
     }
@@ -88,8 +88,8 @@ class TaskController extends Controller {
             }
 
             return Response::json(array(
-                'error' => true,
-                'msg' => $errMsg),
+                'status' => false,
+                'message' => $errMsg),
                 200
             );
 
@@ -110,8 +110,8 @@ class TaskController extends Controller {
         }
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complate'),
             200
         );
     }
@@ -121,8 +121,8 @@ class TaskController extends Controller {
         Task::destroy($taskId);
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'delete '.$taskId),
+            'status' => true,
+            'message' => 'delete '.$taskId),
             200
         );
     }
@@ -150,11 +150,13 @@ class TaskController extends Controller {
         ->with(TaskController::getJsonOutputFormat())->get();
  
          return Response::json(array(
-             'tasks' => $tasks, 
-             'date' => $date,
-             'first' => $firstDay,
-             'last' => $lastDay),
-             200);
+            'status' => true,
+            'message' => 'complate',
+            'tasks' => $tasks, 
+            'date' => $date,
+            'first' => $firstDay,
+            'last' => $lastDay),
+            200);
      }
 
     public function monthlyTask($date){
@@ -192,6 +194,8 @@ class TaskController extends Controller {
         ->with(TaskController::getJsonOutputFormat())->get();
 
         return Response::json(array(
+            'status' => true,
+            'message' => 'complate',
             'tasks' => $tasks, 
             'date' => $date,
             'first' => $firstDay,
@@ -218,6 +222,8 @@ class TaskController extends Controller {
         ->with(TaskController::getJsonOutputFormat())->get();
         
         return Response::json(array(
+            'status' => true,
+            'message' => 'complate',
             'tasks' => $tasks, 
             'date' => $date),
             200);

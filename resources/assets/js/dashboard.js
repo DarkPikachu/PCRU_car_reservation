@@ -21,14 +21,11 @@ window.Vue = require('vue');
 /*import VueBsDrawer from 'vue-bs-drawer'
 
 Vue.component('bs-drawer', VueBsDrawer)*/
-//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
 Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue'));
 Vue.component('dashboard-component', require('./components/DashboardComponent.vue'));
-Vue.component('calendar-component', require('./components/CalendarComponent.vue'));
-
-// js files
-//import 'va/lib/script'
+//Vue.component('calendar-component', require('./components/CalendarComponent.vue'));
 
 import { Navbar, Layout } from 'bootstrap-vue/es/components';
 
