@@ -131,6 +131,15 @@
                  console.log("setShowDate" );
 				this.showDate = d;
 			},
+            dataAdaptor(tasks) {
+                var events = []
+                for(var i = 0; i < tasks.length; i++) {
+                    var obj = { title: tasks[i]}
+
+                    console.log(obj.id);
+                }
+                return events
+            }
 
         },
         created () {
