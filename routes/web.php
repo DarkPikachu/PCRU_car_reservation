@@ -24,3 +24,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/landing', 'LandingController@index')->name('landing');
+
+Route::get('/task/add', 'LandingController@index')->name('addtask');
+
+Route::get('/task/detail', 'LandingController@index')->name('taskdetail');
+
+Route::get('/task/view', 'LandingController@index')->name('view');

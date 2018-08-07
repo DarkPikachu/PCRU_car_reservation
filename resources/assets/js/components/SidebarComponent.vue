@@ -10,10 +10,10 @@
                         </a> 
                         <ul class="treeview-menu">
                             <li class="active">
-                                <a href="/"><i class="fa fa-circle-o"> 헬로화면</i></a>
+                                <a href="/"><i class="fa fa-circle-o"> ขอใช้ใช้รถ</i></a>
                             </li>
-                            <li class=""><a href="/sample"><i class="fa fa-circle-o"> 샘플화면</i></a></li>
-                            <li class=""><a href="/dashboard/v1"><i class="fa fa-circle-o"> Dashboard v1</i></a></li>
+                            <li class=""><a href="/sample"><i class="fa fa-circle-o"> ขอใช้รถ</i></a></li>
+                            <li class=""><a href="/dashboard/v1"><i class="fa fa-circle-o"> รายการรอพิจารณา</i></a></li>
                             <li class=""><a href="/dashboard/v2"><i class="fa fa-circle-o"> Dashboard v2</i></a></li>
                             <li class=""><a href="/examples/infobox"><i class="fa fa-circle-o"> InfoBox</i></a></li>
                             <li class=""><a href="/examples/chart"><i class="fa fa-circle-o"> Chart.js</i></a></li>

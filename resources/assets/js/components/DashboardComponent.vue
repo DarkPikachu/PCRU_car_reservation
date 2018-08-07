@@ -68,6 +68,7 @@
                     {
                         events(start, end, timezone, callback) {
                             console.log("event2",end );
+                            var that = this;
 
                             var uri = 'api/task/monthly/'+ this.currentDate.format("YYYY-MM-DD")                            
                             axios.get( uri, { 
@@ -76,29 +77,29 @@
                                     'Accept' : 'application/json'
                                 }
                             }).then(response => {
+                                console.log("debug", this)
                                 this.results = response.data.tasks
 
-                                /*this.results = [
-                                    {
-                                        title  : 'event1',
-                                        start  : '2018-08-01T08:30:00',
-                                    },
-                                    {
-                                        title  : 'event2',
-                                        start  : '2018-08-05',
-                                        end    : '2018-08-07',
-                                    },
-                                    {
-                                        title  : 'event3',
-                                        start  : '2018-08-09T12:30:00',
-                                        allDay : false,
-                                    },
-                                ]*/
+                                //this.dataAdaptor(response.data.tasks)
+                                var tasks = response.data.tasks
+                                var events = []
+                                for(var i = 0; i < tasks.length; i++) {
+                                    var obj = {
+                                        id: tasks[i].id,
+                                        title: tasks[i].car.name +' ทะเบียน '+ tasks[i].car.plate_number +' '+ tasks[i].car.province +' ไป ' + tasks[i].target + ' ' + tasks[i].province_code,
+                                        start: tasks[i].start_date + 'T' + tasks[i].start_time,
+                                        end: tasks[i].end_date + 'T' + tasks[i].end_time,
+                                    }
+                                    events.push(obj)
+                                    console.log(obj.id);
+                                }
 
+                                this.results = events
                                 callback(this.results)
                             })
                         },
-                        color: 'red',
+                        color: '#36c',
+                        textColor: 'white',
                     }],//end eventSources
             }
         },
@@ -131,11 +132,16 @@
                  console.log("setShowDate" );
 				this.showDate = d;
 			},
-            dataAdaptor(tasks) {
+            dataAdaptor: function(tasks) {
                 var events = []
                 for(var i = 0; i < tasks.length; i++) {
-                    var obj = { title: tasks[i]}
-
+                    var obj = {
+                        id: tasks[i].id,
+                        title: tasks[i].car.id,
+                        start: tasks[i].start_date + 'T' + tasks[i].start_time,
+                        end: tasks[i].end_date + 'T' + tasks[i].end_time,
+                    }
+                    events.push(obj)
                     console.log(obj.id);
                 }
                 return events
