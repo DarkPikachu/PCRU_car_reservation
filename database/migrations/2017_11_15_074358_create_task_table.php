@@ -25,8 +25,8 @@ class CreateTaskTable extends Migration
             $table->time('end_time');
             $table->integer('num_date');
             $table->string('target', 500);
-            $table->string('province_code', 2);
             $table->string('objectives', 500);
+            $table->string('province_code', 2);
             $table->string('summary', 100);
             $table->integer('status');
             $table->integer('creator');
