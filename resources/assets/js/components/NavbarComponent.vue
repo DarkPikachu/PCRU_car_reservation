@@ -64,4 +64,8 @@
 .container-fluid {
     padding: 0px;
 }
+
+.row {
+    margin-right: 0px;
+}
 </style>

@@ -1,5 +1,6 @@
 {
     "/js/dashboard.js": "/js/dashboard.js",
+    "/js/addtask.js": "/js/addtask.js",
     "/js/oauth.js": "/js/oauth.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
