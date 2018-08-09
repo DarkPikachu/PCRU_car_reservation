@@ -18,7 +18,6 @@ class CreateTaskTable extends Migration
             $table->integer('car');
             $table->integer('driver');
             $table->integer('num_of_car');
-            $table->string('starting_point', 500);
             $table->date('start_date');
             $table->time('start_time');
             $table->date('end_date');
@@ -28,6 +27,11 @@ class CreateTaskTable extends Migration
             $table->string('objectives', 500);
             $table->string('province_code', 2);
             $table->string('summary', 100);
+            $table->integer('num_of_companion');
+            $table->text('companion');
+            $table->string('baggage', 300);
+            $table->string('start_point', 500);
+
             $table->integer('status');
             $table->integer('creator');
             $table->integer('approvers');

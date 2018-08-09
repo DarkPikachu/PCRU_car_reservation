@@ -20,6 +20,42 @@ class TaskController extends Controller {
         $this->afterFilter('log', array('only' => array('fooAction', 'barAction')));*/
     }
 
+    public function store(Request $request)
+    {
+        // Validate the request...
+        TaskController::postAddTask();
+        $validatedData = $request->validate([
+            'starting_point' => 'required|unique:posts|max:255',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'end_date' => 'required',
+            'end_time' => 'required',
+
+            'target' => 'required',
+            'objectives' => 'required',
+            'province_code' => 'required',
+            'start_date' => 'required',
+        ]);
+
+        /*$task= new Task;
+        $task->starting_point = $request->starting_point;
+
+        $task->start_date = $request->starting_point;
+        $task->start_time = $request->starting_point;
+        $task->end_date = $request->starting_point;
+        $task->end_time = $request->starting_point;
+        $task->num_date = $request->starting_point;
+
+        $task->target = $request->starting_point;
+        $task->objectives = $request->starting_point;
+        $task->province_code = $request->starting_point;
+
+        $task->status = $request->starting_point;
+        $task->creator = $request->starting_point;
+
+        $task->save();*/
+    }
+
     public function postTaskDetail(){
         $taskId = Request::Input('taskId');
         $resultArray = Task::find($taskId);
@@ -35,7 +71,7 @@ class TaskController extends Controller {
         try {//{ car: car, driver: driver, startDate: txtStartDate, endDate: txtEndDate, numDate: numDate, reserve_by: reserve_by, user: user, detail: detail };
             $task = new Task;
 
-            $task->car          = Request::Input('car');
+            /*$task->car          = Request::Input('car');
             $task->driver       = Request::Input('driver');
             $task->start_date   = Request::Input('startDate');
             $task->end_date     = Request::Input('endDate');
@@ -43,6 +79,24 @@ class TaskController extends Controller {
             $task->reserve_by   = Request::Input('reserve_by');
             $task->user         = Request::Input('user');
             $task->detail       = Request::Input('detail');
+            $task->status       = 1;
+            $task->save();*/
+
+            $task= new Task;
+            $task->starting_point = $request->starting_point;
+
+            $task->start_date   = $request->start_date;
+            $task->start_time   = $request->start_time;
+            $task->end_date     = $request->end_date;
+            $task->end_time     = $request->end_time;
+            $task->num_date     = $request->num_date;
+
+            $task->target       = $request->target;
+            $task->objectives   = $request->objectives;
+            $task->province_code = $request->province_code;
+
+            $task->status       = $request->status;
+            $task->creator      = $request->creator;
             $task->status       = 1;
 
             $task->save();

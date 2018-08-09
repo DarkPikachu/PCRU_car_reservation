@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::apiResource('dashboard', 'DashboardController');
     //Route::apiResource('task', 'TaskController');
     Route::apiResource('report', 'ReportController');
-    Route::apiResource('manageitem', 'ManageItemController');
+    Route::apiResource('managetask', 'ManageTaskController');
 
     Route::get('task/usertask/{userID}', 'API\TaskController@userTask');
     Route::get('task/usertask_date/{date}', 'API\TaskController@userTask');

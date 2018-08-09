@@ -35,10 +35,6 @@ class Task extends Model {
     public function car()
     {
         return $this->hasOne('App\Car', 'id', 'car');
-        //return $this->hasOne('App\Car', 'id', 'car')->get('car:name,car:plate_number,car:province');//->select('car.name', 'car.plate_number', 'car.province');
-        //return $this->belongsTo('App\Car', 'car', 'id')->select(array('name', 'plate_number'));
-        //return $this->belongsTo('App\Car', 'car', 'id')->pluck('car.name', 'car.plate_number', 'car.province');
-        //return $this->belongsTo('App\Car', 'car', 'id')->exclude(['updated_at', 'created_at']);
     }
 
     public function driver()

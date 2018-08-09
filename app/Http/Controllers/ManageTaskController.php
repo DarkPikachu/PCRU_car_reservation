@@ -1,11 +1,14 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use DB;
 use App\SysConfig, App\Car, App\Driver, App\Task;
-use Response,Request;
+use Response;
 use Validator;
 
-class ManageItemController extends Controller {
+
+class ManageTaskController extends Controller {
 
     public function __construct()
     {
@@ -29,7 +32,8 @@ class ManageItemController extends Controller {
 
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
+            'message' => 'complete',
             'datas' => array('drivers' => $resultArray, 'sys'=> $xx)),
             200
         );
@@ -54,15 +58,15 @@ class ManageItemController extends Controller {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
             return Response::json(array(
-                'error' => true,
-                'datas' => 'error'.$exc->getMessage()),
+                'status' => false,
+                'message' => 'error'.$exc->getMessage()),
                 200
             );
         }
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complete'),
             200
         );
     }
@@ -87,8 +91,8 @@ class ManageItemController extends Controller {
             }
 
             return Response::json(array(
-                'error' => true,
-                'msg' => $errMsg),
+                'status' => false,
+                'message' => $errMsg),
                 200
             );
 
@@ -126,16 +130,16 @@ class ManageItemController extends Controller {
         }
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complete'),
             200
         );
     }
 
     public function postDeleteDriver(){
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complete'),
             200
         );
     }
@@ -147,7 +151,8 @@ class ManageItemController extends Controller {
         $resultArray = Car::where('status', '=', 1)->get();
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
+            'message' => 'complete',
             'datas' => $resultArray),
             200
         );
@@ -172,15 +177,15 @@ class ManageItemController extends Controller {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
             return Response::json(array(
-                'error' => true,
-                'datas' => 'error'.$exc->getMessage()),
+                'status' => false,
+                'message' => 'error'.$exc->getMessage()),
                 200
             );
         }
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'statue' => true,
+            'message' => 'complete'),
             200
         );
     }
@@ -205,8 +210,8 @@ class ManageItemController extends Controller {
             }
 
             return Response::json(array(
-                'error' => true,
-                'msg' => $errMsg),
+                'status' => false,
+                'message' => $errMsg),
                 200
             );
 
@@ -223,16 +228,16 @@ class ManageItemController extends Controller {
         }
 
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complete'),
             200
         );
     }
 
     public function postDeleteCar(){
         return Response::json(array(
-            'error' => false,
-            'datas' => 'complate'),
+            'status' => true,
+            'message' => 'complete'),
             200
         );
     }
@@ -261,7 +266,7 @@ class ManageItemController extends Controller {
         $last_query = end($queries);
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             //'query' => $last_query),
             200
@@ -305,7 +310,7 @@ class ManageItemController extends Controller {
         $resultArray = SysConfig::all();
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             200
         );
@@ -346,7 +351,7 @@ class ManageItemController extends Controller {
         }
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             200
         );
@@ -354,5 +359,57 @@ class ManageItemController extends Controller {
 
 
     // RESTfull ################################################################
+    /**
+     * Store a new user.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            //'title' => 'required|unique:posts|max:255',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'end_date' => 'required',
+            'end_time' => 'required',
+            'target' => 'required',
+            'province_code' => 'required',
+            'objectives' => 'required',
+            'companion' => 'required',
+            'baggage' => 'required',
+            'starting_point' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(array(
+                'status' => false,
+                'message' => $validator,
+                'debug_user' => Auth::user(),
+                'debug_alls'=> $request->all()),
+                200
+            );
+        }
+
+        $task   = new Task;
+
+        $task->start_date       = $request->start_date;
+        $task->start_time       = $request->start_time;
+        $task->end_date         = $request->end_date;
+        $task->end_time         = $request->end_time;
+        $task->num_date         = $request->num_date;
+
+        $task->target           = $request->target;
+        $task->objectives       = $request->objectives;
+        $task->province_code    = $request->province_code;
+        $task->starting_point   = $request->starting_point;
+
+        $task->status   = '1';
+        $task->creator  = Auth::user()->id;
+
+        $task->save();
+
+        //
+    }
     //##########################################################################
 }
