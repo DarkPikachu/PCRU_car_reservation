@@ -360,7 +360,7 @@ class ManageTaskController extends Controller {
 
     // RESTfull ################################################################
     /**
-     * Store a new user.
+     * Store a new task.
      *
      * @param  Request  $request
      * @return Response
@@ -374,6 +374,9 @@ class ManageTaskController extends Controller {
             'end_date' => 'required',
             'end_time' => 'required',
             'target' => 'required',
+            'num_of_companion' => 'required',
+            'companion' => 'required',
+            'baggage' => 'required',
             'province_code' => 'required',
             'objectives' => 'required',
             'companion' => 'required',
@@ -384,32 +387,135 @@ class ManageTaskController extends Controller {
         if ($validator->fails()) {
             return Response::json(array(
                 'status' => false,
-                'message' => $validator,
-                'debug_user' => Auth::user(),
-                'debug_alls'=> $request->all()),
+                'message' => $validator),
                 200
             );
         }
 
-        $task   = new Task;
+        $task_id = null;
+        try {
+            $task   = new Task;
 
-        $task->start_date       = $request->start_date;
-        $task->start_time       = $request->start_time;
-        $task->end_date         = $request->end_date;
-        $task->end_time         = $request->end_time;
-        $task->num_date         = $request->num_date;
+            $task->start_date       = $request->start_date;
+            $task->start_time       = $request->start_time;
+            $task->end_date         = $request->end_date;
+            $task->end_time         = $request->end_time;
+            $task->num_date         = $request->num_date;
 
-        $task->target           = $request->target;
-        $task->objectives       = $request->objectives;
-        $task->province_code    = $request->province_code;
-        $task->starting_point   = $request->starting_point;
+            $task->target           = $request->target;
+            $task->objectives       = $request->objectives;
+            $task->province_code    = $request->province_code;
 
-        $task->status   = '1';
-        $task->creator  = Auth::user()->id;
 
-        $task->save();
+            $task->num_of_companion = $request->num_of_companion;
+            $task->companion        = $request->companion;
+            $task->baggage          = $request->baggage;
+            
 
-        //
+            $task->starting_point   = $request->starting_point;
+
+            $task->status   = '1';
+            $task->creator  = Auth::user()->id;
+
+            $task->save();
+
+            $task_id = $task->id;
+
+        } catch (Exception $e) {
+            return Response::json(array(
+                'status' => false,
+                'message' => $e),
+                403
+            );
+        }
+
+        return Response::json(array(
+            'status' => true,
+            'message' => 'insert task complete',
+            'task_id' => $task_id),
+            200
+        );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $task = Task::find($id);
+
+        if($task == null){
+            return Response::json(array(
+                'status' => false,
+                'message' => 'no item found'),
+                200
+            );
+        }
+
+        return Response::json(array(
+            'status' => true,
+            'message' => 'complete',
+            'task' => $task),
+            200
+        );
+    }
+
+
+    /**
+     * Update the given user.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        return Response::json(array(
+            'status' => false,
+            'message' => 'update task complete',
+            '$id' =>  $id),
+            200
+        );
+
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $result = 0;
+        try {
+            $result = Task::destroy($id);
+        } catch (Exception $e) {
+            return Response::json(array(
+                'status' => false,
+                'message' => $e),
+                403
+            );
+        }
+
+        if($result == 0){
+            return Response::json(array(
+                'status' => false,
+                'message' => 'no item found'),
+                200
+            );
+        }
+
+        return Response::json(array(
+            'status' => true,
+            'message' => 'task #'.$id.' deleted' ),
+            200
+        );
     }
     //##########################################################################
 }

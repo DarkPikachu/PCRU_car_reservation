@@ -2,7 +2,8 @@
     <b-container>
         <full-calendar ref="calendar" 
             :config="config"
-            :event-sources="eventSources" 
+            
+           
             @eventClick="eventClick"
             @next="next"
             @event-selected="eventClick"
@@ -14,9 +15,9 @@
 
 <script>
     import { FullCalendar } from 'vue-full-calendar'
-    //import { moment } from 'moment'
 
     export default {
+        //props: ['events'],
         data() {
             return {
                 config: {
@@ -24,7 +25,10 @@
                     locale: 'th',
                 
                 },//config
-                eventSources: [{
+                events:[],
+                //events: this.events
+                /*eventSources: [
+                    {
                         events(start, end, timezone, callback) {
                             console.log("event1");
                             //console.log(this.$refs.calendar.$emit('getDate'))
@@ -41,25 +45,25 @@
                                 this.results = response.data.tasks
                                 //console.log('results', this.results)
                                 this.results = [
-                                        {
-                                            title  : 'event1',
-                                            start  : '2018-08-01T08:30:00',
-                                            description: "I'm on holiday"
-                                        },
-                                        {
-                                            title  : 'event2',
-                                            start  : '2018-08-05',
-                                            end    : '2018-08-07',
-                                            description: "I'm on holiday"
-                                        },
-                                        {
-                                            title  : 'event3',
-                                            start  : '2018-08-09T12:30:00',
-                                            allDay : false,
-                                            description: "I'm on holiday"
-                                        },
-                                    ]
-                                    callback(this.results)
+                                    {
+                                        title  : 'event1',
+                                        start  : '2018-08-01T08:30:00',
+                                        description: "I'm on holiday"
+                                    },
+                                    {
+                                        title  : 'event2',
+                                        start  : '2018-08-05',
+                                        end    : '2018-08-07',
+                                        description: "I'm on holiday"
+                                    },
+                                    {
+                                        title  : 'event3',
+                                        start  : '2018-08-09T12:30:00',
+                                        allDay : false,
+                                        description: "I'm on holiday"
+                                    },
+                                ]
+                                callback(this.results)
                             })
                         },
                         color: 'yellow',
@@ -84,11 +88,18 @@
                                 var tasks = response.data.tasks
                                 var events = []
                                 for(var i = 0; i < tasks.length; i++) {
+                                    var tmpTitile = '';
+                                    if(tasks[i].car != null)
+                                        tmpTitile = tasks[i].car.name +' ทะเบียน '+ tasks[i].car.plate_number +' '+ tasks[i].car.province +' ไป ' + tasks[i].target + ' ' + tasks[i].province_code
+                                    else
+                                        tmpTitile = 'ไป ' + tasks[i].target + ' ' + tasks[i].province_code
+
                                     var obj = {
                                         id: tasks[i].id,
-                                        title: tasks[i].car.name +' ทะเบียน '+ tasks[i].car.plate_number +' '+ tasks[i].car.province +' ไป ' + tasks[i].target + ' ' + tasks[i].province_code,
+                                        title: tmpTitile,
                                         start: tasks[i].start_date + 'T' + tasks[i].start_time,
                                         end: tasks[i].end_date + 'T' + tasks[i].end_time,
+                                        color: (tasks[i].status == '1')? '#FF9933' : (tasks[i].status == '0')? '#666666':'',
                                     }
                                     events.push(obj)
                                     console.log(obj.id);
@@ -100,7 +111,8 @@
                         },
                         color: '#36c',
                         textColor: 'white',
-                    }],//end eventSources
+                    }
+                ],//end eventSources*/
             }
         },
         components: {
@@ -145,6 +157,10 @@
                     console.log(obj.id);
                 }
                 return events
+            },
+            setEvents(events){
+                this.events  = events
+                this.$refs.calendar.fireMethod( 'addEventSource', this.events )
             }
 
         },
@@ -160,4 +176,9 @@
 
 <style>
     @import '~fullcalendar/dist/fullcalendar.css';
+
+    .fc-day-grid-event > .fc-content {
+        white-space: normal;
+        text-overflow: ellipsis;
+    }
 </style> 

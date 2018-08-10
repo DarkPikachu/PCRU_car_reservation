@@ -15,27 +15,31 @@ class CreateTaskTable extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('car');
-            $table->integer('driver');
-            $table->integer('num_of_car');
+            $table->integer('car')->nullable();
+            $table->integer('driver')->nullable();
+            $table->integer('num_of_car')->nullable();
+
             $table->date('start_date');
             $table->time('start_time');
             $table->date('end_date');
             $table->time('end_time');
             $table->integer('num_date');
+
             $table->string('target', 500);
             $table->string('objectives', 500);
             $table->string('province_code', 2);
-            $table->string('summary', 100);
+            $table->string('summary', 100)->nullable();
+
             $table->integer('num_of_companion');
             $table->text('companion');
             $table->string('baggage', 300);
-            $table->string('start_point', 500);
+            $table->string('starting_point', 500);
 
             $table->integer('status');
             $table->integer('creator');
-            $table->integer('approvers');
-            $table->dateTime('approved_when');
+            $table->integer('thinker')->nullable();
+            $table->dateTime('result_when')->nullable();
+            $table->string('result_comment', 200);
             $table->timestamps();
         });
     }

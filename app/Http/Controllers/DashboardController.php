@@ -43,7 +43,7 @@ class DashboardController extends Controller {
         $last_query = end($queries);
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             //'query' => $last_query),
             200
@@ -79,7 +79,7 @@ class DashboardController extends Controller {
         $resultArray = SysConfig::all();
 
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             200
         );
@@ -107,7 +107,7 @@ class DashboardController extends Controller {
 
         //return Response::eloquent($todo)
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             200
         );
@@ -129,7 +129,7 @@ class DashboardController extends Controller {
 
         //return Response::eloquent($todo)
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $resultArray),
             200
         );
@@ -175,7 +175,7 @@ class DashboardController extends Controller {
 
         //return Response::eloquent($todo)
         return Response::json(array(
-            'error' => false,
+            'status' => true,
             'datas' => $training->toArray()),
             200
         );*/

@@ -181,6 +181,16 @@ class TaskController extends Controller {
         );
     }
 
+    public function allTask(){
+        $tasks = Task::with(TaskController::getJsonOutputFormat())->get();
+ 
+         return Response::json(array(
+            'status' => true,
+            'message' => 'complate',
+            'tasks' => $tasks),
+            200);
+     }
+
     public function yearlyTask($date){
         $this->date = $date;
 

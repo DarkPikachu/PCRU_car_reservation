@@ -51,5 +51,10 @@ class Task extends Model {
     {
         return $this->hasOne('App\UserInfo', 'id', 'requestor');
     }
+
+    public function province()
+    {
+        return $this->hasOne('App\Province', 'PROVINCE_CODE', 'PROVINCE_CODE');
+    }
     
 }
