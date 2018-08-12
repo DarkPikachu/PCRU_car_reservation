@@ -74,8 +74,21 @@
                     name: '',
                     food: null,
                     checked: [],
-                    start_point:''
+                    start_date:'',
+                    start_time:'',
+                    end_date:'',
+                    end_time:'',
+                    num_date:'',
 
+                    target:'',
+                    objectives:'',
+                    province_code:'',
+
+                    num_of_companion:'',
+                    companion:'',
+                    baggage:'',
+
+                    starting_point:''
                 },
                 foods: [
                     { text: 'Select One', value: null },

@@ -373,14 +373,16 @@ class ManageTaskController extends Controller {
             'start_time' => 'required',
             'end_date' => 'required',
             'end_time' => 'required',
+            'num_date' => 'required',
+
             'target' => 'required',
+            'objectives' => 'required',
+            'province_code' => 'required',
+
             'num_of_companion' => 'required',
             'companion' => 'required',
             'baggage' => 'required',
-            'province_code' => 'required',
-            'objectives' => 'required',
-            'companion' => 'required',
-            'baggage' => 'required',
+            
             'starting_point' => 'required',
         ]);
 
@@ -406,12 +408,10 @@ class ManageTaskController extends Controller {
             $task->objectives       = $request->objectives;
             $task->province_code    = $request->province_code;
 
-
             $task->num_of_companion = $request->num_of_companion;
             $task->companion        = $request->companion;
             $task->baggage          = $request->baggage;
             
-
             $task->starting_point   = $request->starting_point;
 
             $task->status   = '1';
