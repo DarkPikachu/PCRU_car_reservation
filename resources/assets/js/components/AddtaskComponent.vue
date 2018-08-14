@@ -35,16 +35,18 @@
                                     v-model="form.food">
                         </b-form-select>
                     </b-form-group>
-                    <b-form-group id="exampleInputGroup2"
+
+                    <b-form-group id="inputGroup2"
                                     label="จุดขึ้นรถ :"
-                                    label-for="exampleInput5">
-                        <b-form-input id="exampleInput5"
+                                    label-for="input5">
+                        <b-form-input id="input5"
                                     type="text"
-                                    v-model="form.name"
+                                    v-model="form.starting_point"
                                     required
-                                    placeholder="Enter name">
+                                    placeholder="จุดขึ้นรถ">
                         </b-form-input>
                     </b-form-group>
+
                     <b-form-group id="exampleGroup4">
                         <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
                             <b-form-checkbox value="me">Check me out</b-form-checkbox>
