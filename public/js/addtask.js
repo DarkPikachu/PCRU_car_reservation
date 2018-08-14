@@ -70525,7 +70525,18 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["h" /* Layout 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["i" /* Navbar */]);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: {},
+    //props:['userinfo'],
+    props: {
+        userinfo: {
+            type: String,
+            default: null
+        }
+    },
+    data: function data() {
+        return {
+            user: this.userinfo !== null ? JSON.parse(this.userinfo) : null
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
     }
@@ -80317,56 +80328,60 @@ var render = function() {
             [
               _c("b-navbar-nav"),
               _vm._v(" "),
-              _c(
-                "b-navbar-nav",
-                { staticClass: "ml-auto" },
-                [
-                  _c(
-                    "b-nav-item-dropdown",
-                    { attrs: { text: "Lang", right: "" } },
+              _vm.user !== null
+                ? _c(
+                    "b-navbar-nav",
+                    { staticClass: "ml-auto" },
                     [
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("EN")
-                      ]),
+                      _c(
+                        "b-nav-item-dropdown",
+                        { attrs: { text: "Lang", right: "" } },
+                        [
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("EN")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("ES")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("RU")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("FA")
+                          ])
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("ES")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("RU")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("FA")
-                      ])
+                      _c(
+                        "b-nav-item-dropdown",
+                        { attrs: { right: "" } },
+                        [
+                          _c("template", { slot: "button-content" }, [
+                            _vm._v(
+                              "\r\n                    " +
+                                _vm._s(_vm.user.name) +
+                                "\r\n                    "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("Profile")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("Signout")
+                          ])
+                        ],
+                        2
+                      )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-nav-item-dropdown",
-                    { attrs: { right: "" } },
-                    [
-                      _c("template", { slot: "button-content" }, [
-                        _vm._v(
-                          "\r\n                    User\r\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("Profile")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("Signout")
-                      ])
-                    ],
-                    2
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ],
             1
           )
@@ -80929,6 +80944,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -80948,10 +80967,23 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["a" /* Button 
                 name: '',
                 food: null,
                 checked: [],
-                start_point: ''
+                start_date: '',
+                start_time: '',
+                end_date: '',
+                end_time: '',
+                num_date: '',
 
+                target: '',
+                objectives: '',
+                province_code: '',
+
+                num_of_companion: '',
+                companion: '',
+                baggage: '',
+
+                starting_point: ''
             },
-            foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+            provinces: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
             show: true
         };
     },
@@ -80996,60 +81028,31 @@ var render = function() {
               "b-form",
               { on: { submit: _vm.onSubmit, reset: _vm.onReset } },
               [
-                _c(
-                  "b-form-group",
-                  {
-                    attrs: {
-                      id: "exampleInputGroup1",
-                      label: "Email address:",
-                      "label-for": "exampleInput1",
-                      description:
-                        "We'll never share your email with anyone else."
-                    }
-                  },
-                  [
-                    _c("b-form-input", {
-                      attrs: {
-                        id: "exampleInput1",
-                        type: "email",
-                        required: "",
-                        placeholder: "Enter email"
-                      },
-                      model: {
-                        value: _vm.form.email,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "email", $$v)
-                        },
-                        expression: "form.email"
-                      }
-                    })
-                  ],
-                  1
-                ),
+                _c("legend", [_vm._v("บันทึกการขอใช้รถ")]),
                 _vm._v(" "),
                 _c(
                   "b-form-group",
                   {
                     attrs: {
-                      id: "exampleInputGroup2",
-                      label: "ผู้ขอใช้รถยนต์ :",
-                      "label-for": "exampleInput2"
+                      id: "inputGroup1",
+                      label: "สถานที่ไปราชการ :",
+                      "label-for": "inTarget"
                     }
                   },
                   [
                     _c("b-form-input", {
                       attrs: {
-                        id: "exampleInput2",
+                        id: "inTarget",
                         type: "text",
                         required: "",
-                        placeholder: "Enter name"
+                        placeholder: "สถานที่ไปราชการ"
                       },
                       model: {
-                        value: _vm.form.name,
+                        value: _vm.form.target,
                         callback: function($$v) {
-                          _vm.$set(_vm.form, "name", $$v)
+                          _vm.$set(_vm.form, "target", $$v)
                         },
-                        expression: "form.name"
+                        expression: "form.target"
                       }
                     })
                   ],
@@ -81060,8 +81063,36 @@ var render = function() {
                   "b-form-group",
                   {
                     attrs: {
-                      id: "exampleInputGroup3",
-                      label: "Food:",
+                      id: "inputGroup2",
+                      label: "จังหวัดที่ไป :",
+                      "label-for": "inProvince"
+                    }
+                  },
+                  [
+                    _c("b-form-select", {
+                      attrs: {
+                        id: "inProvince",
+                        options: _vm.provinces,
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.province_code,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "province_code", $$v)
+                        },
+                        expression: "form.province_code"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-form-group",
+                  {
+                    attrs: {
+                      id: "inputGroup3",
+                      label: "ผู้ร่วมเดินทาง :",
                       "label-for": "exampleInput3"
                     }
                   },

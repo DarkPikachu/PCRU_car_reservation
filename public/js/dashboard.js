@@ -70621,7 +70621,18 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["h" /* Layout 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["i" /* Navbar */]);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: {},
+    //props:['userinfo'],
+    props: {
+        userinfo: {
+            type: String,
+            default: null
+        }
+    },
+    data: function data() {
+        return {
+            user: this.userinfo !== null ? JSON.parse(this.userinfo) : null
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
     }
@@ -80413,56 +80424,60 @@ var render = function() {
             [
               _c("b-navbar-nav"),
               _vm._v(" "),
-              _c(
-                "b-navbar-nav",
-                { staticClass: "ml-auto" },
-                [
-                  _c(
-                    "b-nav-item-dropdown",
-                    { attrs: { text: "Lang", right: "" } },
+              _vm.user !== null
+                ? _c(
+                    "b-navbar-nav",
+                    { staticClass: "ml-auto" },
                     [
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("EN")
-                      ]),
+                      _c(
+                        "b-nav-item-dropdown",
+                        { attrs: { text: "Lang", right: "" } },
+                        [
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("EN")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("ES")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("RU")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("FA")
+                          ])
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("ES")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("RU")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("FA")
-                      ])
+                      _c(
+                        "b-nav-item-dropdown",
+                        { attrs: { right: "" } },
+                        [
+                          _c("template", { slot: "button-content" }, [
+                            _vm._v(
+                              "\r\n                    " +
+                                _vm._s(_vm.user.name) +
+                                "\r\n                    "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("Profile")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-dropdown-item", { attrs: { href: "#" } }, [
+                            _vm._v("Signout")
+                          ])
+                        ],
+                        2
+                      )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-nav-item-dropdown",
-                    { attrs: { right: "" } },
-                    [
-                      _c("template", { slot: "button-content" }, [
-                        _vm._v(
-                          "\r\n                    User\r\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("Profile")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                        _vm._v("Signout")
-                      ])
-                    ],
-                    2
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ],
             1
           )

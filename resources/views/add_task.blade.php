@@ -5,13 +5,13 @@
 @section('content')
     <div id="appVue">
         <b-container fluid>
-            <b-row><navbar-component></navbar-component></b-row>
+            <b-row><navbar-component userinfo="{{ Auth::user() }}"></navbar-component></b-row>
             <b-row>
                 <b-container fluid>
                     <b-row>
                         <b-col cols="2"><sidebar-component></sidebar-component></b-col>
                         <b-col><addtask-component></addtask-component></b-col>
-                        <b-col>
+                        {{-- <b-col>
                             <form >
                                 <fieldset>
                                 
@@ -84,7 +84,7 @@
                                 </form>
                                 
                                                               
-                        </b-col>
+                        </b-col>--}}
                     </b-row>
                     <b-row>
                         

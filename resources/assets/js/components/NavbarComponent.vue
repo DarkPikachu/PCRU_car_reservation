@@ -15,7 +15,7 @@
             <b-navbar-nav></b-navbar-nav>
 
             <!-- Right aligned nav items -->
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav class="ml-auto" v-if="user !== null">
 <!--
                 <b-nav-form>
                     <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
@@ -32,7 +32,7 @@
                 <b-nav-item-dropdown right>
                     <!-- Using button-content slot -->
                     <template slot="button-content">
-                    User
+                    {{ user.name }}
                     </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
                     <b-dropdown-item href="#">Signout</b-dropdown-item>
@@ -51,12 +51,21 @@
     Vue.use(Navbar);
 
     export default {
-        components: {
+        //props:['userinfo'],
+        props:{
+            userinfo: {
+                type: String,
+                default: null
+            }
+        },
+        data() {
+            return {
+                user: (this.userinfo !== null)? JSON.parse(this.userinfo) : null,
+            }
         },
         mounted() {
             console.log('Component mounted.')
         }
-
     }
 </script>
 
