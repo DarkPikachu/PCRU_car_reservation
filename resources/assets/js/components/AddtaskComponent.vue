@@ -53,9 +53,15 @@
                                     label="จังหวัดที่ไป :"
                                     label-for="inProvince">
                         <b-form-select id="inProvince"
-                                    :options="provinces"
+                                    :options="provinces_options"
+                                    value-field="province_code"
+                                    text-field="province_name"
                                     required
                                     v-model="form.province_code">
+                            <template slot="first">
+                                <!-- this slot appears above the options from 'options' prop -->
+                                <option :value="null" disabled>-- Please select an option --</option>
+                            </template>
                         </b-form-select>
                     </b-form-group>
 
@@ -73,7 +79,7 @@
                     <b-form-group id="inputGroup4"
                                     label="ผู้ร่วมเดินทาง :"
                                     label-for="inCompanion">
-
+                            <companion-component></companion-component>
                     </b-form-group>
 
                     <b-form-group id="inputGroup5"
@@ -106,7 +112,9 @@
                                     v-model="form.start_date"
                                     required
                                     placeholder="วันที่เดินทางไป">
+
                         </b-form-input>
+
                     </b-form-group>
 
                     <b-form-group id="inputGroup8"
@@ -131,13 +139,6 @@
                         </b-form-input>
                     </b-form-group>
 
-                    <b-form-group id="exampleGroup4">
-                        <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-                            <b-form-checkbox value="me">Check me out</b-form-checkbox>
-                            <b-form-checkbox value="that">Check that out</b-form-checkbox>
-                        </b-form-checkbox-group>
-                    </b-form-group>
-
                     <b-button type="submit" variant="primary">Submit</b-button>
                     <b-button type="reset" variant="danger">Reset</b-button>
 
@@ -147,19 +148,30 @@
 </template>
 
 <script>
-    import { Form, FormGroup, FormInput, FormSelect, FormTextarea, FormCheckbox, Button} from 'bootstrap-vue/es/components';
+    Vue.component('companion-component', require('./CompanionListComponent.vue'));
 
-    Vue.use(Form);
-    Vue.use(FormGroup);
-    Vue.use(FormInput);
-    Vue.use(FormSelect);
-    Vue.use(FormTextarea);
-    Vue.use(FormCheckbox);
-    Vue.use(Button);
+    import { Form, FormGroup, FormInput, FormSelect, FormTextarea, FormCheckbox, Button } from 'bootstrap-vue/es/components'
+    import { VueFlatpickr } from 'vue-flatpickr'
+    //import 'vue-flatpickr/theme/airbnb.css'
+
+    Vue.use(Form)
+    Vue.use(FormGroup)
+    Vue.use(FormInput)
+    Vue.use(FormSelect)
+    Vue.use(FormTextarea)
+    Vue.use(FormCheckbox)
+    Vue.use(Button)
+
+    //Vue.use(VueFlatpickr)
 
     export default {
+        props: {
+            provinces: String
+        },
         data() {
             return {
+                fpOptions: {},
+                dateStart:'',
                 form: {
                     checked:'',
 
@@ -177,7 +189,7 @@
 
                     target: '',
                     objectives: '',
-                    province_code: '',
+                    province_code: null,
 
                     num_of_companion: '',
                     companion: '',
@@ -186,10 +198,7 @@
                     starting_point: ''
                 },
                 blank_form: {},
-                provinces: [
-                    { text: 'Select One', value: null },
-                    'Carrots', 'Beans', 'Tomatoes', 'Corn'
-                ],
+                provinces_options: JSON.parse(this.provinces),
                 show: true
             }
         },

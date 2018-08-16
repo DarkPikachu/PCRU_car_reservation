@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Province;
 
 class TaskController extends Controller
 {
@@ -34,7 +34,8 @@ class TaskController extends Controller
      */
     public function addTaskView()
     {
-        return view('add_task');
+        $provinces = Province::all();
+        return view('add_task', ['provinces' => $provinces ]);
     }
 
 }

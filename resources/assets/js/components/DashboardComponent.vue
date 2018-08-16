@@ -2,14 +2,16 @@
     <b-container>
         <full-calendar ref="calendar" 
             :config="config"
-            
-           
             @eventClick="eventClick"
             @next="next"
             @event-selected="eventClick"
             @changeMonth="changeMonth"
+            @event-render="monthChange"
+            @event-after-all-render="eventClick"
         >
         </full-calendar>
+
+
     </b-container>
 </template>
 
@@ -134,7 +136,7 @@
                 console.log("changeMonth" );
                 console.log('changeMonth', start.format(), end.format(), current.format())
             },
-            'eventClick' (event, jsEvent, pos) {
+            eventClick(event, jsEvent, pos) {
                 console.log('eventClick', event, jsEvent, pos)
                 this.showEvent = true
                 this.eventPos = pos
@@ -161,8 +163,14 @@
             setEvents(events){
                 this.events  = events
                 this.$refs.calendar.fireMethod( 'addEventSource', this.events )
-            }
-
+            },
+            getEvents(){
+                return this.$refs.calendar.fireMethod('clientEvents')
+            },
+            monthChange(){
+                console.log("rerender-events")
+                this.getEvents()
+            },
         },
         created () {
             //this.$dispatch('changeMonth', start, end)

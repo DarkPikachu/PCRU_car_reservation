@@ -10,7 +10,7 @@
                 <b-container fluid>
                     <b-row>
                         <b-col cols="2"><sidebar-component></sidebar-component></b-col>
-                        <b-col><addtask-component></addtask-component></b-col>
+                        <b-col><addtask-component provinces="{{ $provinces }}"></addtask-component></b-col>
                         {{-- <b-col>
                             <form >
                                 <fieldset>

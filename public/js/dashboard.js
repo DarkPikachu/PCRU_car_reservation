@@ -68514,6 +68514,48 @@ var render = function() {
           _c("ul", { staticClass: "sidebar-menu" }, [
             _c("li", { staticClass: "header" }, [_vm._v(" MAIN NAVIGATION")]),
             _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "list-group", attrs: { id: "list-example" } },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    attrs: { href: "task/add" }
+                  },
+                  [_vm._v("ขอใช้รถ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    attrs: { href: "#list-item-2" }
+                  },
+                  [_vm._v("Item2")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    attrs: { href: "#list-item-3" }
+                  },
+                  [_vm._v("Item 3")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    attrs: { href: "#list-item-4" }
+                  },
+                  [_vm._v("Item 4")]
+                )
+              ]
+            ),
+            _vm._v(" "),
             _c("li", { staticClass: "treeview" }, [
               _c("a", { attrs: { href: "#" } }, [
                 _c("i", { staticClass: "fa fa-dashboard" }),
@@ -68622,49 +68664,7 @@ var render = function() {
                   ])
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "list-group", attrs: { id: "list-example" } },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-1" }
-                  },
-                  [_vm._v("Item 1")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-2" }
-                  },
-                  [_vm._v("Item2")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-3" }
-                  },
-                  [_vm._v("Item 3")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-4" }
-                  },
-                  [_vm._v("Item 4")]
-                )
-              ]
-            )
+            ])
           ])
         ]
       )
@@ -81037,6 +81037,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -81154,7 +81156,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log("changeMonth");
             console.log('changeMonth', start.format(), end.format(), current.format());
         },
-        'eventClick': function eventClick(event, jsEvent, pos) {
+        eventClick: function eventClick(event, jsEvent, pos) {
             console.log('eventClick', event, jsEvent, pos);
             this.showEvent = true;
             this.eventPos = pos;
@@ -81182,6 +81184,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setEvents: function setEvents(events) {
             this.events = events;
             this.$refs.calendar.fireMethod('addEventSource', this.events);
+        },
+        getEvents: function getEvents() {
+            return this.$refs.calendar.fireMethod('clientEvents');
+        },
+        monthChange: function monthChange() {
+            console.log("rerender-events");
+            this.getEvents();
         }
     },
     created: function created() {
@@ -99649,7 +99658,9 @@ var render = function() {
           eventClick: _vm.eventClick,
           next: _vm.next,
           "event-selected": _vm.eventClick,
-          changeMonth: _vm.changeMonth
+          changeMonth: _vm.changeMonth,
+          "event-render": _vm.monthChange,
+          "event-after-all-render": _vm.eventClick
         }
       })
     ],
