@@ -28,6 +28,7 @@
         "tui-calendar": "^1.6.0",
         "vue-bs-drawer": "^1.0.4",
         "vue-full-calendar": "^2.6.1",
+        "vue-router": "^3.0.1",
         "vue2-admin-lte": "^0.4.3"
     }
 }
