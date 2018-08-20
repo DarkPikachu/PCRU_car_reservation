@@ -7,7 +7,7 @@
 
                     <div id="list-example" class="list-group">
                         <a class="list-group-item list-group-item-action" href="task/add">ขอใช้รถ</a>
-                        <a class="list-group-item list-group-item-action" href="#list-item-2">Item2</a>
+                        <a class="list-group-item list-group-item-action" href="#list-item-2">รายการรอพิจารณา</a>
                         <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
                         <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
                     </div>
@@ -20,7 +20,6 @@
                             <li class="active">
                                 <a href="task/add"><i class="fa fa-circle-o"> ขอใช้รถ</i></a>
                             </li>
-                            <li class=""><a href="task/add"><i class="fa fa-circle-o"> ขอใช้รถ</i></a></li>
                             <li class=""><a href="/dashboard/v1"><i class="fa fa-circle-o"> รายการรอพิจารณา</i></a></li>
                             <li class=""><a href="/dashboard/v2"><i class="fa fa-circle-o"> Dashboard v2</i></a></li>
                         </ul>

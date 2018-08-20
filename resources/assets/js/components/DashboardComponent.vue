@@ -10,8 +10,6 @@
             @event-after-all-render="eventClick"
         >
         </full-calendar>
-
-
     </b-container>
 </template>
 
