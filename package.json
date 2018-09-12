@@ -30,6 +30,7 @@
         "vue-flatpickr": "^2.3.0",
         "vue-full-calendar": "^2.6.1",
         "vue-router": "^3.0.1",
-        "vue2-admin-lte": "^0.4.3"
+        "vue2-admin-lte": "^0.4.3",
+        "vuetify": "^1.2.3"
     }
 }
