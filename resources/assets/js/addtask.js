@@ -24,7 +24,7 @@ Vue.component('bs-drawer', VueBsDrawer)*/
 
 Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue'));
-Vue.component('addtask-component', require('./components/AddtaskComponent.vue'));
+Vue.component('addtask-component', require('./components/AddtaskComponent2.vue'));
 //Vue.component('calendar-component', require('./components/CalendarComponent.vue'));
 
 import { Navbar, Layout } from 'bootstrap-vue/es/components';
