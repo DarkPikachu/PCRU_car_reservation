@@ -42,7 +42,7 @@ mix.webpackConfig({
             },
 
             /* Relocate fonts to the FONTS directory */
-            /*{
+            {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 use: [{
                     loader: 'url-loader',
@@ -51,14 +51,14 @@ mix.webpackConfig({
                         name: APP_PATHS.fonts
                     }
                 }]
-            }*/
+            }
         ]
     }
 });
 
 mix.autoload({
-    'moment': ['moment','window.moment'],   
-  })
+    'moment': ['moment', 'window.moment'],
+})
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/dashboard.js', 'public/js')

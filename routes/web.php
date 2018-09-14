@@ -27,6 +27,8 @@ Route::get('/landing', 'LandingController@index')->name('landing');
 
 Route::get('/task/add', 'TaskController@addTaskView')->name('addtask');
 
+Route::get('/task/waiting_list', 'TaskController@waitingTaskList')->name('waitinglist');
+
 Route::get('/task/detail', 'TaskController@index')->name('taskdetail');
 
 Route::get('/task/view', 'TaskController@index')->name('taskview');

@@ -7,37 +7,10 @@
 
                     <div id="list-example" class="list-group">
                         <a class="list-group-item list-group-item-action" href="task/add">ขอใช้รถ</a>
-                        <a class="list-group-item list-group-item-action" href="#list-item-2">รายการรอพิจารณา</a>
+                        <a class="list-group-item list-group-item-action" href="task/waiting_list">รายการรอพิจารณา</a>
                         <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
                         <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
                     </div>
-
-                    <li class="treeview">
-                        <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span> 
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a> 
-                        <ul class="treeview-menu">
-                            <li class="active">
-                                <a href="task/add"><i class="fa fa-circle-o"> ขอใช้รถ</i></a>
-                            </li>
-                            <li class=""><a href="/dashboard/v1"><i class="fa fa-circle-o"> รายการรอพิจารณา</i></a></li>
-                            <li class=""><a href="/dashboard/v2"><i class="fa fa-circle-o"> Dashboard v2</i></a></li>
-                        </ul>
-                    </li>
-
-                    <li class="treeview">
-                        <a href="#"><i class="fa fa-files-o"></i> <span>Layout Options</span> <span class="pull-right-container"><small class="label pull-right label-primary">4</small></span></a> 
-                        <ul class="treeview-menu">
-                            <li><a><i class="fa fa-circle-o"> Top Navigation</i></a></li>
-                            <li><a><i class="fa fa-circle-o"> Boxed</i></a></li>
-                            <li><a><i class="fa fa-circle-o"> Fixed</i></a></li>
-                            <li><a><i class="fa fa-circle-o"> Collapsed Sidebar</i></a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="">
-                        <a href="/examples/widgets"><i class="fa fa-th"></i> <span>Widgets</span> <span class="pull-right-container"><small class="label pull-right bg-green">new</small></span></a>
-                    </li>
                 </ul>
             </section>
         </aside>
