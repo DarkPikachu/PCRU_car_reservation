@@ -317,6 +317,7 @@ class TaskController extends Controller {
                     'department' => function($query){ $query->select('department_code', 'name'); } 
                 ]);
             },
+            'province' => function($query){ $query->select('province_code', 'province_name'); },
         ];
     }
 }

@@ -68458,33 +68458,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -68530,7 +68503,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-2" }
+                    attrs: { href: "task/waiting_list" }
                   },
                   [_vm._v("รายการรอพิจารณา")]
                 ),
@@ -68553,109 +68526,7 @@ var render = function() {
                   [_vm._v("Item 4")]
                 )
               ]
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "treeview" }, [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", { staticClass: "fa fa-dashboard" }),
-                _vm._v(" "),
-                _c("span", [_vm._v("Dashboard")]),
-                _vm._v(" "),
-                _c("span", { staticClass: "pull-right-container" }, [
-                  _c("i", { staticClass: "fa fa-angle-left pull-right" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "treeview-menu" }, [
-                _c("li", { staticClass: "active" }, [
-                  _c("a", { attrs: { href: "task/add" } }, [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" ขอใช้รถ")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", {}, [
-                  _c("a", { attrs: { href: "/dashboard/v1" } }, [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" รายการรอพิจารณา")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", {}, [
-                  _c("a", { attrs: { href: "/dashboard/v2" } }, [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" Dashboard v2")
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "treeview" }, [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", { staticClass: "fa fa-files-o" }),
-                _vm._v(" "),
-                _c("span", [_vm._v("Layout Options")]),
-                _vm._v(" "),
-                _c("span", { staticClass: "pull-right-container" }, [
-                  _c(
-                    "small",
-                    { staticClass: "label pull-right label-primary" },
-                    [_vm._v("4")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "treeview-menu" }, [
-                _c("li", [
-                  _c("a", [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" Top Navigation")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" Boxed")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" Fixed")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", [
-                    _c("i", { staticClass: "fa fa-circle-o" }, [
-                      _vm._v(" Collapsed Sidebar")
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", {}, [
-              _c("a", { attrs: { href: "/examples/widgets" } }, [
-                _c("i", { staticClass: "fa fa-th" }),
-                _vm._v(" "),
-                _c("span", [_vm._v("Widgets")]),
-                _vm._v(" "),
-                _c("span", { staticClass: "pull-right-container" }, [
-                  _c("small", { staticClass: "label pull-right bg-green" }, [
-                    _vm._v("new")
-                  ])
-                ])
-              ])
-            ])
+            )
           ])
         ]
       )
@@ -80881,8 +80752,8 @@ var app = new Vue({
             var tasks = response.data.tasks;
             var events = [];
             for (var i = 0; i < tasks.length; i++) {
-                var tmpTitile = '';
-                if (tasks[i].car != null) tmpTitile = tasks[i].car.name + ' ทะเบียน ' + tasks[i].car.plate_number + ' ' + tasks[i].car.province + ' ไป ' + tasks[i].target + ' ' + tasks[i].province_code;else tmpTitile = tasks[i].target + ' ' + tasks[i].province_code;
+                var tmpTitile = 'น. ';
+                if (tasks[i].car != null) tmpTitile += tasks[i].car.name + ' ทะเบียน ' + tasks[i].car.plate_number + ' ' + tasks[i].car.province + ' ไป ' + tasks[i].target + ' จ.' + tasks[i].province.province_name;else tmpTitile += tasks[i].target + ' จ.' + tasks[i].province.province_name;
 
                 var obj = {
                     id: tasks[i].id,

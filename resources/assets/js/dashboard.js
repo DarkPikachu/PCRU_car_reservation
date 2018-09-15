@@ -51,11 +51,12 @@ const app = new Vue({
             var tasks = response.data.tasks
             var events = []
             for (var i = 0; i < tasks.length; i++) {
-                var tmpTitile = '';
+                var tmpTitile = ''
                 if (tasks[i].car != null)
-                    tmpTitile = tasks[i].car.name + ' ทะเบียน ' + tasks[i].car.plate_number + ' ' + tasks[i].car.province + ' ไป ' + tasks[i].target + ' ' + tasks[i].province_code
+                    tmpTitile += tasks[i].car.name + ' ทะเบียน ' + tasks[i].car.plate_number + ' ' + tasks[i].car.province + ' ไป ' + tasks[i].target + ' จ.' + tasks[i].province.province_name
                 else
-                    tmpTitile = tasks[i].target + ' ' + tasks[i].province_code
+                    tmpTitile += tasks[i].target + ' จ.' + tasks[i].province.province_name
+
 
                 var obj = {
                     id: tasks[i].id,

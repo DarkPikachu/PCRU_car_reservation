@@ -1,14 +1,14 @@
 <template>
 <b-col>
-<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="fa fa-gear"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span>CarSYS Demo Version</span> <span class="hidden-xs"></span></a>
-        </div>
-        <div class="clearfix"></div>
+    <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="fa fa-gear"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span>CarSYS Demo Version</span> <span class="hidden-xs"></span></a>
+            </div>
+            <div class="clearfix"></div>
         
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right user-nav">
@@ -21,23 +21,21 @@
                         </ul>
                     </li>
                 </ul>
-                                    <ul class="nav navbar-nav navbar-right not-nav">
-                        <li class="button">
-                            <a href="/index.php?r=carreturn&amp;status=5" title="รับคืนรถ รออนุมัติ">
-                                <i class="fa fa-flag-o"></i>
-                                                            </a>
-                        </li>
-                        <li class="button">
-                            <a href="/index.php?r=approve" class="speech-button" title="จองใช้รถ รออนุมัติ">
-                                <i class="fa fa-inbox"></i>
-                                                                    <span class="bubble">1</span>
-                                                            </a>
-                        </li>				
-                    </ul>
-                            </div><!--/.nav-collapse -->
-
-            </div>
-</div>
+                <ul class="nav navbar-nav navbar-right not-nav">
+                    <li class="button">
+                        <a href="/index.php?r=carreturn&amp;status=5" title="รับคืนรถ รออนุมัติ">
+                            <i class="fa fa-flag-o"></i>
+                        </a>
+                    </li>
+                    <li class="button">
+                        <a href="/index.php?r=approve" class="speech-button" title="จองใช้รถ รออนุมัติ">
+                            <i class="fa fa-inbox"></i><span class="bubble">1</span>
+                        </a>
+                    </li>				
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
 </b-col>
 </template>
 
