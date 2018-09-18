@@ -10,7 +10,15 @@
                 <b-container fluid>
                     <b-row>
                         <b-col cols="2"><sidebar-component></sidebar-component></b-col>
-                        <b-col><dashboard-component ref="calendar"></dashboard-component></b-col>
+
+                        <b-col>
+                            <b-row>
+                                <b-col><dashboard-component ref="calendar"></dashboard-component></b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col><tasklist-component></tasklist-component></b-col>
+                            </b-row>
+                        </b-col>
                     </b-row>
                     <b-row>
                         

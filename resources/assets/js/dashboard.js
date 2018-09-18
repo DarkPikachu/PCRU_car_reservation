@@ -25,6 +25,7 @@ Vue.component('bs-drawer', VueBsDrawer)*/
 Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue'));
 Vue.component('dashboard-component', require('./components/DashboardComponent.vue'));
+Vue.component('tasklist-component', require('./components/TaskListComponent.vue'));
 
 import { Navbar, Layout } from 'bootstrap-vue/es/components';
 
