@@ -5,8 +5,7 @@
             @eventClick="eventClick"
             @next="next"
             @event-selected="eventClick"
-            @changeMonth="changeMonth"
-            @event-render="monthChange"
+            @event-render="eventRender"
             @event-after-all-render="eventClick"
         >
         </full-calendar>
@@ -23,6 +22,7 @@
                 config: {
                     defaultView : 'month',
                     locale: 'th',
+
                 
                 },//config
                 events:[],
@@ -126,6 +126,12 @@
             eventSelected() {
                 console.log("click" );
             },
+            eventRender(event, element) {
+
+                    //console.log(event);
+                    console.log('get all event',this.getEvents())   
+
+            },
             refreshEvents() {console.log("refreshEvents" );
                 this.$refs.calendar.$emit('refetch-events')
                 console.log("refreshEvents" );
@@ -171,11 +177,10 @@
             },
         },
         created () {
-            //this.$dispatch('changeMonth', start, end)
-            //this.$dispatch('changeMonth', start, end, current);
+
         },
         mounted(){
-
+            console.log('get all event',this.getEvents())   
         }
     }
 </script>

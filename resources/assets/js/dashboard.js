@@ -56,7 +56,7 @@ const app = new Vue({
                 if (tasks[i].car != null)
                     tmpTitile += tasks[i].car.name + ' ทะเบียน ' + tasks[i].car.plate_number + ' ' + tasks[i].car.province + ' ไป ' + tasks[i].target + ' จ.' + tasks[i].province.province_name
                 else
-                    tmpTitile += tasks[i].target + ' จ.' + tasks[i].province.province_name
+                    tmpTitile += ' ไป ' + tasks[i].target + ' จ.' + tasks[i].province.province_name
 
 
                 var obj = {
@@ -64,7 +64,7 @@ const app = new Vue({
                     title: tmpTitile,
                     start: tasks[i].start_date + 'T' + tasks[i].start_time,
                     end: tasks[i].end_date + 'T' + tasks[i].end_time,
-                    color: (tasks[i].status == '1') ? '#FF9933' : '#666666'
+                    color: (tasks[i].status == '0') ? '#666666' : (tasks[i].status == '1') ? '#FF9933' : '#36c'
                 }
                 events.push(obj)
             }
