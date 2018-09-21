@@ -71,6 +71,7 @@ const app = new Vue({
             this.taskList = events
 
             this.results = events
+            this.$refs.tasklist.setEvents(tasks);
             this.$refs.calendar.setEvents(this.results);
         })
     },

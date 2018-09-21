@@ -22,7 +22,6 @@
                 config: {
                     defaultView : 'month',
                     locale: 'th',
-
                 
                 },//config
                 events:[],

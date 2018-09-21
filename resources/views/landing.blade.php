@@ -16,7 +16,7 @@
                                 <b-col><dashboard-component ref="calendar"></dashboard-component></b-col>
                             </b-row>
                             <b-row>
-                                <b-col><tasklist-component></tasklist-component></b-col>
+                                <b-col><tasklist-component  ref="tasklist"></tasklist-component></b-col>
                             </b-row>
                         </b-col>
                     </b-row>
