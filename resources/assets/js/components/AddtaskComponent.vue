@@ -77,7 +77,7 @@
                     </b-form-group>
 
                     <b-form-group id="inputGroup4"
-                                    label="ผู้ร่วมเดินทาง :"
+                                    label="รายชื่อผู้ร่วมเดินทาง :"
                                     label-for="inCompanion">
                             <companion-component></companion-component>
                     </b-form-group>

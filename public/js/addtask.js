@@ -63848,8 +63848,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -63876,8 +63874,6 @@ var render = function() {
         { staticClass: "sidebar", staticStyle: { height: "auto" } },
         [
           _c("ul", { staticClass: "sidebar-menu" }, [
-            _c("li", { staticClass: "header" }, [_vm._v(" MAIN NAVIGATION")]),
-            _vm._v(" "),
             _c(
               "div",
               { staticClass: "list-group", attrs: { id: "list-example" } },
@@ -63898,24 +63894,6 @@ var render = function() {
                     attrs: { href: "task/waiting_list" }
                   },
                   [_vm._v("รายการรอพิจารณา")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-3" }
-                  },
-                  [_vm._v("Item 3")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "list-group-item list-group-item-action",
-                    attrs: { href: "#list-item-4" }
-                  },
-                  [_vm._v("Item 4")]
                 )
               ]
             )
@@ -85696,6 +85674,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 Vue.component('companion-component', __webpack_require__(449));
@@ -85721,6 +85786,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["a" /* Button 
 //Vue.use(VueFlatpickr)
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    provinces: String
+  },
   data: function data() {
     var srcs = {
       1: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
@@ -85736,7 +85804,46 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["a" /* Button 
       isUpdating: false,
       name: 'Midnight Crew',
       people: [{ header: 'กองนโยบายและแผน' }, { name: 'นางใกล้รุ่ง เกตวันดี', group: 'กองนโยบายและแผน', avatar: srcs[1] }, { name: 'Ali Connors', group: 'กองนโยบายและแผน', avatar: srcs[2] }, { name: 'Trevor Hansen', group: 'กองนโยบายและแผน', avatar: srcs[3] }, { name: 'Tucker Smith', group: 'กองนโยบายและแผน', avatar: srcs[2] }, { divider: true }, { header: 'Group 2' }, { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] }, { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] }, { name: 'John Smith', group: 'Group 2', avatar: srcs[1] }, { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }],
-      title: 'The summer breeze'
+      title: 'The summer breeze',
+
+      form: {
+        checked: '',
+
+        creator: {
+          name: '',
+          position: '',
+          department: ''
+        },
+
+        start_date: '',
+        start_time: '',
+        end_date: '',
+        end_time: '',
+        num_date: '',
+
+        target: '',
+        objectives: '',
+        province_code: null,
+
+        num_of_companion: '',
+        companion: '',
+        baggage: '',
+
+        starting_point: ''
+      },
+      valid: true,
+      validate: {
+        required: [function (v) {
+          return !!v || 'required';
+        }],
+        creator: [function (v) {
+          return !!v || 'required';
+        }, function (v) {
+          return v && v.length > 10 || 'Name must be more than 10 characters';
+        }]
+      },
+      blank_form: {},
+      provinces_options: JSON.parse(this.provinces)
     };
   },
 
@@ -85754,10 +85861,28 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components__["a" /* Button 
   },
 
   methods: {
-    remove: function remove(item) {
-      var index = this.friends.indexOf(item.name);
-      if (index >= 0) this.friends.splice(index, 1);
+    /*remove (item) {
+      const index = this.friends.indexOf(item.name)
+      if (index >= 0) this.friends.splice(index, 1)
+    },*/
+    submit: function submit() {
+      if (this.$refs.form.validate()) {
+        // Native form submission is not yet supported
+        /*axios.post('/api/submit', {
+          name: this.name,
+          email: this.email,
+          select: this.select,
+          checkbox: this.checkbox
+        })*/
+      }
+    },
+    clear: function clear() {
+      this.$refs.form.reset();
     }
+  },
+
+  created: function created() {
+    this.blank_form = this.form;
   }
 });
 
@@ -85912,7 +86037,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("button", [_vm._v("Add")])
+        _c("button", [_vm._v("เพิ่ม")])
       ]
     ),
     _vm._v(" "),
@@ -85966,134 +86091,28 @@ var render = function() {
     [
       _c(
         "v-card",
-        { attrs: { color: "blue-grey darken-1", dark: "" } },
         [
           _c(
-            "v-img",
+            "v-card-title",
             {
-              attrs: {
-                height: "200",
-                src: "https://cdn.vuetifyjs.com/images/cards/dark-beach.jpg"
-              }
+              staticClass: "headline font-weight-regular blue-grey white--text"
             },
-            [
-              _c(
-                "v-layout",
-                { attrs: { wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "" } },
-                    [
-                      _c("v-progress-linear", {
-                        staticClass: "ma-0",
-                        attrs: {
-                          active: _vm.isUpdating,
-                          color: "green lighten-3",
-                          height: "4",
-                          indeterminate: ""
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { "text-xs-right": "", xs12: "" } },
-                    [
-                      _c(
-                        "v-menu",
-                        {
-                          attrs: {
-                            bottom: "",
-                            left: "",
-                            transition: "slide-y-transition"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { slot: "activator", icon: "" },
-                              slot: "activator"
-                            },
-                            [_c("v-icon", [_vm._v("more_vert")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list",
-                            [
-                              _c(
-                                "v-list-tile",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      _vm.isUpdating = true
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "v-list-tile-action",
-                                    [_c("v-icon", [_vm._v("mdi-settings")])],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-list-tile-content",
-                                    [
-                                      _c("v-list-tile-title", [
-                                        _vm._v("Update")
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-layout",
-                    {
-                      attrs: {
-                        "align-start": "",
-                        column: "",
-                        "justify-end": "",
-                        "pa-3": ""
-                      }
-                    },
-                    [
-                      _c("h3", { staticClass: "headline" }, [
-                        _vm._v(_vm._s(_vm.name))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        { staticClass: "grey--text text--lighten-1" },
-                        [_vm._v(_vm._s(_vm.title))]
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
+            [_vm._v("เพิ่มรายการจองรถ")]
           ),
           _vm._v(" "),
           _c(
             "v-form",
+            {
+              ref: "form",
+              attrs: { "lazy-validation": "" },
+              model: {
+                value: _vm.valid,
+                callback: function($$v) {
+                  _vm.valid = $$v
+                },
+                expression: "valid"
+              }
+            },
             [
               _c(
                 "v-container",
@@ -86109,16 +86128,17 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: {
                               disabled: _vm.isUpdating,
+                              rules: _vm.validate.creator,
                               box: "",
                               color: "blue-grey lighten-2",
-                              label: "Name"
+                              label: "ผู้ขอใช้รถ"
                             },
                             model: {
-                              value: _vm.name,
+                              value: _vm.form.creator.name,
                               callback: function($$v) {
-                                _vm.name = $$v
+                                _vm.$set(_vm.form.creator, "name", $$v)
                               },
-                              expression: "name"
+                              expression: "form.creator.name"
                             }
                           })
                         ],
@@ -86132,16 +86152,270 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: {
                               disabled: _vm.isUpdating,
+                              rules: _vm.validate.creator,
                               box: "",
                               color: "blue-grey lighten-2",
-                              label: "Title"
+                              label: "ตำแหน่ง"
                             },
                             model: {
-                              value: _vm.title,
+                              value: _vm.form.creator.position,
                               callback: function($$v) {
-                                _vm.title = $$v
+                                _vm.$set(_vm.form.creator, "position", $$v)
                               },
-                              expression: "title"
+                              expression: "form.creator.position"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md12: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.creator,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "สังกัด"
+                            },
+                            model: {
+                              value: _vm.form.creator.department,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form.creator, "department", $$v)
+                              },
+                              expression: "form.creator.department"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.creator,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "สถานที่ไปราชการ"
+                            },
+                            model: {
+                              value: _vm.form.target,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "target", $$v)
+                              },
+                              expression: "form.target"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", sm6: "", "d-flex": "" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.provinces_options,
+                              box: "",
+                              "item-value": "province_code",
+                              "item-text": "province_name",
+                              label: "จังหวัดที่ไป"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md12: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.creator,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "วัตถุประสงค์การเดินทาง"
+                            },
+                            model: {
+                              value: _vm.form.objectives,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "objectives", $$v)
+                              },
+                              expression: "form.objectives"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md12: "" } },
+                        [
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                id: "inputGroup4",
+                                label: "รายชื่อผู้ร่วมเดินทาง :",
+                                "label-for": "inCompanion"
+                              }
+                            },
+                            [_c("companion-component")],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.creator,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "จำนวนผู้ร่วมเดินทาง"
+                            },
+                            model: {
+                              value: _vm.form.num_of_companion,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "num_of_companion", $$v)
+                              },
+                              expression: "form.num_of_companion"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md12: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.required,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "สัมภาระ/สิ่งของ"
+                            },
+                            model: {
+                              value: _vm.form.baggage,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "baggage", $$v)
+                              },
+                              expression: "form.baggage"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.required,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "วันที่เดินทางไป"
+                            },
+                            model: {
+                              value: _vm.form.start_date,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "start_date", $$v)
+                              },
+                              expression: "form.start_date"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.required,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "เวลาที่ออกเดินทาง"
+                            },
+                            model: {
+                              value: _vm.form.start_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "start_time", $$v)
+                              },
+                              expression: "form.start_time"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.required,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "วันที่เดินทางกลับ"
+                            },
+                            model: {
+                              value: _vm.form.end_date,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "end_date", $$v)
+                              },
+                              expression: "form.end_date"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.required,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "เวลาที่กลับมาถึง"
+                            },
+                            model: {
+                              value: _vm.form.end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "end_time", $$v)
+                              },
+                              expression: "form.end_time"
                             }
                           })
                         ],
@@ -86151,6 +86425,40 @@ var render = function() {
                       _c(
                         "v-flex",
                         { attrs: { xs12: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              disabled: _vm.isUpdating,
+                              rules: _vm.validate.required,
+                              box: "",
+                              color: "blue-grey lighten-2",
+                              label: "จุดขึ้นรถ"
+                            },
+                            model: {
+                              value: _vm.form.starting_point,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "starting_point", $$v)
+                              },
+                              expression: "form.starting_point"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: false,
+                              expression: "false"
+                            }
+                          ],
+                          attrs: { xs12: "" }
+                        },
                         [
                           _c("v-autocomplete", {
                             attrs: {
@@ -86255,6 +86563,15 @@ var render = function() {
                           })
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { disabled: !_vm.valid },
+                          on: { click: _vm.submit }
+                        },
+                        [_vm._v("\n            submit\n          ")]
                       )
                     ],
                     1

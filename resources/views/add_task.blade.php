@@ -4,13 +4,21 @@
 
 @section('content')
     <div id="appVue">
-        <b-container fluid>
+        <b-container fluid  class="bv-example-row">
             <b-row><navbar-component userinfo="{{ Auth::user() }}"></navbar-component></b-row>
             <b-row>
                 <b-container fluid>
                     <b-row>
-                        <b-col cols="2"><sidebar-component></sidebar-component></b-col>
-                        <b-col><addtask-component provinces="{{ $provinces }}"></addtask-component></b-col>
+                        <b-col cols="2">
+                            <b-row>
+                                <b-col><sidebar-component></sidebar-component></b-col>
+                            </b-row>
+                        </b-col>
+                        <b-col>
+                            <b-row>
+                                <b-col><addtask-component provinces="{{ $provinces }}"></addtask-component></b-col>
+                            </b-row>                            
+                        </b-col>
                         {{-- <b-col>
                             <form >
                                 <fieldset>

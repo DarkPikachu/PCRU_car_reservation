@@ -7,7 +7,7 @@
                 id="new-todo"
                 placeholder="ชื่อ-สกุล"
             >
-            <button>Add</button>
+            <button >เพิ่ม</button>
         </form>
         <ul>
             <li is="todo-item"
