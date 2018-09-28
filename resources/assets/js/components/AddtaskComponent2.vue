@@ -51,8 +51,9 @@
 
             <v-flex xs12 sm6 d-flex>
               <v-select
+                v-model="form.province_code"
                 :items="provinces_options"
-                
+                :rules="validate.required"
                 box
                 item-value="province_code"
                 item-text="province_name"
@@ -75,7 +76,7 @@
               <b-form-group id="inputGroup4"
                           label="รายชื่อผู้ร่วมเดินทาง :"
                           label-for="inCompanion">
-                  <companion-component></companion-component>
+                  <companion-component ref="companion"></companion-component>
               </b-form-group>
             </v-flex>
 
@@ -83,7 +84,7 @@
               <v-text-field
                 v-model="form.num_of_companion"
                 :disabled="isUpdating"
-                :rules="validate.creator"
+                :rules="validate.required"
                 box
                 color="blue-grey lighten-2"
                 label="จำนวนผู้ร่วมเดินทาง"
@@ -248,7 +249,7 @@
       props: {
             provinces: String
       },
-      data () {
+      data: function() {
         let srcs = {
           1: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
           2: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
@@ -309,7 +310,10 @@
             ],
             creator: [
               (v) => !!v || 'required',
-              (v) => v && v.length > 10 || 'Name must be more than 10 characters'
+              (v) => v && v.length > 1 || 'must be more than 10 characters'
+            ],
+            province: [
+              (v) => !!v || 'required',
             ],
           },
           blank_form: {},
@@ -331,7 +335,9 @@
           if (index >= 0) this.friends.splice(index, 1)
         },*/
         submit () {
-          if (this.$refs.form.validate()) {
+          console.log(this.form)
+
+          if (!this.$refs.form.validate()) {
             // Native form submission is not yet supported
             /*axios.post('/api/submit', {
               name: this.name,
@@ -339,6 +345,53 @@
               select: this.select,
               checkbox: this.checkbox
             })*/
+            //JSON.stringify();
+
+            //Get diff date
+            var start = moment(this.form.start_date); //start date
+            var end = moment(this.form.end_date); // end date
+            var duration = moment.duration(end.diff(start))
+            var days = duration.asDays()
+            this.form.num_date = days
+
+            //Get companion name
+            var companionName = ''
+            var persons = this.$refs.companion.todos
+            for(var i=0; i<persons.length; i++){
+              companionName += persons[i].title
+              if(persons.length != (i+1))
+                companionName += "/"
+            }
+            this.form.companion = companionName
+
+            axios.post('./../api/managetask', {
+                start_date: this.form.start_date,
+                start_time: this.form.start_time,
+                end_date: this.form.end_date,
+                end_time: this.form.end_time,
+                num_date: this.form.num_date,
+
+                target: this.form.target,
+                objectives: this.form.objectives,
+                province_code: this.form.province_code,
+
+                num_of_companion: this.form.num_of_companion,
+                companion: this.form.companion,
+                baggage: this.form.baggage,
+
+                starting_point: this.form.starting_point,
+              },
+              {
+                headers: { 
+                  Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZiZWIxZWNiYWJiYjA4YzI2ODA2MWNkMjY2MjA3MjIwMzYyYTZjYTUwMTY2OTdjMzU1NTk2OTg2NDE4OGM2MTRhYjI5MjUzNDMyN2UxMjExIn0.eyJhdWQiOiIxIiwianRpIjoiNmJlYjFlY2JhYmJiMDhjMjY4MDYxY2QyNjYyMDcyMjAzNjJhNmNhNTAxNjY5N2MzNTU1OTY5ODY0MTg4YzYxNGFiMjkyNTM0MzI3ZTEyMTEiLCJpYXQiOjE1MzMxMTIwODYsIm5iZiI6MTUzMzExMjA4NiwiZXhwIjoxNTY0NjQ4MDg2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Ozhi8umbCkJJaySURq2lHmCyMNfx3vmRmAi-3QUY3ZwBwfFjJo3UTjHcJpi6P6EqxnMs7KDTqNh9hfckt_N9-F8dFjPW3tYiMglzTKQqkPMJXkYROdQnfgxduoIjMfxfFp7wYQ3RC8t15ygSBtB3DhXFoHLOkR5v1EFptomlAJYKgdq1a7q0mnmph-z7uZgEsfqChns6kcFsfsM6VhEuXyjw9FcDsdJKzqp_wwSm9OFV1nleeLwAqiaLaG0WklLECuNsDizLRNuGa9Mn7SCMOgDzyuRui15gorY8KBhXrFEQ_f3-x4afEFgS8yO5IXYseOhUNyNgRIZxDDc6KmSWFG5njipRh9nwcIjBM0d_-LleoICiaCGBgFH-WXEA3dfZF0UNW8hdhPIOSZmi0Jtk8dywx3bEvxxCP1z-u3axe7EqkLFHhtBjdCD83mZayLm60xdEJifHw1KudGE-yDPR9x4QdxsRVRoRhe5QH1aX9jHugw0fnx70KTmeZA0wmjLugqupK31yR2Sws3zgYP-dXW_8cedWQ0azeBQeroXlC6ZMFV028rSqKr_adqLQtK-NblB6kgw2obm5DBl2daXPT3St3cZ8TYYwBFigJg--0ED4i7PxTObFiC5nbuNUQqbVjXGJ9_zhPbX49VQeIIEwO8SfVImkzYBnoaaQpHsQwaY',
+                  Accept: 'application/json'
+                }
+              }
+            ).then(response => {
+              console.log(response)
+            }).catch(e => {
+              alert(e)
+            })
           }
         },
         clear () {

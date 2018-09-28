@@ -389,10 +389,11 @@ class ManageTaskController extends Controller {
         if ($validator->fails()) {
             return Response::json(array(
                 'status' => false,
+                'msg' => 'validator fail',
                 'message' => $validator),
                 200
             );
-        }
+        }        
 
         $task_id = null;
         try {
@@ -424,7 +425,10 @@ class ManageTaskController extends Controller {
         } catch (Exception $e) {
             return Response::json(array(
                 'status' => false,
-                'message' => $e),
+                'message' => $e,
+                'DB' => DB::getQueryLog(),
+                'MSG' => $e->getMessage()
+            ),
                 403
             );
         }
