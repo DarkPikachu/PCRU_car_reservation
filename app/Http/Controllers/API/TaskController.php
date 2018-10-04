@@ -191,6 +191,22 @@ class TaskController extends Controller {
             200);
      }
 
+    public function waitingTask($date){
+        $nowDay = Carbon::createFromFormat("Y-m-d", $date);
+
+        $tasks = Task::where(
+            DB::raw('DATE_FORMAT(end_date,"%Y-%m-%d")'), '>=', DB::raw('DATE_FORMAT("'.$date.'","%Y-%m-%d")')
+        )->where(
+            'status', 1
+        )->with(TaskController::getJsonOutputFormat())->get();
+ 
+         return Response::json(array(
+            'status' => true,
+            'message' => 'complate',
+            'tasks' => $tasks),
+            200);
+     }
+
     public function yearlyTask($date){
         $this->date = $date;
 

@@ -38,4 +38,9 @@ class TaskController extends Controller
         return view('add_task', ['provinces' => $provinces ]);
     }
 
+    public function waitingTaskList(){
+        $waiting_list = Province::all();
+        return view('waiting_list', ['waiting_list' => $waiting_list ]);
+    }
+
 }

@@ -3,11 +3,11 @@
     <v-content>
         <v-container fluid>
             <h2>รายการ การขอใช้รถยนต์</h2>
-            <v-layout v-for="event in events" :key="`6${event}`">
+            <v-layout v-for="event in events" :key="`${event}`">
                 <v-flex xs12>
                     <h3>{{ moment(event.start_date, 'YYYY-MM-DD').format('DD MMMM YYYY') }}</h3>
                     <v-data-table :headers="headers" :items="events" hide-actions class="elevation-1">
-                        <template slot="items" slot-scope="props">
+                        <template slot="items" slot-scope="props" v-if="moment(props.item.start_date, 'YYYY-MM-DD').diff(moment(event.start_date, 'YYYY-MM-DD'), 'days') == 0">
                             <td>{{ props.item.name }}</td>
                             <td class="text-xs-left">{{ moment(props.item.start_time, 'HH:mm:ss').format('HH:mm น.') }}</td>
                             <td class="text-xs-left">
@@ -15,13 +15,13 @@
                                 <br/>
                                 <br/>
                                 <span class="theme--light darken-1 gray--text">
-                                    ผู้ขอใช้รถ {{ props.item.target }}<br/>
-                                    ทำรายการ {{ moment(props.item.created_at).format('DD-MM-YYYY HH:mm น.') }}
+                                    ผู้ขอใช้รถ {{ props.item.creator }}<br/>
+                                    ทำรายการ {{ moment(props.item.created_at).format('DD/MM/YYYY HH:mm น.') }}
                                 </span>
                             </td>
                             <td class="text-xs-left">
-                                {{ props.item.end_date }}<br/>
-                                {{ props.item.end_time }}
+                                {{ moment(props.item.end_date, 'YYYY-MM-DD').format('DD/MM/YYYY') }}<br/>
+                                {{ moment(props.item.end_time, 'HH:mm:ss').format('HH:mm น.') }}
                             </td>
                             <td class="text-xs-left">
                                 {{ props.item.protein }}
@@ -31,31 +31,7 @@
                     </v-data-table>
                 </v-flex>
 
-                <v-flex xs12 >
-                    <v-data-table :headers="headers" :items="events" hide-actions class="elevation-1">
-                        <template slot="items" slot-scope="props">
-                            <td>{{ props.item.name }}</td>
-                            <td class="text-xs-left">{{ moment(props.item.start_time, 'HH:mm:ss').format('HH:mm น.') }}</td>
-                            <td class="text-xs-left">
-                                {{ props.item.target }}
-                                <br/>
-                                <br/>
-                                <span class="theme--light darken-1 gray--text">
-                                    ผู้ขอใช้รถ {{ props.item.target }}<br/>
-                                    ทำรายการ {{ moment(props.item.created_at).format('DD-MM-YYYY HH:mm น.') }}
-                                </span>
-                            </td>
-                            <td class="text-xs-left">
-                                {{ props.item.end_date }}<br/>
-                                {{ props.item.end_time }}
-                            </td>
-                            <td class="text-xs-left">
-                                {{ props.item.protein }}
-                                รอพิจารณา
-                            </td>
-                        </template>
-                    </v-data-table>
-                </v-flex>
+                
             </v-layout>
 
         </v-container>
@@ -211,8 +187,8 @@ export default {
             for(var index in events){
                 var endDate = moment(events[index].end_date,'YYYY-MM-DD')
                 var now = moment();
-
-                if (now < endDate) {
+                console.log(">>", events[index].id + " - " + (endDate.diff(now, 'days')))
+                if (endDate.diff(now, 'days') >= 0) {
                     this.events.push(events[index]) 
                 } 
             }

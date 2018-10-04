@@ -64,4 +64,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/dashboard.js', 'public/js')
     .js('resources/assets/js/oauth.js', 'public/js')
     .js('resources/assets/js/addtask.js', 'public/js')
+    .js('resources/assets/js/waiting_list.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css');

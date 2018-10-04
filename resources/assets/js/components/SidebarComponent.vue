@@ -5,8 +5,8 @@
                 <ul class="sidebar-menu">
                     
                     <div id="list-example" class="list-group">
-                        <a class="list-group-item list-group-item-action" href="task/add">ขอใช้รถ</a>
-                        <a class="list-group-item list-group-item-action" href="task/waiting_list">รายการรอพิจารณา</a>
+                        <a class="list-group-item list-group-item-action" href="/car_reservation/public/task/add">ขอใช้รถ</a>
+                        <a class="list-group-item list-group-item-action" href="/car_reservation/public/task/waiting_list">รายการรอพิจารณา</a>
                        
                     </div>
                 </ul>

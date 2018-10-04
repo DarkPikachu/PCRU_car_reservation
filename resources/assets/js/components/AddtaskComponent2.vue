@@ -2,13 +2,12 @@
    <v-app id="inspire">
     <v-card>
       <v-card-title class="headline font-weight-regular blue-grey white--text">เพิ่มรายการจองรถ</v-card-title>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="formAddTask" v-model="valid" lazy-validation>
         <v-container>
           <v-layout wrap>
             <v-flex xs12 md6>
               <v-text-field
                 v-model="form.creator.name"
-                :disabled="isUpdating"
                 :rules="validate.creator"
                 box
                 color="blue-grey lighten-2"
@@ -19,7 +18,6 @@
             <v-flex xs12 md6>
               <v-text-field
                 v-model="form.creator.position"
-                :disabled="isUpdating"
                 :rules="validate.creator"
                 box
                 color="blue-grey lighten-2"
@@ -30,7 +28,6 @@
             <v-flex xs12 md12>
               <v-text-field
                 v-model="form.creator.department"
-                :disabled="isUpdating"
                 :rules="validate.creator"
                 box
                 color="blue-grey lighten-2"
@@ -41,7 +38,6 @@
             <v-flex xs12 md6>
               <v-text-field
                 v-model="form.target"
-                :disabled="isUpdating"
                 :rules="validate.creator"
                 box
                 color="blue-grey lighten-2"
@@ -64,7 +60,6 @@
             <v-flex xs12 md12>
               <v-text-field
                 v-model="form.objectives"
-                :disabled="isUpdating"
                 :rules="validate.creator"
                 box
                 color="blue-grey lighten-2"
@@ -83,7 +78,6 @@
             <v-flex xs12 md6>
               <v-text-field
                 v-model="form.num_of_companion"
-                :disabled="isUpdating"
                 :rules="validate.required"
                 box
                 color="blue-grey lighten-2"
@@ -94,7 +88,6 @@
             <v-flex xs12 md12>
               <v-text-field
                 v-model="form.baggage"
-                :disabled="isUpdating"
                 :rules="validate.required"
                 box
                 color="blue-grey lighten-2"
@@ -102,48 +95,132 @@
               ></v-text-field>
             </v-flex>
 
+            <!-- ====== START date======== -->
             <v-flex xs12 md6>
-              <v-text-field
-                v-model="form.start_date"
-                :disabled="isUpdating"
-                :rules="validate.required"
-                box
-                color="blue-grey lighten-2"
-                label="วันที่เดินทางไป"
-              ></v-text-field>
+              <v-dialog
+                ref="dialogDateStart"
+                v-model="modal_date_start"
+                :return-value.sync="form.start_date"
+                persistent
+                lazy
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  v-model="form.start_date"
+                  :disabled="isUpdating"
+                  :rules="validate.required"
+                  label="วันที่เดินทางไป"
+                  prepend-icon="event"
+                  readonly
+                  box
+                  color="blue-grey lighten-2"
+                ></v-text-field>
+                <v-date-picker v-model="form.start_date" :min="min_start_date" scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="primary" @click="modal_date_start = false">Cancel</v-btn>
+                  <v-btn flat color="primary" @click="saveStartDate()">OK</v-btn>
+                </v-date-picker>
+              </v-dialog>
             </v-flex>
 
+            <!-- ======== START time ======== -->
             <v-flex xs12 md6>
-              <v-text-field
-                v-model="form.start_time"
-                :disabled="isUpdating"
-                :rules="validate.required"
-                box
-                color="blue-grey lighten-2"
-                label="เวลาที่ออกเดินทาง"
-              ></v-text-field>
+              <v-dialog
+                ref="dialogTimeStart"
+                v-model="modal_time_start"
+                :return-value.sync="form.start_time"
+                persistent
+                lazy
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  v-model="form.start_time"
+                  label="เวลาที่ออกเดินทาง"
+                  color="blue-grey lighten-2"
+                  box
+                  :disabled="isUpdating"
+                  :rules="validate.required"
+                  prepend-icon="access_time"
+                  readonly
+                ></v-text-field>
+                <v-time-picker
+                  format="24hr"
+                  v-if="modal_time_start"
+                  v-model="form.start_time"
+                  full-width
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="primary" @click="modal_time_start = false">Cancel</v-btn>
+                  <v-btn flat color="primary" @click="$refs.dialogTimeStart.save(form.start_time)">OK</v-btn>
+                </v-time-picker>
+              </v-dialog>
             </v-flex>
 
+            <!-- ====== END date======== -->
             <v-flex xs12 md6>
-              <v-text-field
-                v-model="form.end_date"
-                :disabled="isUpdating"
-                :rules="validate.required"
-                box
-                color="blue-grey lighten-2"
-                label="วันที่เดินทางกลับ"
-              ></v-text-field>
+              <v-dialog
+                ref="dialogDateEnd"
+                v-model="modal_date_end"
+                :return-value.sync="form.end_date"
+                persistent
+                lazy
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  v-model="form.end_date"
+                  :disabled="isUpdating"
+                  :rules="validate.required"
+                  label="วันที่เดินทางกลับ"
+                  prepend-icon="event"
+                  readonly
+                  box
+                  color="blue-grey lighten-2"
+                ></v-text-field>
+                <v-date-picker v-model="form.end_date" :min="min_end_date" scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="primary" @click="modal_date_end = false">Cancel</v-btn>
+                  <v-btn flat color="primary" @click="$refs.dialogDateEnd.save(form.end_date)">OK</v-btn>
+                </v-date-picker>
+              </v-dialog>
             </v-flex>
 
+            <!-- ====== END time ======== -->
             <v-flex xs12 md6>
-              <v-text-field
-                v-model="form.end_time"
-                :disabled="isUpdating"
-                :rules="validate.required"
-                box
-                color="blue-grey lighten-2"
-                label="เวลาที่กลับมาถึง"
-              ></v-text-field>
+              <v-dialog
+                ref="dialogTimeEnd"
+                v-model="modal_time_end"
+                :return-value.sync="form.end_time"
+                lazy
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  v-model="form.end_time"
+                  :disabled="isUpdating"
+                  :rules="validate.required"
+                  box
+                  color="blue-grey lighten-2"
+                  prepend-icon="access_time"
+                  readonly
+                ></v-text-field>
+                <v-time-picker
+                  format="24hr"
+                  v-if="modal_time_end"
+                  v-model="form.end_time"
+                  full-width
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="primary" @click="modal_time_end = false">Cancel</v-btn>
+                  <v-btn flat color="primary" @click="$refs.dialogTimeEnd.save(form.end_time)">OK</v-btn>
+                </v-time-picker>
+              </v-dialog>
             </v-flex>
 
             <v-flex xs12>
@@ -221,7 +298,6 @@
 </template>
 
 <script>
-
     Vue.component('companion-component', require('./CompanionListComponent.vue'));
 
     import { Form, FormGroup, FormInput, FormSelect, FormTextarea, FormCheckbox, Button } from 'bootstrap-vue/es/components'
@@ -259,6 +335,12 @@
         }
 
         return {
+          modal_date_start: false,
+          modal_date_end: false,
+          min_start_date: moment().format("YYYY-MM-DD"),
+          min_end_date: moment().format("YYYY-MM-DD"),
+          modal_time_start: false,
+          modal_time_end: false,
           autoUpdate: true,
           friends: ['นางใกล้รุ่ง เกตวันดี', 'นางสาว'],
           isUpdating: false,
@@ -287,10 +369,10 @@
                 department: ''
             },
 
-            start_date: '',
-            start_time: '',
-            end_date: '',
-            end_time: '',
+            start_date: null,
+            start_time: null,
+            end_date: null,
+            end_time: null,
             num_date: '',
 
             target: '',
@@ -310,7 +392,7 @@
             ],
             creator: [
               (v) => !!v || 'required',
-              (v) => v && v.length > 1 || 'must be more than 10 characters'
+              (v) => v && v.length > 5 || 'must be more than 5 characters'
             ],
             province: [
               (v) => !!v || 'required',
@@ -335,9 +417,8 @@
           if (index >= 0) this.friends.splice(index, 1)
         },*/
         submit () {
-          console.log(this.form)
-
-          if (!this.$refs.form.validate()) {
+          if (this.$refs.formAddTask.validate()) {
+            console.log(this.form)
             // Native form submission is not yet supported
             /*axios.post('/api/submit', {
               name: this.name,
@@ -352,7 +433,7 @@
             var end = moment(this.form.end_date); // end date
             var duration = moment.duration(end.diff(start))
             var days = duration.asDays()
-            this.form.num_date = days
+            this.form.num_date = days + 1
 
             //Get companion name
             var companionName = ''
@@ -388,7 +469,11 @@
                 }
               }
             ).then(response => {
-              console.log(response)
+              console.log("response", response)
+              
+              if(response.data.status)
+                window.location.href = "/car_reservation/public/task/waiting_list"
+
             }).catch(e => {
               alert(e)
             })
@@ -396,6 +481,10 @@
         },
         clear () {
           this.$refs.form.reset()
+        },
+        saveStartDate(){
+          this.$refs.dialogDateStart.save(this.form.start_date)
+          this.min_end_date = this.form.start_date
         }
       },
 

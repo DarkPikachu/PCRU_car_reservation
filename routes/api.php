@@ -36,4 +36,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('task/monthly/{date}', 'API\TaskController@monthlyTask');
     Route::get('task/daily/{date}', 'API\TaskController@dailyTask');
     Route::get('task/all', 'API\TaskController@allTask');
+    Route::get('task/waiting/{date}', 'API\TaskController@waitingTask');
 });
