@@ -364,9 +364,10 @@
             checked:'',
 
             creator: {
-                name: '',
-                position: '',
-                department: ''
+              id: 0,
+              name: null,
+              position: null,
+              department: null
             },
 
             start_date: null,

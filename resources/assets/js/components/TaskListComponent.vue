@@ -29,14 +29,10 @@
                             </td>
                         </template>
                     </v-data-table>
-                </v-flex>
-
-                
+                </v-flex>                
             </v-layout>
-
         </v-container>
     </v-content>
-
 </v-app>
 </template>
 
